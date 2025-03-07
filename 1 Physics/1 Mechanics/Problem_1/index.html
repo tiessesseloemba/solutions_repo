@@ -219,39 +219,12 @@ To understand this further, we can analyze the behavior of <span class="arithmat
 •   Air resistance: For higher velocities or longer flight times, air resistance becomes significant. The range will be less than predicted by the ideal model.
 •   Uneven terrain: If the projectile lands at a different height, the equations need to be modified to account for the change in height between launch and landing points.</p>
 <ol>
-<li>Implementation</li>
-</ol>
-<p>We can implement the simulation in Python using the following code. This code calculates the range as a function of the launch angle for different initial velocities and gravitational accelerations.
-pip install numpy matplotlib
-import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="constants">Constants</h1>
-<p>g = 9.81  # Acceleration due to gravity (m/s^2)</p>
-<h1 id="function-to-calculate-the-range-for-a-given-initial-velocity-and-angle">Function to calculate the range for a given initial velocity and angle</h1>
-<p>def calculate_range(v0, theta_deg):
-    theta_rad = np.radians(theta_deg)  # Convert angle to radians
-    return (v0**2 * np.sin(2 * theta_rad)) / g</p>
-<h1 id="parameters">Parameters</h1>
-<p>v0 = 20  # Initial velocity in m/s
-angles = np.linspace(0, 90, 100)  # Angles from 0 to 90 degrees</p>
-<h1 id="calculate-the-range-for-each-angle">Calculate the range for each angle</h1>
-<p>ranges = calculate_range(v0, angles)</p>
-<h1 id="plot-the-results">Plot the results</h1>
-<p>plt.figure(figsize=(8, 6))  # Optional: for better figure size
-plt.plot(angles, ranges, label=f'Initial velocity = {v0} m/s')</p>
-<h1 id="add-title-and-labels">Add title and labels</h1>
-<p>plt.title('Projectile Range vs Launch Angle')
-plt.xlabel('Launch Angle (degrees)')
-plt.ylabel('Range (meters)')</p>
-<h1 id="add-grid-for-better-readability">Add grid for better readability</h1>
-<p>plt.grid(True)</p>
-<h1 id="add-legend">Add legend</h1>
-<p>plt.legend()</p>
-<h1 id="show-the-plot">Show the plot</h1>
-<p>plt.show()
-python nom_du_fichier.py</p>
-<ol>
-<li>Limitations of the Idealized Model</li>
+<li>
+<p>Implementation</p>
+</li>
+<li>
+<p>Limitations of the Idealized Model</p>
+</li>
 </ol>
 <p>While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
 •   Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
