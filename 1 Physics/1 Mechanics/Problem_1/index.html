@@ -178,12 +178,10 @@
 <p>To analyze the projectile motion, we begin with the fundamental equations of motion in a uniform gravitational field. The goal is to derive the horizontal range R as a function of the launch angle <span class="arithmatex">\(\theta\)</span> for a projectile.</p>
 <p>1.1 Equations of Motion</p>
 <p>A projectile is launched with an initial velocity <span class="arithmatex">\(v_0\)</span> at an angle <span class="arithmatex">\(\theta\)</span> from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:</p>
-<pre><code>$•  Horizontal motion (constant velocity in the absence of air resistance):$
-</code></pre>
-<p><span class="arithmatex">\(x(t) = v_0 \cos(\theta) t\)</span></p>
-<pre><code>•   Vertical motion (with acceleration due to gravity g):
-</code></pre>
-<p><span class="arithmatex">\(y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2\)</span></p>
+<p>•   Horizontal motion (constant velocity in the absence of air resistance):$
+<span class="arithmatex">\(x(t) = v_0 \cos(\theta) t\)</span></p>
+<p>•   Vertical motion (with acceleration due to gravity g):
+<span class="arithmatex">\(y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2\)</span></p>
 <p>1.2 Time of Flight</p>
 <p>To find the time <span class="arithmatex">\(t_{\text{flight}}\)</span> it takes for the projectile to hit the ground, set y(t) = 0 (assuming the projectile lands at the same height from which it was launched). So,</p>
 <div class="arithmatex">\[0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2\]</div>
@@ -197,9 +195,9 @@
 <p>Simplifying:</p>
 <div class="arithmatex">\[R = \frac{v_0^2 \sin(2\theta)}{g}\]</div>
 <p>This is the classic equation for the range of a projectile on flat ground with no air resistance. It shows that the range depends on:
-    •   The initial velocity <span class="arithmatex">\(v_0\)</span>,
-    •   The angle of projection <span class="arithmatex">\(\theta\)</span>,
-    •   The gravitational acceleration g.</p>
+•   The initial velocity <span class="arithmatex">\(v_0\)</span>,
+•   The angle of projection <span class="arithmatex">\(\theta\)</span>,
+•   The gravitational acceleration g.</p>
 <ol>
 <li>Analysis of the Range</li>
 </ol>
@@ -225,28 +223,34 @@ To understand this further, we can analyze the behavior of <span class="arithmat
 <li>Implementation</li>
 </ol>
 <p>We can implement the simulation in Python using the following code. This code calculates the range as a function of the launch angle for different initial velocities and gravitational accelerations.
+pip install numpy matplotlib
 import numpy as np
 import matplotlib.pyplot as plt</p>
 <h1 id="constants">Constants</h1>
 <p>g = 9.81  # Acceleration due to gravity (m/s^2)</p>
 <h1 id="function-to-calculate-the-range-for-a-given-initial-velocity-and-angle">Function to calculate the range for a given initial velocity and angle</h1>
 <p>def calculate_range(v0, theta_deg):
-    <span class="arithmatex">\(theta_rad = np.radians(theta_deg)\)</span>
-<span class="arithmatex">\(return (v0**2 * np.sin(2 * theta_rad)) / g\)</span></p>
+    theta_rad = np.radians(theta_deg)  # Convert angle to radians
+    return (v0**2 * np.sin(2 * theta_rad)) / g</p>
 <h1 id="parameters">Parameters</h1>
-<p><span class="arithmatex">\(v0 = 20\)</span>  # Initial velocity in m/s
+<p>v0 = 20  # Initial velocity in m/s
 angles = np.linspace(0, 90, 100)  # Angles from 0 to 90 degrees</p>
 <h1 id="calculate-the-range-for-each-angle">Calculate the range for each angle</h1>
 <p>ranges = calculate_range(v0, angles)</p>
 <h1 id="plot-the-results">Plot the results</h1>
-<p>plt.figure(figsize=(8, 6))
-plt.plot(angles, ranges, label=f'Initial velocity = {v0} m/s')
-plt.title('Projectile Range vs Launch Angle')
+<p>plt.figure(figsize=(8, 6))  # Optional: for better figure size
+plt.plot(angles, ranges, label=f'Initial velocity = {v0} m/s')</p>
+<h1 id="add-title-and-labels">Add title and labels</h1>
+<p>plt.title('Projectile Range vs Launch Angle')
 plt.xlabel('Launch Angle (degrees)')
-plt.ylabel('Range (meters)')
-plt.grid(True)
-plt.legend()
-plt.show()
+plt.ylabel('Range (meters)')</p>
+<h1 id="add-grid-for-better-readability">Add grid for better readability</h1>
+<p>plt.grid(True)</p>
+<h1 id="add-legend">Add legend</h1>
+<p>plt.legend()</p>
+<h1 id="show-the-plot">Show the plot</h1>
+<p>plt.show()
+python nom_du_fichier.py
 5. Limitations of the Idealized Model</p>
 <p>While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
     •   Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
