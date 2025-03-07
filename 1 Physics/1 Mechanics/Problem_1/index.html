@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Problem - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Problem";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -46,7 +46,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal current">1 Mechanics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem</a>
 <ul class="current">
 </ul>
 </li>
@@ -163,7 +163,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Problem</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,14 +171,93 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
-<p>Projectile motion
-**1- Theoretical Foundation: **
-Equation of motion:
-Horizontal component of initial velocity:</p>
-<p>print("v_ox = v_0 * cos(θ)")
-print("v_oy = v_0 * sin(θ)")
-print("R = (v_0^2 * sin(2θ)) / g")</p>
+<h1 id="problem">Problem</h1>
+<ol>
+<li>Theoretical Foundation</li>
+</ol>
+<p>To analyze the projectile motion, we begin with the fundamental equations of motion in a uniform gravitational field. The goal is to derive the horizontal range R as a function of the launch angle \theta for a projectile.</p>
+<p>1.1 Equations of Motion</p>
+<p>A projectile is launched with an initial velocity v_0 at an angle \theta from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
+    •   Horizontal motion (constant velocity in the absence of air resistance):
+x(t) = v_0 \cos(\theta) t
+    •   Vertical motion (with acceleration due to gravity g):
+y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2</p>
+<p>1.2 Time of Flight</p>
+<p>To find the time t_{\text{flight}} it takes for the projectile to hit the ground, set y(t) = 0 (assuming the projectile lands at the same height from which it was launched). So,</p>
+<p>0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2</p>
+<p>Factoring out t:</p>
+<p>t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0</p>
+<p>We get two solutions: t = 0 (at launch) and t = \frac{2 v_0 \sin(\theta)}{g} (when the projectile hits the ground). The time of flight is therefore:</p>
+<p>t_{\text{flight}} = \frac{2 v_0 \sin(\theta)}{g}</p>
+<p>1.3 Horizontal Range</p>
+<p>The range R is the horizontal distance the projectile travels during its flight. It can be found by substituting the time of flight into the horizontal motion equation:</p>
+<p>R = x(t_{\text{flight}}) = v_0 \cos(\theta) \left( \frac{2 v_0 \sin(\theta)}{g} \right)</p>
+<p>Simplifying:</p>
+<p>R = \frac{v_0^2 \sin(2\theta)}{g}</p>
+<p>This is the classic equation for the range of a projectile on flat ground with no air resistance. It shows that the range depends on:
+    •   The initial velocity v_0,
+    •   The angle of projection \theta,
+    •   The gravitational acceleration g.</p>
+<ol>
+<li>Analysis of the Range</li>
+</ol>
+<p>2.1 Dependence of Range on Launch Angle</p>
+<p>The equation R = \frac{v_0^2 \sin(2\theta)}{g} clearly indicates that the range is a function of the angle \theta. To understand this further, we can analyze the behavior of \sin(2\theta):
+    •   The function \sin(2\theta) reaches its maximum value of 1 when \theta = 45^\circ.
+    •   This means the range is maximized when the launch angle is 45^\circ, which is a key result in projectile motion.</p>
+<p>At angles less than 45^\circ, \sin(2\theta) decreases, reducing the range. Similarly, at angles greater than 45^\circ, the sine function starts to decrease again.</p>
+<p>2.2 Effect of Initial Velocity and Gravitational Acceleration
+    •   Initial velocity v_0: The range increases quadratically with the initial velocity. Doubling v_0 will quadruple the range.
+    •   Gravitational acceleration g: The range decreases as gravity increases. In regions with stronger gravity (e.g., on planets with higher gravity), the range is shorter for the same initial velocity and launch angle.</p>
+<p>2.3 Numerical Simulation</p>
+<p>We can now simulate the range as a function of the launch angle for different initial velocities and gravitational accelerations.</p>
+<ol>
+<li>Practical Applications</li>
+</ol>
+<p>In real-world scenarios, the model described above is idealized and assumes no air resistance. However, in practical cases, air resistance and other factors like uneven terrain can significantly affect the projectile’s range.
+    •   Air resistance: For higher velocities or longer flight times, air resistance becomes significant. The range will be less than predicted by the ideal model.
+    •   Uneven terrain: If the projectile lands at a different height, the equations need to be modified to account for the change in height between launch and landing points.</p>
+<ol>
+<li>Implementation</li>
+</ol>
+<p>We can implement the simulation in Python using the following code. This code calculates the range as a function of the launch angle for different initial velocities and gravitational accelerations.
+import numpy as np
+import matplotlib.pyplot as plt</p>
+<h1 id="constants">Constants</h1>
+<p>g = 9.81  # Acceleration due to gravity (m/s^2)</p>
+<h1 id="function-to-calculate-the-range-for-a-given-initial-velocity-and-angle">Function to calculate the range for a given initial velocity and angle</h1>
+<p>def calculate_range(v0, theta_deg):
+    theta_rad = np.radians(theta_deg)
+    return (v0**2 * np.sin(2 * theta_rad)) / g</p>
+<h1 id="parameters">Parameters</h1>
+<p>v0 = 20  # Initial velocity in m/s
+angles = np.linspace(0, 90, 100)  # Angles from 0 to 90 degrees</p>
+<h1 id="calculate-the-range-for-each-angle">Calculate the range for each angle</h1>
+<p>ranges = calculate_range(v0, angles)</p>
+<h1 id="plot-the-results">Plot the results</h1>
+<p>plt.figure(figsize=(8, 6))
+plt.plot(angles, ranges, label=f'Initial velocity = {v0} m/s')
+plt.title('Projectile Range vs Launch Angle')
+plt.xlabel('Launch Angle (degrees)')
+plt.ylabel('Range (meters)')
+plt.grid(True)
+plt.legend()
+plt.show()
+5. Limitations of the Idealized Model</p>
+<p>While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
+    •   Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
+    •   Wind: Wind can alter the trajectory significantly, making the range much harder to predict without considering wind speed and direction.
+    •   Launch height differences: If the launch and landing heights are not the same, the model needs modification to account for this difference in height.
+    •   Coriolis effect: On large distances (such as with missiles or space objects), the Coriolis effect may slightly alter the trajectory.</p>
+<ol>
+<li>Extensions for Realistic Factors</li>
+</ol>
+<p>To incorporate more realistic factors like air resistance, the equations of motion would need to include drag forces. The projectile motion equations would then become more complex and require numerical methods (such as solving differential equations) to compute the trajectory.</p>
+<p>Additionally, terrain modeling can be included by modifying the landing condition y(t) = 0 to reflect the terrain profile.</p>
+<ol>
+<li>Conclusion</li>
+</ol>
+<p>The theoretical and practical analysis of projectile motion reveals several important insights, especially the relationship between launch angle and range. The model can be extended to real-world applications by incorporating additional factors like air resistance and uneven terrain. The Python simulation provides a powerful tool to visualize these relationships and can be extended further to model more complex situations.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
