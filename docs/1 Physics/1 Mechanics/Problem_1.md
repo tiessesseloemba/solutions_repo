@@ -1,4 +1,4 @@
-# Problem 
+# Problem 1
 1. Theoretical Foundation
 
 To analyze the projectile motion, we begin with the fundamental equations of motion in a uniform gravitational field. The goal is to derive the horizontal range R as a function of the launch angle $\theta$ for a projectile.
