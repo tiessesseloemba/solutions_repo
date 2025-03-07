@@ -178,10 +178,10 @@
 <p>To analyze the projectile motion, we begin with the fundamental equations of motion in a uniform gravitational field. The goal is to derive the horizontal range R as a function of the launch angle <span class="arithmatex">\(\theta\)</span> for a projectile.</p>
 <p>1.1 Equations of Motion</p>
 <p>A projectile is launched with an initial velocity <span class="arithmatex">\(v_0\)</span> at an angle <span class="arithmatex">\(\theta\)</span> from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:</p>
-<p>•   Horizontal motion (constant velocity in the absence of air resistance):$
-<span class="arithmatex">\(x(t) = v_0 \cos(\theta) t\)</span></p>
-<p>•   Vertical motion (with acceleration due to gravity g):
-<span class="arithmatex">\(y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2\)</span></p>
+<p>•   Horizontal motion (constant velocity in the absence of air resistance):</p>
+<p><span class="arithmatex">\(x(t) = v_0 \cos(\theta) t\)</span></p>
+<p>•   Vertical motion (with acceleration due to gravity g):</p>
+<p><span class="arithmatex">\(y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2\)</span></p>
 <p>1.2 Time of Flight</p>
 <p>To find the time <span class="arithmatex">\(t_{\text{flight}}\)</span> it takes for the projectile to hit the ground, set y(t) = 0 (assuming the projectile lands at the same height from which it was launched). So,</p>
 <div class="arithmatex">\[0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2\]</div>
@@ -204,21 +204,20 @@
 <p>2.1 Dependence of Range on Launch Angle</p>
 <p>The equation <span class="arithmatex">\(R = \frac{v_0^2 \sin(2\theta)}{g}\)</span> clearly indicates that the range is a function of the angle <span class="arithmatex">\(\theta\)</span>. 
 To understand this further, we can analyze the behavior of <span class="arithmatex">\(\sin(2\theta)\)</span>:</p>
-<pre><code>•   The function $\sin(2\theta)$ reaches its maximum value of 1 when $\theta$ = $45^\circ$.
-•   This means the range is maximized when the launch angle is $45^\circ$, which is a key result in projectile motion.
-</code></pre>
+<p>•   The function <span class="arithmatex">\(\sin(2\theta)\)</span> reaches its maximum value of 1 when <span class="arithmatex">\(\theta\)</span> = <span class="arithmatex">\(45^\circ\)</span>.
+•   This means the range is maximized when the launch angle is <span class="arithmatex">\(45^\circ\)</span>, which is a key result in projectile motion.</p>
 <p>At angles less than <span class="arithmatex">\(45^\circ\)</span>, <span class="arithmatex">\(\sin(2\theta)\)</span> decreases, reducing the range. Similarly, at angles greater than <span class="arithmatex">\(45^\circ\)</span>, the sine function starts to decrease again.</p>
 <p>2.2 Effect of Initial Velocity and Gravitational Acceleration
-    •   Initial velocity <span class="arithmatex">\(v_0\)</span>: The range increases quadratically with the initial velocity. Doubling <span class="arithmatex">\(v_0\)</span> will quadruple the range.
-    •   Gravitational acceleration g: The range decreases as gravity increases. In regions with stronger gravity (e.g., on planets with higher gravity), the range is shorter for the same initial velocity and launch angle.</p>
+•   Initial velocity <span class="arithmatex">\(v_0\)</span>: The range increases quadratically with the initial velocity. Doubling <span class="arithmatex">\(v_0\)</span> will quadruple the range.
+•   Gravitational acceleration g: The range decreases as gravity increases. In regions with stronger gravity (e.g., on planets with higher gravity), the range is shorter for the same initial velocity and launch angle.</p>
 <p>2.3 Numerical Simulation</p>
 <p>We can now simulate the range as a function of the launch angle for different initial velocities and gravitational accelerations.</p>
 <ol>
 <li>Practical Applications</li>
 </ol>
 <p>In real-world scenarios, the model described above is idealized and assumes no air resistance. However, in practical cases, air resistance and other factors like uneven terrain can significantly affect the projectile’s range.
-    •   Air resistance: For higher velocities or longer flight times, air resistance becomes significant. The range will be less than predicted by the ideal model.
-    •   Uneven terrain: If the projectile lands at a different height, the equations need to be modified to account for the change in height between launch and landing points.</p>
+•   Air resistance: For higher velocities or longer flight times, air resistance becomes significant. The range will be less than predicted by the ideal model.
+•   Uneven terrain: If the projectile lands at a different height, the equations need to be modified to account for the change in height between launch and landing points.</p>
 <ol>
 <li>Implementation</li>
 </ol>
@@ -250,13 +249,15 @@ plt.ylabel('Range (meters)')</p>
 <p>plt.legend()</p>
 <h1 id="show-the-plot">Show the plot</h1>
 <p>plt.show()
-python nom_du_fichier.py
-5. Limitations of the Idealized Model</p>
+python nom_du_fichier.py</p>
+<ol>
+<li>Limitations of the Idealized Model</li>
+</ol>
 <p>While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
-    •   Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
-    •   Wind: Wind can alter the trajectory significantly, making the range much harder to predict without considering wind speed and direction.
-    •   Launch height differences: If the launch and landing heights are not the same, the model needs modification to account for this difference in height.
-    •   Coriolis effect: On large distances (such as with missiles or space objects), the Coriolis effect may slightly alter the trajectory.</p>
+•   Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
+•   Wind: Wind can alter the trajectory significantly, making the range much harder to predict without considering wind speed and direction.
+•   Launch height differences: If the launch and landing heights are not the same, the model needs modification to account for this difference in height.
+•   Coriolis effect: On large distances (such as with missiles or space objects), the Coriolis effect may slightly alter the trajectory.</p>
 <ol>
 <li>Extensions for Realistic Factors</li>
 </ol>
