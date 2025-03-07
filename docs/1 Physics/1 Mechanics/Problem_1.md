@@ -5,35 +5,40 @@ To analyze the projectile motion, we begin with the fundamental equations of mot
 
 1.1 Equations of Motion
 
-A projectile is launched with an initial velocity v_0 at an angle \theta from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
+A projectile is launched with an initial velocity $v_0$ at an angle \theta from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
+$$
 	•	Horizontal motion (constant velocity in the absence of air resistance):
 x(t) = v_0 \cos(\theta) t
+$$
+
+$$
 	•	Vertical motion (with acceleration due to gravity g):
 y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+$$
 
 1.2 Time of Flight
 
-To find the time t_{\text{flight}} it takes for the projectile to hit the ground, set y(t) = 0 (assuming the projectile lands at the same height from which it was launched). So,
+To find the time $t_{\text{flight}}$ it takes for the projectile to hit the ground, set y(t) = 0 (assuming the projectile lands at the same height from which it was launched). So,
 
-0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+$$0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2$$
 
 Factoring out t:
 
-t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0
+$t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0$
 
 We get two solutions: t = 0 (at launch) and t = \frac{2 v_0 \sin(\theta)}{g} (when the projectile hits the ground). The time of flight is therefore:
 
-t_{\text{flight}} = \frac{2 v_0 \sin(\theta)}{g}
+$t_{\text{flight}} = \frac{2 v_0 \sin(\theta)}{g}$
 
 1.3 Horizontal Range
 
 The range R is the horizontal distance the projectile travels during its flight. It can be found by substituting the time of flight into the horizontal motion equation:
 
-R = x(t_{\text{flight}}) = v_0 \cos(\theta) \left( \frac{2 v_0 \sin(\theta)}{g} \right)
+$$R = x(t_{\text{flight}}) = v_0 \cos(\theta) \left( \frac{2 v_0 \sin(\theta)}{g} \right)$$
 
 Simplifying:
 
-R = \frac{v_0^2 \sin(2\theta)}{g}
+$$R = \frac{v_0^2 \sin(2\theta)}{g}$$
 
 This is the classic equation for the range of a projectile on flat ground with no air resistance. It shows that the range depends on:
 	•	The initial velocity v_0,
@@ -44,7 +49,8 @@ This is the classic equation for the range of a projectile on flat ground with n
 
 2.1 Dependence of Range on Launch Angle
 
-The equation R = \frac{v_0^2 \sin(2\theta)}{g} clearly indicates that the range is a function of the angle \theta. To understand this further, we can analyze the behavior of \sin(2\theta):
+The equation $$R = \frac{v_0^2 \sin(2\theta)}{g}$$ clearly indicates that the range is a function of the angle \theta. To understand this further, we can analyze the behavior of \sin(2\theta):
+
 	•	The function \sin(2\theta) reaches its maximum value of 1 when \theta = 45^\circ.
 	•	This means the range is maximized when the launch angle is 45^\circ, which is a key result in projectile motion.
 
