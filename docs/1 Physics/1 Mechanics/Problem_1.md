@@ -1,13 +1,13 @@
 # Problem 
 1. Theoretical Foundation
 
-To analyze the projectile motion, we begin with the fundamental equations of motion in a uniform gravitational field. The goal is to derive the horizontal range R as a function of the launch angle \theta for a projectile.
+To analyze the projectile motion, we begin with the fundamental equations of motion in a uniform gravitational field. The goal is to derive the horizontal range R as a function of the launch angle $\theta$ for a projectile.
 
 1.1 Equations of Motion
 
-A projectile is launched with an initial velocity $v_0$ at an angle \theta from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
+A projectile is launched with an initial velocity $v_0$ at an angle $\theta$ from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
 
-	•	Horizontal motion (constant velocity in the absence of air resistance):
+	$•	Horizontal motion (constant velocity in the absence of air resistance):$
 $x(t) = v_0 \cos(\theta) t$
 
 
@@ -24,11 +24,11 @@ $$0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2$$
 
 Factoring out t:
 
-$t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0$
+$$t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0$$
 
-We get two solutions: t = 0 (at launch) and t = \frac{2 v_0 \sin(\theta)}{g} (when the projectile hits the ground). The time of flight is therefore:
+We get two solutions: t = 0 (at launch) and $t = \frac{2 v_0 \sin(\theta)}{g}$ (when the projectile hits the ground). The time of flight is therefore:
 
-$t_{\text{flight}} = \frac{2 v_0 \sin(\theta)}{g}$
+$$t_{\text{flight}} = \frac{2 v_0 \sin(\theta)}{g}$$
 
 1.3 Horizontal Range
 
@@ -41,23 +41,24 @@ Simplifying:
 $$R = \frac{v_0^2 \sin(2\theta)}{g}$$
 
 This is the classic equation for the range of a projectile on flat ground with no air resistance. It shows that the range depends on:
-	•	The initial velocity v_0,
-	•	The angle of projection \theta,
+	•	The initial velocity $v_0$,
+	•	The angle of projection $\theta$,
 	•	The gravitational acceleration g.
 
 2. Analysis of the Range
 
 2.1 Dependence of Range on Launch Angle
 
-The equation $$R = \frac{v_0^2 \sin(2\theta)}{g}$$ clearly indicates that the range is a function of the angle \theta. To understand this further, we can analyze the behavior of \sin(2\theta):
+The equation $R = \frac{v_0^2 \sin(2\theta)}{g}$ clearly indicates that the range is a function of the angle $\theta$. 
+To understand this further, we can analyze the behavior of $\sin(2\theta)$:
 
-	•	The function \sin(2\theta) reaches its maximum value of 1 when \theta = 45^\circ.
-	•	This means the range is maximized when the launch angle is 45^\circ, which is a key result in projectile motion.
+	•	The function $\sin(2\theta)$ reaches its maximum value of 1 when $\theta$ = $45^\circ$.
+	•	This means the range is maximized when the launch angle is $45^\circ$, which is a key result in projectile motion.
 
-At angles less than 45^\circ, \sin(2\theta) decreases, reducing the range. Similarly, at angles greater than 45^\circ, the sine function starts to decrease again.
+At angles less than $45^\circ$, $\sin(2\theta)$ decreases, reducing the range. Similarly, at angles greater than $45^\circ$, the sine function starts to decrease again.
 
 2.2 Effect of Initial Velocity and Gravitational Acceleration
-	•	Initial velocity v_0: The range increases quadratically with the initial velocity. Doubling v_0 will quadruple the range.
+	•	Initial velocity $v_0$: The range increases quadratically with the initial velocity. Doubling $v_0$ will quadruple the range.
 	•	Gravitational acceleration g: The range decreases as gravity increases. In regions with stronger gravity (e.g., on planets with higher gravity), the range is shorter for the same initial velocity and launch angle.
 
 2.3 Numerical Simulation
@@ -81,11 +82,11 @@ g = 9.81  # Acceleration due to gravity (m/s^2)
 
 # Function to calculate the range for a given initial velocity and angle
 def calculate_range(v0, theta_deg):
-    theta_rad = np.radians(theta_deg)
-    return (v0**2 * np.sin(2 * theta_rad)) / g
+    $theta_rad = np.radians(theta_deg)$
+    $return (v0**2 * np.sin(2 * theta_rad)) / g$
 
 # Parameters
-v0 = 20  # Initial velocity in m/s
+$v0 = 20$  # Initial velocity in m/s
 angles = np.linspace(0, 90, 100)  # Angles from 0 to 90 degrees
 
 # Calculate the range for each angle
