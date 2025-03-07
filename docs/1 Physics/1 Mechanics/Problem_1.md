@@ -7,12 +7,12 @@ To analyze the projectile motion, we begin with the fundamental equations of mot
 
 A projectile is launched with an initial velocity $v_0$ at an angle $\theta$ from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
 
-	$•	Horizontal motion (constant velocity in the absence of air resistance):$
+•	Horizontal motion (constant velocity in the absence of air resistance):$
 $x(t) = v_0 \cos(\theta) t$
 
 
 
-	•	Vertical motion (with acceleration due to gravity g):
+•	Vertical motion (with acceleration due to gravity g):
 $y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2$
 
 
@@ -41,9 +41,9 @@ Simplifying:
 $$R = \frac{v_0^2 \sin(2\theta)}{g}$$
 
 This is the classic equation for the range of a projectile on flat ground with no air resistance. It shows that the range depends on:
-	•	The initial velocity $v_0$,
-	•	The angle of projection $\theta$,
-	•	The gravitational acceleration g.
+•	The initial velocity $v_0$,
+•	The angle of projection $\theta$,
+•	The gravitational acceleration g.
 
 2. Analysis of the Range
 
@@ -74,6 +74,7 @@ In real-world scenarios, the model described above is idealized and assumes no a
 4. Implementation
 
 We can implement the simulation in Python using the following code. This code calculates the range as a function of the launch angle for different initial velocities and gravitational accelerations.
+pip install numpy matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -82,25 +83,34 @@ g = 9.81  # Acceleration due to gravity (m/s^2)
 
 # Function to calculate the range for a given initial velocity and angle
 def calculate_range(v0, theta_deg):
-    $theta_rad = np.radians(theta_deg)$
-    $return (v0**2 * np.sin(2 * theta_rad)) / g$
+    theta_rad = np.radians(theta_deg)  # Convert angle to radians
+    return (v0**2 * np.sin(2 * theta_rad)) / g
 
 # Parameters
-$v0 = 20$  # Initial velocity in m/s
+v0 = 20  # Initial velocity in m/s
 angles = np.linspace(0, 90, 100)  # Angles from 0 to 90 degrees
 
 # Calculate the range for each angle
 ranges = calculate_range(v0, angles)
 
 # Plot the results
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(8, 6))  # Optional: for better figure size
 plt.plot(angles, ranges, label=f'Initial velocity = {v0} m/s')
+
+# Add title and labels
 plt.title('Projectile Range vs Launch Angle')
 plt.xlabel('Launch Angle (degrees)')
 plt.ylabel('Range (meters)')
+
+# Add grid for better readability
 plt.grid(True)
+
+# Add legend
 plt.legend()
+
+# Show the plot
 plt.show()
+python nom_du_fichier.py
 5. Limitations of the Idealized Model
 
 While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
