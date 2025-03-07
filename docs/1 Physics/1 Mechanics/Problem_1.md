@@ -75,44 +75,8 @@ In real-world scenarios, the model described above is idealized and assumes no a
 
 4. Implementation
 
-We can implement the simulation in Python using the following code. This code calculates the range as a function of the launch angle for different initial velocities and gravitational accelerations.
-pip install numpy matplotlib
-import numpy as np
-import matplotlib.pyplot as plt
 
-# Constants
-g = 9.81  # Acceleration due to gravity (m/s^2)
 
-# Function to calculate the range for a given initial velocity and angle
-def calculate_range(v0, theta_deg):
-    theta_rad = np.radians(theta_deg)  # Convert angle to radians
-    return (v0**2 * np.sin(2 * theta_rad)) / g
-
-# Parameters
-v0 = 20  # Initial velocity in m/s
-angles = np.linspace(0, 90, 100)  # Angles from 0 to 90 degrees
-
-# Calculate the range for each angle
-ranges = calculate_range(v0, angles)
-
-# Plot the results
-plt.figure(figsize=(8, 6))  # Optional: for better figure size
-plt.plot(angles, ranges, label=f'Initial velocity = {v0} m/s')
-
-# Add title and labels
-plt.title('Projectile Range vs Launch Angle')
-plt.xlabel('Launch Angle (degrees)')
-plt.ylabel('Range (meters)')
-
-# Add grid for better readability
-plt.grid(True)
-
-# Add legend
-plt.legend()
-
-# Show the plot
-plt.show()
-python nom_du_fichier.py
 
 5. Limitations of the Idealized Model
 
