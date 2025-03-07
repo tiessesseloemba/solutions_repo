@@ -6,15 +6,15 @@ To analyze the projectile motion, we begin with the fundamental equations of mot
 1.1 Equations of Motion
 
 A projectile is launched with an initial velocity $v_0$ at an angle \theta from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
-$$
-	•	Horizontal motion (constant velocity in the absence of air resistance):
-x(t) = v_0 \cos(\theta) t
-$$
 
-$$
+	•	Horizontal motion (constant velocity in the absence of air resistance):
+$x(t) = v_0 \cos(\theta) t$
+
+
+
 	•	Vertical motion (with acceleration due to gravity g):
-y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
-$$
+$y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2$
+
 
 1.2 Time of Flight
 
