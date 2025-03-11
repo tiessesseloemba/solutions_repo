@@ -75,7 +75,29 @@ In real-world scenarios, the model described above is idealized and assumes no a
 
 4. Implementation
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
 
+# Définition des constantes
+g = 9.81  # Accélération gravitationnelle (m/s²)
+v0 = 20   # Vitesse initiale (m/s)
+
+# Liste d'angles entre 0 et 90 degrés
+angles = np.linspace(0, 90, 100)
+
+# Calcul de la portée pour chaque angle
+ranges = (v0**2 * np.sin(2 * np.radians(angles))) / g
+
+# Affichage du graphique
+plt.figure(figsize=(8,6))
+plt.plot(angles, ranges, label=f'v0 = {v0} m/s')
+plt.xlabel('Angle de lancement (°)')
+plt.ylabel('Portée (m)')
+plt.title('Portée d’un projectile en fonction de l’angle')
+plt.legend()
+plt.grid()
+plt.show()
 
 
 5. Limitations of the Idealized Model
