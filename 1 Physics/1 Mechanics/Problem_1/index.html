@@ -219,12 +219,29 @@ To understand this further, we can analyze the behavior of <span class="arithmat
 •   Air resistance: For higher velocities or longer flight times, air resistance becomes significant. The range will be less than predicted by the ideal model.
 •   Uneven terrain: If the projectile lands at a different height, the equations need to be modified to account for the change in height between launch and landing points.</p>
 <ol>
-<li>
-<p>Implementation</p>
-</li>
-<li>
-<p>Limitations of the Idealized Model</p>
-</li>
+<li>Implementation</li>
+</ol>
+<p>```python
+import numpy as np
+import matplotlib.pyplot as plt</p>
+<h1 id="definition-des-constantes">Définition des constantes</h1>
+<p>g = 9.81  # Accélération gravitationnelle (m/s²)
+v0 = 20   # Vitesse initiale (m/s)</p>
+<h1 id="liste-dangles-entre-0-et-90-degres">Liste d'angles entre 0 et 90 degrés</h1>
+<p>angles = np.linspace(0, 90, 100)</p>
+<h1 id="calcul-de-la-portee-pour-chaque-angle">Calcul de la portée pour chaque angle</h1>
+<p>ranges = (v0**2 * np.sin(2 * np.radians(angles))) / g</p>
+<h1 id="affichage-du-graphique">Affichage du graphique</h1>
+<p>plt.figure(figsize=(8,6))
+plt.plot(angles, ranges, label=f'v0 = {v0} m/s')
+plt.xlabel('Angle de lancement (°)')
+plt.ylabel('Portée (m)')
+plt.title('Portée d’un projectile en fonction de l’angle')
+plt.legend()
+plt.grid()
+plt.show()</p>
+<ol>
+<li>Limitations of the Idealized Model</li>
 </ol>
 <p>While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
 •   Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
