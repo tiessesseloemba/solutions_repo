@@ -76,6 +76,7 @@ In real-world scenarios, the model described above is idealized and assumes no a
 4. Implementation
 
 ```python
+
 import numpy as np
 import matplotlib.pyplot as plt
 
