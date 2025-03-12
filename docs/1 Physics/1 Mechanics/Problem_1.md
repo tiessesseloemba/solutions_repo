@@ -43,9 +43,10 @@ Simplifying:
 $$R = \frac{v_0^2 \sin(2\theta)}{g}$$
 
 This is the classic equation for the range of a projectile on flat ground with no air resistance. It shows that the range depends on:
-•	The initial velocity $v_0$,
-•	The angle of projection $\theta$,
-•	The gravitational acceleration g.
+
+$•	The initial velocity $v_0$,$
+$•	The angle of projection $\theta$,$
+$•	The gravitational acceleration g.$
 
 2. Analysis of the Range
 
