@@ -1,124 +1,160 @@
 # Problem 1
-### 1. Theoretical Foundation
+### Investigating the Range as a Function of the Angle of Projection
 
-#### Deriving the Equations of Motion
+#### 1. Theoretical Foundation
 
-Projectile motion can be analyzed by breaking it into horizontal and vertical components. Assuming no air resistance, the only acceleration is due to gravity, which acts downward.
+To begin, we must derive the basic equations of motion for projectile motion, assuming no air resistance and constant gravitational acceleration.
 
- **Horizontal Motion:**
+##### Governing Equations of Motion:
 
-  - Acceleration: $a_x = 0$
-  - Velocity: $v_x = v_0 \cos(\theta)$
-  - Position: $x(t) = v_0 \cos(\theta) \cdot t$
+Projectile motion is governed by the kinematic equations in both the horizontal and vertical directions. The motion occurs in two dimensions horizontal (x) and vertical (y) and is subject to constant acceleration due to gravity in the vertical direction. We assume:
 
+- The projectile is launched with an initial velocity $v_0$ at an angle $\theta$ relative to the horizontal.
 
-**Vertical Motion:**
+- The initial position of the projectile is at the origin: $(x_0, y_0) = (0, 0)$.
 
-  - Acceleration: $a_y = -g$
-  - Velocity: $v_y = v_0 \sin(\theta) - g \cdot t$
-  - Position: $y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2$
+- The acceleration due to gravity is $g$ (which acts downward).
 
+In this setup, the motion of the projectile can be described by the following equations:
 
-#### Time of Flight
+- **Horizontal Motion** (constant velocity since no acceleration in the x-direction):
 
-The time of flight $T$ is the time it takes for the projectile to return to the ground. This occurs when $y(T) = 0$:
+  $$
+  x(t) = v_0 \cos(\theta) \cdot t
+  $$
+
+- **Vertical Motion** (accelerated motion due to gravity):
+
+  $$
+  y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2
+  $$
+
+Here:
+- $v_0$ is the initial velocity,
+- $\theta$ is the angle of projection,
+- $g$ is the acceleration due to gravity, and
+- $t$ is time.
+
+##### Time of Flight:
+
+The projectile will hit the ground when $y(t) = 0$. Setting the vertical motion equation equal to zero and solving for $t$, we get the time of flight:
 
 $$
-0 = v_0 \sin(\theta) \cdot T - \frac{1}{2} g T^2
+y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2 = 0
 $$
 
-Solving for $T$:
+This is a quadratic equation in $t$, with solutions:
 
 $$
-T = \frac{2 v_0 \sin(\theta)}{g}
+t = 0 \quad \text{(at the launch point)}
+$$
+$$
+t = \frac{2 v_0 \sin(\theta)}{g} \quad \text{(time of flight)}
 $$
 
-#### Range
+##### Range:
 
-The horizontal range $R$ is the distance traveled during the time of flight:
+The range $R$ of the projectile is the horizontal distance traveled when it hits the ground, i.e., when $y(t) = 0$. Substituting the time of flight $t = \frac{2 v_0 \sin(\theta)}{g}$ into the horizontal motion equation:
 
 $$
-R = v_x \cdot T = v_0 \cos(\theta) \cdot \frac{2 v_0 \sin(\theta)}{g} = \frac{v_0^2 \sin(2\theta)}{g}
+R = x(t) = v_0 \cos(\theta) \cdot \left( \frac{2 v_0 \sin(\theta)}{g} \right)
 $$
 
-### 2. Analysis of the Range
-
-#### Dependence on Angle of Projection
-
-The range $R$ is given by:
+Simplifying:
 
 $$
 R = \frac{v_0^2 \sin(2\theta)}{g}
 $$
 
-- **Maximum Range:** 
+Thus, the range $R$ depends on the initial velocity $v_0$, gravitational acceleration $g$, and the launch angle $\theta$.
 
-The maximum range occurs when $\sin(2\theta) = 1$, which happens at $\theta = 45^\circ$.
+#### 2. Analysis of the Range
 
-- **Symmetry:** 
+From the derived equation for the range:
 
-The range is the same for angles $\theta$ and $90^\circ - \theta$.
+$$
+R = \frac{v_0^2 \sin(2\theta)}{g}
+$$
 
-#### Influence of Initial Velocity and Gravitational Acceleration
+We can analyze how the range depends on the angle of projection $\theta$.
 
-- **Initial Velocity $v_0$:** 
+##### Angle Dependency:
 
-The range is proportional to the square of the initial velocity. Doubling $v_0$ quadruples the range.
+- The term $\sin(2\theta)$ indicates that the range is a function of the angle of projection. The sine function reaches its maximum value of 1 when $\theta = 45^\circ$. Therefore, the projectile achieves its maximum range when it is launched at an angle of 45 degrees.
 
-- **Gravitational Acceleration $g$:** 
+- For angles less than 45°, the sine of $2\theta$ increases, but the range decreases as the angle approaches 0° (horizontal launch). Conversely, for angles greater than 45°, $\sin(2\theta)$ decreases as the angle approaches 90° (vertical launch).
 
-The range is inversely proportional to $g$. On a planet with lower gravity, the range would be greater.
+##### Influence of Initial Velocity:
 
-### 3. Practical Applications
+- The range is directly proportional to the square of the initial velocity, $v_0^2$. Therefore, increasing the initial velocity will result in a larger range, regardless of the angle.
 
-#### Uneven Terrain
+##### Influence of Gravitational Acceleration:
 
-If the projectile is launched from a height $h$ above the ground, the range equation becomes more complex. The time of flight and range would need to account for the additional height.
+- The range is inversely proportional to the gravitational acceleration $g$. If $g$ decreases (e.g., on a planet with lower gravity), the range will increase for the same initial velocity and launch angle.
 
-#### Air Resistance
+#### 3. Practical Applications
 
-In real-world scenarios, air resistance cannot be ignored. It introduces a drag force that opposes the motion, reducing the range. The equations of motion would need to include a drag term, making them more complex and typically requiring numerical methods for solution.
+##### Uneven Terrain:
 
-### 4. Implementation
+If the projectile is launched from a height $h$ above the ground (e.g., a cliff), the range equation must be adjusted to account for this. The time of flight will be longer due to the higher launch position, and the equation for the vertical motion becomes:
 
-#### Computational Tool
+$$
+y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2 + h
+$$
 
-A simple Python script can be used to simulate and visualize projectile motion:
+This leads to a more complex solution for the time of flight and range, but the overall approach remains similar. A numerical solution can be used to handle this situation.
+
+##### Air Resistance:
+
+Realistically, air resistance cannot be ignored, and its effect on the projectile’s trajectory is significant at higher speeds. The equations of motion would need to incorporate drag forces, which are typically modeled as:
+
+$$
+F_{\text{drag}} = \frac{1}{2} C_d \rho A v^2
+$$
+
+where:
+- $C_d$ is the drag coefficient,
+- $\rho$ is the air density,
+- $A$ is the cross-sectional area of the projectile, and
+- $v$ is the velocity of the projectile.
+
+This makes the equations non-linear, requiring numerical methods to solve the trajectory and range.
+
+#### 4. Implementation
+
+To simulate projectile motion and visualize the range as a function of the angle of projection for different initial conditions, we can create a computational tool. Below is a simple Python code to calculate and plot the range as a function of launch angle for a given initial velocity.
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-def projectile_motion(v0, theta, g=9.81, h=0):
-    theta_rad = np.radians(theta)
-    t_flight = (v0 * np.sin(theta_rad) + np.sqrt((v0 * np.sin(theta_rad))**2 + 2 * g * h)) / g
-    t = np.linspace(0, t_flight, num=500)
-    x = v0 * np.cos(theta_rad) * t
-    y = h + v0 * np.sin(theta_rad) * t - 0.5 * g * t**2
-    return x, y
+# Constants
+g = 9.81  # gravitational acceleration in m/s^2
+v0 = 20    # initial velocity in m/s
 
-def plot_trajectory(v0, angles, g=9.81, h=0):
-    plt.figure(figsize=(10, 5))
-    for angle in angles:
-        x, y = projectile_motion(v0, angle, g, h)
-        plt.plot(x, y, label=f'{angle}°')
-    plt.title('Projectile Motion')
-    plt.xlabel('Horizontal Distance (m)')
-    plt.ylabel('Vertical Distance (m)')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+# Function to calculate the range
+def range_of_projectile(v0, theta, g):
+    return (v0**2 * np.sin(2 * np.radians(theta))) / g
 
-# Example usage
-v0 = 50  # initial velocity in m/s
-angles = [30, 45, 60]  # angles in degrees
-plot_trajectory(v0, angles)
+# Angles of projection (0 to 90 degrees)
+angles = np.linspace(0, 90, 100)
+
+# Calculate range for each angle
+ranges = range_of_projectile(v0, angles, g)
+
+# Plotting the range as a function of angle
+plt.plot(angles, ranges)
+plt.title(f"Range of a Projectile vs. Launch Angle\nInitial Velocity: {v0} m/s")
+plt.xlabel("Launch Angle (degrees)")
+plt.ylabel("Range (meters)")
+plt.grid(True)
+plt.show()
 ```
 
-#### Visualization
+##### Output and Interpretation:
 
-This script plots the trajectory of a projectile for different angles of projection. You can adjust the initial velocity, angles, and other parameters to see how they affect the range and trajectory.
+Running this code will generate a plot of the range as a function of launch angle for a given initial velocity. The curve will peak at 45 degrees, illustrating the theoretical result. This visualization provides insight into the optimal launch angle for maximum range.
 
-### Conclusion
+#### Conclusion
 
-By deriving the equations of motion and analyzing the range as a function of the angle of projection, we gain a deeper understanding of projectile motion. This foundational knowledge can be extended to more complex scenarios, such as accounting for air resistance or uneven terrain, and can be effectively visualized using computational tools.
+By examining the range of a projectile as a function of the launch angle, we've seen how simple principles of physics can lead to rich and complex relationships. This analysis not only provides foundational understanding but also enables practical applications in diverse fields, from sports to engineering. Simulation tools like the one described can be further enhanced to incorporate more real-world complexities, such as air resistance and varying terrain.
