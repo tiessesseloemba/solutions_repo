@@ -6,14 +6,18 @@
 Projectile motion can be analyzed by breaking it into horizontal and vertical components. Assuming no air resistance, the only acceleration is due to gravity, which acts downward.
 
 - **Horizontal Motion:**
+
   - Acceleration: $a_x = 0$
   - Velocity: $v_x = v_0 \cos(\theta)$
   - Position: $x(t) = v_0 \cos(\theta) \cdot t$
 
+
 - **Vertical Motion:**
+
   - Acceleration: $a_y = -g$
   - Velocity: $v_y = v_0 \sin(\theta) - g \cdot t$
   - Position: $y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2$
+
 
 #### Time of Flight
 
