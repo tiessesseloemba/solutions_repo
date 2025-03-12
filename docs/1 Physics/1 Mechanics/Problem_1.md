@@ -1,122 +1,131 @@
 # Problem 1
-1. Theoretical Foundation
-
-To analyze the projectile motion, we begin with the fundamental equations of motion in a uniform gravitational field. The goal is to derive the horizontal range R as a function of the launch angle $\theta$ for a projectile.
-
-1.1 Equations of Motion
-
-A projectile is launched with an initial velocity $v_0$ at an angle $\theta$ from the horizontal. The motion can be broken down into horizontal (x) and vertical (y) components:
-
-•	Horizontal motion (constant velocity in the absence of air resistance):
-
-$x(t) = v_0 \cos(\theta) t$
 
 
 
-•	Vertical motion (with acceleration due to gravity g):
+### 1. Theoretical Foundation
 
-$y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2$
+#### Deriving the Equations of Motion
+
+Projectile motion is governed by Newton’s laws under constant gravitational acceleration, assuming no air resistance for now. We start with the basic setup: a projectile is launched from the origin (x₀ = 0, y₀ = 0) with an initial velocity $v_0$ at an angle $\theta$ above the horizontal. Gravity acts downward with acceleration $g$.
+
+The initial velocity has components:
+- $v_{0x} = v_0 \cos\theta$ (horizontal)
+- $v_{0y} = v_0 \sin\theta$ (vertical)
+
+Since there’s no horizontal acceleration (ignoring air resistance), the horizontal motion is:
+- $x(t) = v_{0x} t = v_0 \cos\theta \cdot t$
+
+Vertically, gravity accelerates the projectile downward:
+
+- Acceleration: $a_y = -g$
+- Velocity: $v_y(t) = v_{0y} - g t = v_0 \sin\theta - g t$
+- Position: $y(t) = v_{0y} t - \frac{1}{2} g t^2 = v_0 \sin\theta \cdot t - \frac{1}{2} g t^2$
+
+This comes from solving the differential equation
+ $\frac{d^2 y}{dt^2} = -g$, with initial conditions $y(0) = 0$ and $$\frac{dy}{dt}(0) = v_0 \sin\theta$$. The solution is a parabola, which makes sense—projectiles trace parabolic paths.
+
+#### Family of Solutions
+
+The parameters $v_0$, $\theta$, and $g$ define a family of trajectories. For a fixed $g$ (e.g., 9.8 m/s² on Earth), varying $v_0$ scales the size of the parabola, while $\theta$ adjusts its shape and orientation. If we include initial height $h$ (i.e., $y_0 = h$), the vertical equation becomes:
+- $$y(t) = h + v_0 \sin\theta \cdot t - \frac{1}{2} g t^2$$
+This shifts the parabola upward, affecting the range, as we’ll see.
+
+---
+
+### 2. Analysis of the Range
+
+#### Range as a Function of Angle
+The range $R$ is the horizontal distance traveled when the projectile returns to $y = 0$ (assuming it lands at the same height as launch). Set $y(t) = 0$:
+- $$0 = v_0 \sin\theta \cdot t - \frac{1}{2} g t^2$$
+- Factor out $t$: $$t (v_0 \sin\theta - \frac{1}{2} g t) = 0$$
+
+Solutions:
+- $t = 0$ (launch)
+- $t = \frac{2 v_0 \sin\theta}{g}$ (landing time)
+
+Plug this time into the horizontal equation:
+
+- $R = x\left(\frac{2 v_0 \sin\theta}{g}\right) = v_0 \cos\theta \cdot \frac{2 v_0 \sin\theta}{g}$
+- $R = \frac{2 v_0^2 \sin\theta \cos\theta}{g}$
 
 
-1.2 Time of Flight
+Using the identity $\sin 2\theta = 2 \sin\theta \cos\theta$:
+- $$R = \frac{v_0^2 \sin 2\theta}{g}$$
 
-To find the time $t_{\text{flight}}$ it takes for the projectile to hit the ground, set y(t) = 0 (assuming the projectile lands at the same height from which it was launched). So,
+This is the range equation. It’s maximized when $\sin 2\theta = 1$, so $2\theta = 90^\circ$, or $\theta = 45^\circ$. Thus, the maximum range is:
+- $$R_{\text{max}} = \frac{v_0^2}{g}$$
 
-$$0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2$$
+The range is symmetric: $$R(\theta) = R(90^\circ - \theta)$$, e.g., $\theta = 30^\circ$ and $60^\circ$ yield the same range.
 
-Factoring out t:
+#### Influence of Parameters
+- **Initial Velocity ($v_0$)**: Range scales with $v_0^2$. Double $v_0$, and $R$ quadruples.
+- **Gravity ($g$)**: Range is inversely proportional to $g$. On the Moon ($g \approx 1.62 \, \text{m/s}^2$), range is about 6 times greater than on Earth.
+- **Launch Height**: If $y_0 = h$, the time to land comes from the quadratic $$h + v_0 \sin\theta \cdot t - \frac{1}{2} g t^2 = 0$$. Solving this adjusts $R$, typically increasing it for $h > 0$.
 
-$$t \left( v_0 \sin(\theta) - \frac{1}{2} g t \right) = 0$$
+---
 
-We get two solutions: t = 0 (at launch) and $t = \frac{2 v_0 \sin(\theta)}{g}$ (when the projectile hits the ground). The time of flight is therefore:
+### 3. Practical Applications
 
-$$t_{\text{flight}} = \frac{2 v_0 \sin(\theta)}{g}$$
+#### Uneven Terrain
+If the projectile lands at a different height (e.g., $y = -H$ for a cliff), adjust the range calculation. Solve:
+- $$-H = v_0 \sin\theta \cdot t - \frac{1}{2} g t^2$$
+This gives a quadratic in $t$, and the range depends on both $\theta$ and $H$, often favoring steeper angles for downward trajectories.
 
-1.3 Horizontal Range
+#### Air Resistance
+With drag (proportional to velocity, say $F_d = -k v$), the equations become nonlinear differential equations:
+- $m \frac{d v_x}{dt} = -k v_x$
+- $m \frac{d v_y}{dt} = -m g - k v_y$
+Analytic solutions are complex, but numerically, drag reduces range and shifts the optimal angle below 45°, depending on $k$.
 
-The range R is the horizontal distance the projectile travels during its flight. It can be found by substituting the time of flight into the horizontal motion equation:
+#### Real-World Examples
+- **Sports**: A soccer ball’s range varies with kick angle and spin (Magnus effect adds complexity).
+- **Artillery**: Gunners adjust $\theta$ based on terrain and wind.
+- **Spacecraft**: Launch angles optimize orbital insertion, though gravity isn’t constant.
 
-$$R = x(t_{\text{flight}}) = v_0 \cos(\theta) \left( \frac{2 v_0 \sin(\theta)}{g} \right)$$
+---
 
-Simplifying:
+### 4. Implementation
 
-$$R = \frac{v_0^2 \sin(2\theta)}{g}$$
-
-This is the classic equation for the range of a projectile on flat ground with no air resistance. It shows that the range depends on:
-
-$$•	The initial velocity $v_0$,$$
-$•	The angle of projection $\theta$,$
-$•	The gravitational acceleration g.$
-
-2. Analysis of the Range
-
-2.1 Dependence of Range on Launch Angle
-
-The equation $R = \frac{v_0^2 \sin(2\theta)}{g}$ clearly indicates that the range is a function of the angle $\theta$. 
-To understand this further, we can analyze the behavior of $\sin(2\theta)$:
-
-•	The function $\sin(2\theta)$ reaches its maximum value of 1 when $\theta$ = $45^\circ$.
-•	This means the range is maximized when the launch angle is $45^\circ$, which is a key result in projectile motion.
-
-At angles less than $45^\circ$, $\sin(2\theta)$ decreases, reducing the range. Similarly, at angles greater than $45^\circ$, the sine function starts to decrease again.
-
-2.2 Effect of Initial Velocity and Gravitational Acceleration
-•	Initial velocity $v_0$: The range increases quadratically with the initial velocity. Doubling $v_0$ will quadruple the range.
-•	Gravitational acceleration g: The range decreases as gravity increases. In regions with stronger gravity (e.g., on planets with higher gravity), the range is shorter for the same initial velocity and launch angle.
-
-2.3 Numerical Simulation
-
-We can now simulate the range as a function of the launch angle for different initial velocities and gravitational accelerations.
-
-3. Practical Applications
-
-In real-world scenarios, the model described above is idealized and assumes no air resistance. However, in practical cases, air resistance and other factors like uneven terrain can significantly affect the projectile’s range.
-•	Air resistance: For higher velocities or longer flight times, air resistance becomes significant. The range will be less than predicted by the ideal model.
-•	Uneven terrain: If the projectile lands at a different height, the equations need to be modified to account for the change in height between launch and landing points.
-
-4. Implementation
+#### Computational Tool
+Here’s a Python script using NumPy and Matplotlib to simulate and visualize the range vs. angle:
 
 ```python
-
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Définition des constantes
-g = 9.81  # Accélération gravitationnelle (m/s²)
-v0 = 20   # Vitesse initiale (m/s)
+# Parameters
+v0 = 20.0  # initial velocity (m/s)
+g = 9.8    # gravity (m/s^2)
+theta_deg = np.linspace(0, 90, 91)  # angles from 0° to 90°
+theta_rad = np.radians(theta_deg)
 
-# Liste d'angles entre 0 et 90 degrés
-angles = np.linspace(0, 90, 100)
+# Range function
+R = (v0**2 * np.sin(2 * theta_rad)) / g
 
-# Calcul de la portée pour chaque angle
-ranges = (v0**2 * np.sin(2 * np.radians(angles))) / g
-
-# Affichage du graphique
-plt.figure(figsize=(8,6))
-plt.plot(angles, ranges, label=f'v0 = {v0} m/s')
-plt.xlabel('Angle de lancement (°)')
-plt.ylabel('Portée (m)')
-plt.title('Portée d’un projectile en fonction de l’angle')
+# Plot
+plt.figure(figsize=(8, 6))
+plt.plot(theta_deg, R, label=f'v₀ = {v0} m/s, g = {g} m/s²')
+plt.xlabel('Angle of Projection (degrees)')
+plt.ylabel('Range (meters)')
+plt.title('Range vs. Angle of Projection')
+plt.grid(True)
 plt.legend()
-plt.grid()
 plt.show()
 
+# Maximum range
+max_idx = np.argmax(R)
+print(f"Maximum range: {R[max_idx]:.2f} m at {theta_deg[max_idx]}°")
+```
 
-5. Limitations of the Idealized Model
+#### Visualization
+- Run this with different $v_0$ (e.g., 10, 20, 30 m/s) or $g$ (e.g., 1.62 m/s² for the Moon).
+- The plot shows a peak at 45°, with range dropping symmetrically on either side.
 
-While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
+#### Enhancements
+- Add height: Modify $t$ and $R$ calculations.
+- Simulate trajectories: Plot $x(t)$ vs. $y(t)$ for various $\theta$.
 
-•	Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
-•	Wind: Wind can alter the trajectory significantly, making the range much harder to predict without considering wind speed and direction.
-•	Launch height differences: If the launch and landing heights are not the same, the model needs modification to account for this difference in height.
-•	Coriolis effect: On large distances (such as with missiles or space objects), the Coriolis effect may slightly alter the trajectory.
+---
 
-6. Extensions for Realistic Factors
-
-To incorporate more realistic factors like air resistance, the equations of motion would need to include drag forces. The projectile motion equations would then become more complex and require numerical methods (such as solving differential equations) to compute the trajectory.
-
-Additionally, terrain modeling can be included by modifying the landing condition y(t) = 0 to reflect the terrain profile.
-
-7. Conclusion
-
-The theoretical and practical analysis of projectile motion reveals several important insights, especially the relationship between launch angle and range. The model can be extended to real-world applications by incorporating additional factors like air resistance and uneven terrain. The Python simulation provides a powerful tool to visualize these relationships and can be extended further to model more complex situations.
+### Conclusion
+The range’s dependence on $\theta$ is a beautiful blend of trigonometry and physics, peaking at 45° under ideal conditions. Parameters like $v_0$ and $g$ scale the result, while real-world factors like height or drag enrich the problem. This framework scales from classroom demos to rocket science—pretty cool for a simple parabola
