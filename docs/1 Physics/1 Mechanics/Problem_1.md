@@ -48,6 +48,7 @@ This is a quadratic equation in $t$, with solutions:
 $$
 t = 0 \quad \text{(at the launch point)}
 $$
+
 $$
 t = \frac{2 v_0 \sin(\theta)}{g} \quad \text{(time of flight)}
 $$
