@@ -104,6 +104,7 @@ plt.show()
 5. Limitations of the Idealized Model
 
 While this model provides a good approximation in the absence of air resistance and for horizontal launch and landing points, there are several limitations:
+
 •	Air resistance: The idealized model assumes no air resistance, but in reality, air resistance will reduce the range, especially at high velocities.
 •	Wind: Wind can alter the trajectory significantly, making the range much harder to predict without considering wind speed and direction.
 •	Launch height differences: If the launch and landing heights are not the same, the model needs modification to account for this difference in height.
