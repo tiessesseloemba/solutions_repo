@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projectile Motion Simulator</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <label>Initial Velocity (m/s): <input type="number" id="velocity" value="20" min="1" max="100"></label>
+        <label>Angle (degrees): <input type="number" id="angle" value="45" min="0" max="90"></label>
+        <button onclick="startSimulation()">Launch</button>
+    </div>
+    <canvas id="canvas" width="800" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Constants
+        const g = 9.81; // gravity (m/s²)
+        const scale = 10; // pixels per meter
+        
+        class Projectile {
+            constructor(velocity, angle) {
+                this.x = 0;
+                this.y = 0;
+                this.v0 = velocity;
+                this.angle = angle * Math.PI / 180; // convert to radians
+                this.time = 0;
+            }
+
+            update(dt) {
+                this.time += dt;
+                this.x = this.v0 * Math.cos(this.angle) * this.time;
+                this.y = this.v0 * Math.sin(this.angle) * this.time - 0.5 * g * this.time * this.time;
+            }
+
+            hasLanded() {
+                return this.y <= 0 && this.time > 0;
+            }
+        }
+
+        function drawScene(projectile) {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Flip y-axis and move origin to bottom-left
+            ctx.save();
+            ctx.translate(0, canvas.height);
+            ctx.scale(scale, -scale);
+
+            // Draw ground
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(canvas.width/scale, 0);
+            ctx.strokeStyle = 'green';
+            ctx.stroke();
+
+            // Draw projectile
+            ctx.beginPath();
+            ctx.arc(projectile.x, projectile.y, 0.5, 0, Math.PI * 2);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        let animationFrameId = null;
+
+        function startSimulation() {
+            // Cancel any existing animation
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+
+            const velocity = parseFloat(document.getElementById('velocity').value);
+            const angle = parseFloat(document.getElementById('angle').value);
+            
+            const projectile = new Projectile(velocity, angle);
+            let lastTime = performance.now();
+
+            function animate(currentTime) {
+                const dt = (currentTime - lastTime) / 1000; // Convert to seconds
+                
+                projectile.update(dt);
+                drawScene(projectile);
+
+                if (!projectile.hasLanded()) {
+                    lastTime = currentTime;
+                    animationFrameId = requestAnimationFrame(animate);
+                } else {
+                    animationFrameId = null;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        // Initial draw
+        const initialProjectile = new Projectile(20, 45);
+        drawScene(initialProjectile);
+    </script>
+</body>
+</html>
