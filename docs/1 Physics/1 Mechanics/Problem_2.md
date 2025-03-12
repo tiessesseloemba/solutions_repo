@@ -9,18 +9,29 @@ The motion of a forced damped pendulum is governed by the following nonlinear se
 $$ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = F \cos(\omega t) $$
 
 Where:
+
 - $\theta$ = angular displacement (radians)
+
 - $b$ = damping coefficient (s⁻¹)
+
 - $g$ = gravitational acceleration (9.81 m/s²)
+
 - $L$ = pendulum length (m)
+
 - $F$ = amplitude of the external forcing (s⁻²)
+
 - $\omega$ = driving frequency (rad/s)
+
 - $t$ = time (s)
 
 This equation includes:
+
 - Damping term: $b \frac{d\theta}{dt}$
+
 - Restoring force (nonlinear): $\frac{g}{L} \sin\theta$
+
 - External forcing: $F \cos(\omega t)$
+
 
 #### Small-Angle Approximation
 
@@ -31,9 +42,11 @@ $$ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \omega_0^2 \theta = F \cos(\o
 Where $\omega_0 = \sqrt{\frac{g}{L}}$ is the natural frequency.
 
 The general solution is the sum of the homogeneous and particular solutions:
+
 - Homogeneous: $\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)$, where $\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}$
 
 - Particular: $\theta_p(t) = A_p \cos(\omega t - \delta)$, where:
+
   - $A_p = \frac{F}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}}$
 
   - $\delta = \tan^{-1}\left(\frac{b\omega}{\omega_0^2 - \omega^2}\right)$
@@ -49,13 +62,17 @@ Resonance occurs when the driving frequency $\omega$ approaches the natural freq
 #### Parameter Influence
 
 - **Damping Coefficient ($b$)**: Higher $b$ reduces amplitude and prevents chaos by dissipating energy faster. Low $b$ allows sustained oscillations or chaotic behavior.
+
 - **Driving Amplitude ($F$)**: Small $F$ leads to regular motion; large $F$ can push the system into chaos by overcoming the restoring force.
+
 - **Driving Frequency ($\omega$)**: Near $\omega_0$, resonance amplifies motion. Far from $\omega_0$, motion may be quasiperiodic or chaotic depending on $F$ and $b$.
 
 #### Transition to Chaos
 
 - For small $F$ and $b$, motion is periodic or quasiperiodic.
+
 - As $F$ increases, the nonlinear $\sin\theta$ term dominates, leading to bifurcations and eventually chaos.
+
 - Chaos is characterized by sensitivity to initial conditions, visible in phase space as a strange attractor.
 
 ---
@@ -63,7 +80,9 @@ Resonance occurs when the driving frequency $\omega$ approaches the natural freq
 ### 3. Practical Applications
 
 - **Energy Harvesting**: Piezoelectric devices use forced oscillations to convert mechanical energy to electrical energy.
+
 - **Suspension Bridges**: External forces (wind) can drive oscillations; Tacoma Narrows Bridge collapse (1940) is a famous example of resonance gone wrong.
+
 - **Oscillating Circuits**: LC circuits with external driving mimic pendulum dynamics, used in signal processing.
 
 ---
@@ -189,12 +208,16 @@ Here’s a JavaScript simulation using HTML5 canvas to model and visualize the f
 #### Features
 
 - **Pendulum Visualization**: Shows the pendulum swinging.
+
 - **Phase Plot**: Displays $\theta$ vs. $\omega$, revealing periodic, quasiperiodic, or chaotic behavior.
+
 - **Controls**: Adjust damping ($b$), forcing amplitude ($F$), and frequency ($\omega$).
+
 - **Numerical Integration**: Uses simple Euler method (for simplicity; Runge-Kutta could be added for accuracy).
 
 #### Observations
 
 - Try $b = 0.2$, $F = 0.5$, $\omega = 1.0$ for periodic motion.
+
 - Increase $F = 1.5$ or more for chaotic behavior (phase plot shows a strange attractor).
 
