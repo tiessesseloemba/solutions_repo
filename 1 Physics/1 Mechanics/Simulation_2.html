@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forced Damped Pendulum Simulator</title>
+    <style>
+        canvas { border: 1px solid black; }
+        .controls { margin: 20px 0; }
+        #container { display: flex; }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <label>Damping (b): <input type="number" id="damping" value="0.2" min="0" max="2" step="0.1"></label>
+        <label>Forcing Amp (F): <input type="number" id="force" value="1.2" min="0" max="5" step="0.1"></label>
+        <label>Forcing Freq (ω): <input type="number" id="freq" value="1.0" min="0" max="5" step="0.1"></label>
+        <button onclick="startSimulation()">Start</button>
+        <button onclick="stopSimulation()">Stop</button>
+    </div>
+    <div id="container">
+        <canvas id="pendulumCanvas" width="400" height="400"></canvas>
+        <canvas id="phaseCanvas" width="400" height="400"></canvas>
+    </div>
+
+    <script>
+        const pendulumCanvas = document.getElementById('pendulumCanvas');
+        const phaseCanvas = document.getElementById('phaseCanvas');
+        const pCtx = pendulumCanvas.getContext('2d');
+        const phCtx = phaseCanvas.getContext('2d');
+
+        const g = 9.81, L = 1.0;
+        const scale = 150;
+        let theta = 0.1, omega = 0, t = 0;
+        let animationFrameId = null;
+
+        class Pendulum {
+            constructor(b, F, omega_d) {
+                this.b = b;
+                this.F = F;
+                this.omega_d = omega_d;
+            }
+
+            update(dt) {
+                const d2theta = -g/L * Math.sin(theta) - this.b * omega + this.F * Math.cos(this.omega_d * t);
+                omega += d2theta * dt;
+                theta += omega * dt;
+                t += dt;
+                // Wrap theta to [-π, π]
+                if (theta > Math.PI) theta -= 2 * Math.PI;
+                if (theta < -Math.PI) theta += 2 * Math.PI;
+            }
+        }
+
+        function drawPendulum(pendulum) {
+            pCtx.clearRect(0, 0, pendulumCanvas.width, pendulumCanvas.height);
+            pCtx.save();
+            pCtx.translate(200, 50);
+            pCtx.beginPath();
+            pCtx.moveTo(0, 0);
+            const x = scale * Math.sin(theta);
+            const y = scale * Math.cos(theta);
+            pCtx.lineTo(x, y);
+            pCtx.stroke();
+            pCtx.beginPath();
+            pCtx.arc(x, y, 10, 0, 2 * Math.PI);
+            pCtx.fillStyle = 'red';
+            pCtx.fill();
+            pCtx.restore();
+        }
+
+        function drawPhase(pendulum) {
+            const x = 200 + 100 * theta / Math.PI;
+            const y = 200 + 50 * omega;
+            phCtx.fillStyle = 'rgba(0, 0, 255, 0.1)';
+            phCtx.beginPath();
+            phCtx.arc(x, y, 1, 0, 2 * Math.PI);
+            phCtx.fill();
+        }
+
+        function startSimulation() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            const b = parseFloat(document.getElementById('damping').value);
+            const F = parseFloat(document.getElementById('force').value);
+            const omega_d = parseFloat(document.getElementById('freq').value);
+            const pendulum = new Pendulum(b, F, omega_d);
+            theta = 0.1; omega = 0; t = 0;
+            phCtx.clearRect(0, 0, phaseCanvas.width, phaseCanvas.height);
+            
+            let lastTime = performance.now();
+            function animate(currentTime) {
+                const dt = (currentTime - lastTime) / 1000;
+                pendulum.update(dt);
+                drawPendulum(pendulum);
+                drawPhase(pendulum);
+                lastTime = currentTime;
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        function stopSimulation() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+
+        // Initial draw
+        const initialPendulum = new Pendulum(0.2, 1.2, 1.0);
+        drawPendulum(initialPendulum);
+    </script>
+</body>
+</html>
