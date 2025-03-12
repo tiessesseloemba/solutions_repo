@@ -50,6 +50,34 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#differential-equation">Differential Equation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#small-angle-approximation">Small-Angle Approximation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#resonance-conditions">Resonance Conditions</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. Analysis of Dynamics</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-influence">Parameter Influence</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#transition-to-chaos">Transition to Chaos</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-implementation">4. Implementation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#features">Features</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#observations">Observations</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +200,186 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
+<h4 id="differential-equation">Differential Equation</h4>
+<p>The motion of a forced damped pendulum is governed by the following nonlinear second-order differential equation:</p>
+<div class="arithmatex">\[ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = F \cos(\omega t) \]</div>
+<p>Where:
+- <span class="arithmatex">\(\theta\)</span> = angular displacement (radians)
+- <span class="arithmatex">\(b\)</span> = damping coefficient (s⁻¹)
+- <span class="arithmatex">\(g\)</span> = gravitational acceleration (9.81 m/s²)
+- <span class="arithmatex">\(L\)</span> = pendulum length (m)
+- <span class="arithmatex">\(F\)</span> = amplitude of the external forcing (s⁻²)
+- <span class="arithmatex">\(\omega\)</span> = driving frequency (rad/s)
+- <span class="arithmatex">\(t\)</span> = time (s)</p>
+<p>This equation includes:
+- Damping term: <span class="arithmatex">\(b \frac{d\theta}{dt}\)</span>
+- Restoring force (nonlinear): <span class="arithmatex">\(\frac{g}{L} \sin\theta\)</span>
+- External forcing: <span class="arithmatex">\(F \cos(\omega t)\)</span></p>
+<h4 id="small-angle-approximation">Small-Angle Approximation</h4>
+<p>For small angles (<span class="arithmatex">\(\theta \ll 1\)</span>), <span class="arithmatex">\(\sin\theta \approx \theta\)</span>, simplifying the equation to a linear forced damped oscillator:</p>
+<div class="arithmatex">\[ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \omega_0^2 \theta = F \cos(\omega t) \]</div>
+<p>Where <span class="arithmatex">\(\omega_0 = \sqrt{\frac{g}{L}}\)</span> is the natural frequency.</p>
+<p>The general solution is the sum of the homogeneous and particular solutions:
+- Homogeneous: <span class="arithmatex">\(\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)\)</span>, where <span class="arithmatex">\(\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}\)</span></p>
+<ul>
+<li>Particular: <span class="arithmatex">\(\theta_p(t) = A_p \cos(\omega t - \delta)\)</span>, where:</li>
+<li>
+<p><span class="arithmatex">\(A_p = \frac{F}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}}\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\delta = \tan^{-1}\left(\frac{b\omega}{\omega_0^2 - \omega^2}\right)\)</span></p>
+</li>
+</ul>
+<h4 id="resonance-conditions">Resonance Conditions</h4>
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> approaches the natural frequency <span class="arithmatex">\(\omega_0\)</span>. The amplitude <span class="arithmatex">\(A_p\)</span> peaks when <span class="arithmatex">\(\omega = \omega_r\)</span>, leading to maximum energy transfer from the driving force to the pendulum. For low damping, this is close to <span class="arithmatex">\(\omega_0\)</span>. This amplification is critical in systems where energy buildup is desired or must be avoided.</p>
+<hr/>
+<h3 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h3>
+<h4 id="parameter-influence">Parameter Influence</h4>
+<ul>
+<li><strong>Damping Coefficient (<span class="arithmatex">\(b\)</span>)</strong>: Higher <span class="arithmatex">\(b\)</span> reduces amplitude and prevents chaos by dissipating energy faster. Low <span class="arithmatex">\(b\)</span> allows sustained oscillations or chaotic behavior.</li>
+<li><strong>Driving Amplitude (<span class="arithmatex">\(F\)</span>)</strong>: Small <span class="arithmatex">\(F\)</span> leads to regular motion; large <span class="arithmatex">\(F\)</span> can push the system into chaos by overcoming the restoring force.</li>
+<li><strong>Driving Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: Near <span class="arithmatex">\(\omega_0\)</span>, resonance amplifies motion. Far from <span class="arithmatex">\(\omega_0\)</span>, motion may be quasiperiodic or chaotic depending on <span class="arithmatex">\(F\)</span> and <span class="arithmatex">\(b\)</span>.</li>
+</ul>
+<h4 id="transition-to-chaos">Transition to Chaos</h4>
+<ul>
+<li>For small <span class="arithmatex">\(F\)</span> and <span class="arithmatex">\(b\)</span>, motion is periodic or quasiperiodic.</li>
+<li>As <span class="arithmatex">\(F\)</span> increases, the nonlinear <span class="arithmatex">\(\sin\theta\)</span> term dominates, leading to bifurcations and eventually chaos.</li>
+<li>Chaos is characterized by sensitivity to initial conditions, visible in phase space as a strange attractor.</li>
+</ul>
+<hr/>
+<h3 id="3-practical-applications">3. Practical Applications</h3>
+<ul>
+<li><strong>Energy Harvesting</strong>: Piezoelectric devices use forced oscillations to convert mechanical energy to electrical energy.</li>
+<li><strong>Suspension Bridges</strong>: External forces (wind) can drive oscillations; Tacoma Narrows Bridge collapse (1940) is a famous example of resonance gone wrong.</li>
+<li><strong>Oscillating Circuits</strong>: LC circuits with external driving mimic pendulum dynamics, used in signal processing.</li>
+</ul>
+<hr/>
+<h3 id="4-implementation">4. Implementation</h3>
+<p>Here’s a JavaScript simulation using HTML5 canvas to model and visualize the forced damped pendulum. It includes phase plots and allows parameter adjustment:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Forced Damped Pendulum Simulator&lt;/title&gt;
+    &lt;style&gt;
+        canvas { border: 1px solid black; }
+        .controls { margin: 20px 0; }
+        #container { display: flex; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="controls"&gt;
+        &lt;label&gt;Damping (b): &lt;input type="number" id="damping" value="0.2" min="0" max="2" step="0.1"&gt;&lt;/label&gt;
+        &lt;label&gt;Forcing Amp (F): &lt;input type="number" id="force" value="1.2" min="0" max="5" step="0.1"&gt;&lt;/label&gt;
+        &lt;label&gt;Forcing Freq (ω): &lt;input type="number" id="freq" value="1.0" min="0" max="5" step="0.1"&gt;&lt;/label&gt;
+        &lt;button onclick="startSimulation()"&gt;Start&lt;/button&gt;
+        &lt;button onclick="stopSimulation()"&gt;Stop&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="container"&gt;
+        &lt;canvas id="pendulumCanvas" width="400" height="400"&gt;&lt;/canvas&gt;
+        &lt;canvas id="phaseCanvas" width="400" height="400"&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        const pendulumCanvas = document.getElementById('pendulumCanvas');
+        const phaseCanvas = document.getElementById('phaseCanvas');
+        const pCtx = pendulumCanvas.getContext('2d');
+        const phCtx = phaseCanvas.getContext('2d');
+
+        const g = 9.81, L = 1.0;
+        const scale = 150;
+        let theta = 0.1, omega = 0, t = 0;
+        let animationFrameId = null;
+
+        class Pendulum {
+            constructor(b, F, omega_d) {
+                this.b = b;
+                this.F = F;
+                this.omega_d = omega_d;
+            }
+
+            update(dt) {
+                const d2theta = -g/L * Math.sin(theta) - this.b * omega + this.F * Math.cos(this.omega_d * t);
+                omega += d2theta * dt;
+                theta += omega * dt;
+                t += dt;
+                // Wrap theta to [-π, π]
+                if (theta &gt; Math.PI) theta -= 2 * Math.PI;
+                if (theta &lt; -Math.PI) theta += 2 * Math.PI;
+            }
+        }
+
+        function drawPendulum(pendulum) {
+            pCtx.clearRect(0, 0, pendulumCanvas.width, pendulumCanvas.height);
+            pCtx.save();
+            pCtx.translate(200, 50);
+            pCtx.beginPath();
+            pCtx.moveTo(0, 0);
+            const x = scale * Math.sin(theta);
+            const y = scale * Math.cos(theta);
+            pCtx.lineTo(x, y);
+            pCtx.stroke();
+            pCtx.beginPath();
+            pCtx.arc(x, y, 10, 0, 2 * Math.PI);
+            pCtx.fillStyle = 'red';
+            pCtx.fill();
+            pCtx.restore();
+        }
+
+        function drawPhase(pendulum) {
+            const x = 200 + 100 * theta / Math.PI;
+            const y = 200 + 50 * omega;
+            phCtx.fillStyle = 'rgba(0, 0, 255, 0.1)';
+            phCtx.beginPath();
+            phCtx.arc(x, y, 1, 0, 2 * Math.PI);
+            phCtx.fill();
+        }
+
+        function startSimulation() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            const b = parseFloat(document.getElementById('damping').value);
+            const F = parseFloat(document.getElementById('force').value);
+            const omega_d = parseFloat(document.getElementById('freq').value);
+            const pendulum = new Pendulum(b, F, omega_d);
+            theta = 0.1; omega = 0; t = 0;
+            phCtx.clearRect(0, 0, phaseCanvas.width, phaseCanvas.height);
+
+            let lastTime = performance.now();
+            function animate(currentTime) {
+                const dt = (currentTime - lastTime) / 1000;
+                pendulum.update(dt);
+                drawPendulum(pendulum);
+                drawPhase(pendulum);
+                lastTime = currentTime;
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        function stopSimulation() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+
+        // Initial draw
+        const initialPendulum = new Pendulum(0.2, 1.2, 1.0);
+        drawPendulum(initialPendulum);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4 id="features">Features</h4>
+<ul>
+<li><strong>Pendulum Visualization</strong>: Shows the pendulum swinging.</li>
+<li><strong>Phase Plot</strong>: Displays <span class="arithmatex">\(\theta\)</span> vs. <span class="arithmatex">\(\omega\)</span>, revealing periodic, quasiperiodic, or chaotic behavior.</li>
+<li><strong>Controls</strong>: Adjust damping (<span class="arithmatex">\(b\)</span>), forcing amplitude (<span class="arithmatex">\(F\)</span>), and frequency (<span class="arithmatex">\(\omega\)</span>).</li>
+<li><strong>Numerical Integration</strong>: Uses simple Euler method (for simplicity; Runge-Kutta could be added for accuracy).</li>
+</ul>
+<h4 id="observations">Observations</h4>
+<ul>
+<li>Try <span class="arithmatex">\(b = 0.2\)</span>, <span class="arithmatex">\(F = 0.5\)</span>, <span class="arithmatex">\(\omega = 1.0\)</span> for periodic motion.</li>
+<li>Increase <span class="arithmatex">\(F = 1.5\)</span> or more for chaotic behavior (phase plot shows a strange attractor).</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
