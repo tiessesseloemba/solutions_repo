@@ -5,14 +5,14 @@
 
 Projectile motion can be analyzed by breaking it into horizontal and vertical components. Assuming no air resistance, the only acceleration is due to gravity, which acts downward.
 
-- **Horizontal Motion:**
+ **Horizontal Motion:**
 
   - Acceleration: $a_x = 0$
   - Velocity: $v_x = v_0 \cos(\theta)$
   - Position: $x(t) = v_0 \cos(\theta) \cdot t$
 
 
-- **Vertical Motion:**
+**Vertical Motion:**
 
   - Acceleration: $a_y = -g$
   - Velocity: $v_y = v_0 \sin(\theta) - g \cdot t$
@@ -51,15 +51,23 @@ $$
 R = \frac{v_0^2 \sin(2\theta)}{g}
 $$
 
-- **Maximum Range:** The maximum range occurs when $\sin(2\theta) = 1$, which happens at $\theta = 45^\circ$.
+- **Maximum Range:** 
 
-- **Symmetry:** The range is the same for angles $\theta$ and $90^\circ - \theta$.
+The maximum range occurs when $\sin(2\theta) = 1$, which happens at $\theta = 45^\circ$.
+
+- **Symmetry:** 
+
+The range is the same for angles $\theta$ and $90^\circ - \theta$.
 
 #### Influence of Initial Velocity and Gravitational Acceleration
 
-- **Initial Velocity $v_0$:** The range is proportional to the square of the initial velocity. Doubling $v_0$ quadruples the range.
+- **Initial Velocity $v_0$:** 
 
-- **Gravitational Acceleration $g$:** The range is inversely proportional to $g$. On a planet with lower gravity, the range would be greater.
+The range is proportional to the square of the initial velocity. Doubling $v_0$ quadruples the range.
+
+- **Gravitational Acceleration $g$:** 
+
+The range is inversely proportional to $g$. On a planet with lower gravity, the range would be greater.
 
 ### 3. Practical Applications
 
