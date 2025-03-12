@@ -120,6 +120,8 @@ where:
 
 This makes the equations non-linear, requiring numerical methods to solve the trajectory and range.
 
+[Simulation](simulation_projectle.html)
+
 #### 4. Implementation
 
 To simulate projectile motion and visualize the range as a function of the angle of projection for different initial conditions, we can create a computational tool. Below is a simple Python code to calculate and plot the range as a function of launch angle for a given initial velocity.
