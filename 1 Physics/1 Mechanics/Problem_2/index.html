@@ -204,26 +204,54 @@
 <h4 id="differential-equation">Differential Equation</h4>
 <p>The motion of a forced damped pendulum is governed by the following nonlinear second-order differential equation:</p>
 <div class="arithmatex">\[ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = F \cos(\omega t) \]</div>
-<p>Where:
-- <span class="arithmatex">\(\theta\)</span> = angular displacement (radians)
-- <span class="arithmatex">\(b\)</span> = damping coefficient (s⁻¹)
-- <span class="arithmatex">\(g\)</span> = gravitational acceleration (9.81 m/s²)
-- <span class="arithmatex">\(L\)</span> = pendulum length (m)
-- <span class="arithmatex">\(F\)</span> = amplitude of the external forcing (s⁻²)
-- <span class="arithmatex">\(\omega\)</span> = driving frequency (rad/s)
-- <span class="arithmatex">\(t\)</span> = time (s)</p>
-<p>This equation includes:
-- Damping term: <span class="arithmatex">\(b \frac{d\theta}{dt}\)</span>
-- Restoring force (nonlinear): <span class="arithmatex">\(\frac{g}{L} \sin\theta\)</span>
-- External forcing: <span class="arithmatex">\(F \cos(\omega t)\)</span></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\theta\)</span> = angular displacement (radians)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(b\)</span> = damping coefficient (s⁻¹)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(g\)</span> = gravitational acceleration (9.81 m/s²)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(L\)</span> = pendulum length (m)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(F\)</span> = amplitude of the external forcing (s⁻²)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\omega\)</span> = driving frequency (rad/s)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(t\)</span> = time (s)</p>
+</li>
+</ul>
+<p>This equation includes:</p>
+<ul>
+<li>
+<p>Damping term: <span class="arithmatex">\(b \frac{d\theta}{dt}\)</span></p>
+</li>
+<li>
+<p>Restoring force (nonlinear): <span class="arithmatex">\(\frac{g}{L} \sin\theta\)</span></p>
+</li>
+<li>
+<p>External forcing: <span class="arithmatex">\(F \cos(\omega t)\)</span></p>
+</li>
+</ul>
 <h4 id="small-angle-approximation">Small-Angle Approximation</h4>
 <p>For small angles (<span class="arithmatex">\(\theta \ll 1\)</span>), <span class="arithmatex">\(\sin\theta \approx \theta\)</span>, simplifying the equation to a linear forced damped oscillator:</p>
 <div class="arithmatex">\[ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \omega_0^2 \theta = F \cos(\omega t) \]</div>
 <p>Where <span class="arithmatex">\(\omega_0 = \sqrt{\frac{g}{L}}\)</span> is the natural frequency.</p>
-<p>The general solution is the sum of the homogeneous and particular solutions:
-- Homogeneous: <span class="arithmatex">\(\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)\)</span>, where <span class="arithmatex">\(\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}\)</span></p>
+<p>The general solution is the sum of the homogeneous and particular solutions:</p>
 <ul>
-<li>Particular: <span class="arithmatex">\(\theta_p(t) = A_p \cos(\omega t - \delta)\)</span>, where:</li>
+<li>
+<p>Homogeneous: <span class="arithmatex">\(\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)\)</span>, where <span class="arithmatex">\(\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}\)</span></p>
+</li>
+<li>
+<p>Particular: <span class="arithmatex">\(\theta_p(t) = A_p \cos(\omega t - \delta)\)</span>, where:</p>
+</li>
 <li>
 <p><span class="arithmatex">\(A_p = \frac{F}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}}\)</span></p>
 </li>
@@ -237,22 +265,40 @@
 <h3 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h3>
 <h4 id="parameter-influence">Parameter Influence</h4>
 <ul>
-<li><strong>Damping Coefficient (<span class="arithmatex">\(b\)</span>)</strong>: Higher <span class="arithmatex">\(b\)</span> reduces amplitude and prevents chaos by dissipating energy faster. Low <span class="arithmatex">\(b\)</span> allows sustained oscillations or chaotic behavior.</li>
-<li><strong>Driving Amplitude (<span class="arithmatex">\(F\)</span>)</strong>: Small <span class="arithmatex">\(F\)</span> leads to regular motion; large <span class="arithmatex">\(F\)</span> can push the system into chaos by overcoming the restoring force.</li>
-<li><strong>Driving Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: Near <span class="arithmatex">\(\omega_0\)</span>, resonance amplifies motion. Far from <span class="arithmatex">\(\omega_0\)</span>, motion may be quasiperiodic or chaotic depending on <span class="arithmatex">\(F\)</span> and <span class="arithmatex">\(b\)</span>.</li>
+<li>
+<p><strong>Damping Coefficient (<span class="arithmatex">\(b\)</span>)</strong>: Higher <span class="arithmatex">\(b\)</span> reduces amplitude and prevents chaos by dissipating energy faster. Low <span class="arithmatex">\(b\)</span> allows sustained oscillations or chaotic behavior.</p>
+</li>
+<li>
+<p><strong>Driving Amplitude (<span class="arithmatex">\(F\)</span>)</strong>: Small <span class="arithmatex">\(F\)</span> leads to regular motion; large <span class="arithmatex">\(F\)</span> can push the system into chaos by overcoming the restoring force.</p>
+</li>
+<li>
+<p><strong>Driving Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: Near <span class="arithmatex">\(\omega_0\)</span>, resonance amplifies motion. Far from <span class="arithmatex">\(\omega_0\)</span>, motion may be quasiperiodic or chaotic depending on <span class="arithmatex">\(F\)</span> and <span class="arithmatex">\(b\)</span>.</p>
+</li>
 </ul>
 <h4 id="transition-to-chaos">Transition to Chaos</h4>
 <ul>
-<li>For small <span class="arithmatex">\(F\)</span> and <span class="arithmatex">\(b\)</span>, motion is periodic or quasiperiodic.</li>
-<li>As <span class="arithmatex">\(F\)</span> increases, the nonlinear <span class="arithmatex">\(\sin\theta\)</span> term dominates, leading to bifurcations and eventually chaos.</li>
-<li>Chaos is characterized by sensitivity to initial conditions, visible in phase space as a strange attractor.</li>
+<li>
+<p>For small <span class="arithmatex">\(F\)</span> and <span class="arithmatex">\(b\)</span>, motion is periodic or quasiperiodic.</p>
+</li>
+<li>
+<p>As <span class="arithmatex">\(F\)</span> increases, the nonlinear <span class="arithmatex">\(\sin\theta\)</span> term dominates, leading to bifurcations and eventually chaos.</p>
+</li>
+<li>
+<p>Chaos is characterized by sensitivity to initial conditions, visible in phase space as a strange attractor.</p>
+</li>
 </ul>
 <hr/>
 <h3 id="3-practical-applications">3. Practical Applications</h3>
 <ul>
-<li><strong>Energy Harvesting</strong>: Piezoelectric devices use forced oscillations to convert mechanical energy to electrical energy.</li>
-<li><strong>Suspension Bridges</strong>: External forces (wind) can drive oscillations; Tacoma Narrows Bridge collapse (1940) is a famous example of resonance gone wrong.</li>
-<li><strong>Oscillating Circuits</strong>: LC circuits with external driving mimic pendulum dynamics, used in signal processing.</li>
+<li>
+<p><strong>Energy Harvesting</strong>: Piezoelectric devices use forced oscillations to convert mechanical energy to electrical energy.</p>
+</li>
+<li>
+<p><strong>Suspension Bridges</strong>: External forces (wind) can drive oscillations; Tacoma Narrows Bridge collapse (1940) is a famous example of resonance gone wrong.</p>
+</li>
+<li>
+<p><strong>Oscillating Circuits</strong>: LC circuits with external driving mimic pendulum dynamics, used in signal processing.</p>
+</li>
 </ul>
 <hr/>
 <h3 id="4-implementation">4. Implementation</h3>
@@ -371,15 +417,27 @@
 </code></pre>
 <h4 id="features">Features</h4>
 <ul>
-<li><strong>Pendulum Visualization</strong>: Shows the pendulum swinging.</li>
-<li><strong>Phase Plot</strong>: Displays <span class="arithmatex">\(\theta\)</span> vs. <span class="arithmatex">\(\omega\)</span>, revealing periodic, quasiperiodic, or chaotic behavior.</li>
-<li><strong>Controls</strong>: Adjust damping (<span class="arithmatex">\(b\)</span>), forcing amplitude (<span class="arithmatex">\(F\)</span>), and frequency (<span class="arithmatex">\(\omega\)</span>).</li>
-<li><strong>Numerical Integration</strong>: Uses simple Euler method (for simplicity; Runge-Kutta could be added for accuracy).</li>
+<li>
+<p><strong>Pendulum Visualization</strong>: Shows the pendulum swinging.</p>
+</li>
+<li>
+<p><strong>Phase Plot</strong>: Displays <span class="arithmatex">\(\theta\)</span> vs. <span class="arithmatex">\(\omega\)</span>, revealing periodic, quasiperiodic, or chaotic behavior.</p>
+</li>
+<li>
+<p><strong>Controls</strong>: Adjust damping (<span class="arithmatex">\(b\)</span>), forcing amplitude (<span class="arithmatex">\(F\)</span>), and frequency (<span class="arithmatex">\(\omega\)</span>).</p>
+</li>
+<li>
+<p><strong>Numerical Integration</strong>: Uses simple Euler method (for simplicity; Runge-Kutta could be added for accuracy).</p>
+</li>
 </ul>
 <h4 id="observations">Observations</h4>
 <ul>
-<li>Try <span class="arithmatex">\(b = 0.2\)</span>, <span class="arithmatex">\(F = 0.5\)</span>, <span class="arithmatex">\(\omega = 1.0\)</span> for periodic motion.</li>
-<li>Increase <span class="arithmatex">\(F = 1.5\)</span> or more for chaotic behavior (phase plot shows a strange attractor).</li>
+<li>
+<p>Try <span class="arithmatex">\(b = 0.2\)</span>, <span class="arithmatex">\(F = 0.5\)</span>, <span class="arithmatex">\(\omega = 1.0\)</span> for periodic motion.</p>
+</li>
+<li>
+<p>Increase <span class="arithmatex">\(F = 1.5\)</span> or more for chaotic behavior (phase plot shows a strange attractor).</p>
+</li>
 </ul>
 </div>
 </div><footer>
