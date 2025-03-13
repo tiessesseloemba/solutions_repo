@@ -32,10 +32,15 @@ In this setup, the motion of the projectile can be described by the following eq
   $$
 
 Here:
+
 - $v_0$ is the initial velocity,
+
 - $\theta$ is the angle of projection,
+
 - $g$ is the acceleration due to gravity, and
+
 - $t$ is time.
+
 
 ##### Time of Flight:
 
