@@ -1,5 +1,4 @@
 # Problem 2
-Forced Damped Pendulum Dynamics and Applications
 
 ### 1. Theoretical Foundation
 
@@ -15,23 +14,32 @@ Where:
 
 - $\theta$ = angular displacement (radians)
 
+
 - $b$ = damping coefficient (s⁻¹)
+
 
 - $g$ = gravitational acceleration (9.81 m/s²)
 
+
 - $L$ = pendulum length (m)
+
 
 - $F$ = amplitude of the external forcing (s⁻²)
 
+
 - $\omega$ = driving frequency (rad/s)
 
+
 - $t$ = time (s)
+
 
 This equation includes:
 
 - Damping term: $b \frac{d\theta}{dt}$
 
+
 - Restoring force (nonlinear): $\frac{g}{L} \sin\theta$
+
 
 - External forcing: $F \cos(\omega t)$
 
