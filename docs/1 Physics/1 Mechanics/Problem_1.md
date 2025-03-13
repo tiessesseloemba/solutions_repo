@@ -1,6 +1,8 @@
 # Problem 1
 ### Investigating the Range as a Function of the Angle of Projection
 
+
+[Simulation](simulation_projectle.html)
 #### 1. Theoretical Foundation
 
 To begin, we must derive the basic equations of motion for projectile motion, assuming no air resistance and constant gravitational acceleration.
@@ -122,7 +124,7 @@ where:
 
 This makes the equations non-linear, requiring numerical methods to solve the trajectory and range.
 
-[Simulation](simulation_projectle.html)
+
 
 #### 4. Implementation
 
@@ -154,7 +156,7 @@ plt.ylabel("Range (meters)")
 plt.grid(True)
 plt.show()
 ```
-[Graph](simulation.py)
+![alt text](image.png)
 
 ##### Output and Interpretation:
 
