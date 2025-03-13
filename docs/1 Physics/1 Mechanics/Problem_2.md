@@ -1,4 +1,5 @@
 # Problem 2
+Forced Damped Pendulum Dynamics and Applications
 
 ### 1. Theoretical Foundation
 
@@ -6,7 +7,9 @@
 
 The motion of a forced damped pendulum is governed by the following nonlinear second-order differential equation:
 
+
 $$ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = F \cos(\omega t) $$
+
 
 Where:
 
@@ -35,15 +38,20 @@ This equation includes:
 
 #### Small-Angle Approximation
 
-For small angles ($\theta \ll 1$), $\sin\theta \approx \theta$, simplifying the equation to a linear forced damped oscillator:
+For small angles ($\theta \ll 1$), 
+$\sin\theta \approx \theta$, 
+simplifying the equation to a linear forced damped oscillator:
 
 $$ \frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \omega_0^2 \theta = F \cos(\omega t) $$
 
-Where $\omega_0 = \sqrt{\frac{g}{L}}$ is the natural frequency.
+
+Where
+ $\omega_0 = \sqrt{\frac{g}{L}}$ is the natural frequency.
 
 The general solution is the sum of the homogeneous and particular solutions:
 
 - Homogeneous: $\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)$, where $\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}$
+
 
 - Particular: $\theta_p(t) = A_p \cos(\omega t - \delta)$, where:
 
@@ -51,9 +59,13 @@ The general solution is the sum of the homogeneous and particular solutions:
 
   - $\delta = \tan^{-1}\left(\frac{b\omega}{\omega_0^2 - \omega^2}\right)$
 
+
 #### Resonance Conditions
 
-Resonance occurs when the driving frequency $\omega$ approaches the natural frequency $\omega_0$. The amplitude $A_p$ peaks when $\omega = \omega_r$, leading to maximum energy transfer from the driving force to the pendulum. For low damping, this is close to $\omega_0$. This amplification is critical in systems where energy buildup is desired or must be avoided.
+Resonance occurs when the driving frequency $\omega$ approaches the natural frequency $\omega_0$. 
+The amplitude $A_p$ peaks when $\omega = \omega_r$, leading to maximum energy transfer from the driving force to the pendulum. 
+For low damping, this is close to $\omega_0$. 
+This amplification is critical in systems where energy buildup is desired or must be avoided.
 
 ---
 
@@ -66,6 +78,7 @@ Resonance occurs when the driving frequency $\omega$ approaches the natural freq
 - **Driving Amplitude ($F$)**: Small $F$ leads to regular motion; large $F$ can push the system into chaos by overcoming the restoring force.
 
 - **Driving Frequency ($\omega$)**: Near $\omega_0$, resonance amplifies motion. Far from $\omega_0$, motion may be quasiperiodic or chaotic depending on $F$ and $b$.
+
 
 #### Transition to Chaos
 
