@@ -187,6 +187,7 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
 <h3 id="investigating-the-range-as-a-function-of-the-angle-of-projection">Investigating the Range as a Function of the Angle of Projection</h3>
+<p><a href="../simulation_projectle.html">Simulation</a></p>
 <h4 id="1-theoretical-foundation">1. Theoretical Foundation</h4>
 <p>To begin, we must derive the basic equations of motion for projectile motion, assuming no air resistance and constant gravitational acceleration.</p>
 <h5 id="governing-equations-of-motion">Governing Equations of Motion:</h5>
@@ -283,7 +284,6 @@ F_{\text{drag}} = \frac{1}{2} C_d \rho A v^2
 - <span class="arithmatex">\(A\)</span> is the cross-sectional area of the projectile, and
 - <span class="arithmatex">\(v\)</span> is the velocity of the projectile.</p>
 <p>This makes the equations non-linear, requiring numerical methods to solve the trajectory and range.</p>
-<p><a href="../simulation_projectle.html">Simulation</a></p>
 <h4 id="4-implementation">4. Implementation</h4>
 <p>To simulate projectile motion and visualize the range as a function of the angle of projection for different initial conditions, we can create a computational tool. Below is a simple Python code to calculate and plot the range as a function of launch angle for a given initial velocity.</p>
 <pre><code class="language-python">import numpy as np
@@ -311,7 +311,7 @@ plt.ylabel("Range (meters)")
 plt.grid(True)
 plt.show()
 </code></pre>
-<p><a href="simulation.py">Graph</a></p>
+<p><img alt="alt text" src="../image.png"/></p>
 <h5 id="output-and-interpretation">Output and Interpretation:</h5>
 <p>Running this code will generate a plot of the range as a function of launch angle for a given initial velocity. The curve will peak at 45 degrees, illustrating the theoretical result. This visualization provides insight into the optimal launch angle for maximum range.</p>
 <h4 id="conclusion">Conclusion</h4>
