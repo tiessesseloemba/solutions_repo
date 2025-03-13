@@ -32,7 +32,6 @@ Where:
 
 - $t$ = time (s)
 
-
 This equation includes:
 
 - Damping term: $b \frac{d\theta}{dt}$
@@ -241,4 +240,10 @@ Here’s a JavaScript simulation using HTML5 canvas to model and visualize the f
 - Try $b = 0.2$, $F = 0.5$, $\omega = 1.0$ for periodic motion.
 
 - Increase $F = 1.5$ or more for chaotic behavior (phase plot shows a strange attractor).
+
+
+6. Conclusion
+
+The forced damped pendulum serves as a powerful model for studying nonlinear dynamics, resonance, and chaos. Through analytical methods and computational simulations, we gain deeper insight into its behavior, with broad applications in engineering, physics, and applied mathematics.
+
 
