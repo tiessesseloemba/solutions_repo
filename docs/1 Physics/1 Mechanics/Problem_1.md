@@ -9,7 +9,9 @@ To begin, we must derive the basic equations of motion for projectile motion, as
 
 ##### Governing Equations of Motion:
 
-Projectile motion is governed by the kinematic equations in both the horizontal and vertical directions. The motion occurs in two dimensions horizontal (x) and vertical (y) and is subject to constant acceleration due to gravity in the vertical direction. We assume:
+Projectile motion is governed by the kinematic equations in both the horizontal and vertical directions. 
+The motion occurs in two dimensions horizontal (x) and vertical (y) and is subject to constant acceleration due to gravity in the vertical direction.
+We assume:
 
 - The projectile is launched with an initial velocity $v_0$ at an angle $\theta$ relative to the horizontal.
 
@@ -44,7 +46,8 @@ Here:
 
 ##### Time of Flight:
 
-The projectile will hit the ground when $y(t) = 0$. Setting the vertical motion equation equal to zero and solving for $t$, we get the time of flight:
+The projectile will hit the ground when $y(t) = 0$. 
+Setting the vertical motion equation equal to zero and solving for $t$, we get the time of flight:
 
 $$
 y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2 = 0
@@ -89,42 +92,54 @@ We can analyze how the range depends on the angle of projection $\theta$.
 
 ##### Angle Dependency:
 
-- The term $\sin(2\theta)$ indicates that the range is a function of the angle of projection. The sine function reaches its maximum value of 1 when $\theta = 45^\circ$. Therefore, the projectile achieves its maximum range when it is launched at an angle of 45 degrees.
+- The term $\sin(2\theta)$ indicates that the range is a function of the angle of projection. 
+The sine function reaches its maximum value of 1 when $\theta = 45^\circ$. 
+Therefore, the projectile achieves its maximum range when it is launched at an angle of 45 degrees.
 
-- For angles less than 45°, the sine of $2\theta$ increases, but the range decreases as the angle approaches 0° (horizontal launch). Conversely, for angles greater than 45°, $\sin(2\theta)$ decreases as the angle approaches 90° (vertical launch).
+- For angles less than 45°, the sine of $2\theta$ increases, but the range decreases as the angle approaches 0° (horizontal launch). 
+Conversely, for angles greater than 45°, $\sin(2\theta)$ decreases as the angle approaches 90° (vertical launch).
 
 ##### Influence of Initial Velocity:
 
-- The range is directly proportional to the square of the initial velocity, $v_0^2$. Therefore, increasing the initial velocity will result in a larger range, regardless of the angle.
+- The range is directly proportional to the square of the initial velocity, $v_0^2$. 
+Therefore, increasing the initial velocity will result in a larger range, regardless of the angle.
 
 ##### Influence of Gravitational Acceleration:
 
-- The range is inversely proportional to the gravitational acceleration $g$. If $g$ decreases (e.g., on a planet with lower gravity), the range will increase for the same initial velocity and launch angle.
+- The range is inversely proportional to the gravitational acceleration $g$. 
+If $g$ decreases (e.g., on a planet with lower gravity), the range will increase for the same initial velocity and launch angle.
 
 #### 3. Practical Applications
 
 ##### Uneven Terrain:
 
-If the projectile is launched from a height $h$ above the ground (e.g., a cliff), the range equation must be adjusted to account for this. The time of flight will be longer due to the higher launch position, and the equation for the vertical motion becomes:
+If the projectile is launched from a height $h$ above the ground (e.g., a cliff), the range equation must be adjusted to account for this. 
+The time of flight will be longer due to the higher launch position, and the equation for the vertical motion becomes:
 
 $$
 y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2 + h
 $$
 
-This leads to a more complex solution for the time of flight and range, but the overall approach remains similar. A numerical solution can be used to handle this situation.
+This leads to a more complex solution for the time of flight and range, but the overall approach remains similar. 
+A numerical solution can be used to handle this situation.
 
 ##### Air Resistance:
 
-Realistically, air resistance cannot be ignored, and its effect on the projectile’s trajectory is significant at higher speeds. The equations of motion would need to incorporate drag forces, which are typically modeled as:
+Realistically, air resistance cannot be ignored, and its effect on the projectile’s trajectory is significant at higher speeds. 
+The equations of motion would need to incorporate drag forces, which are typically modeled as:
 
 $$
 F_{\text{drag}} = \frac{1}{2} C_d \rho A v^2
 $$
 
 where:
+
 - $C_d$ is the drag coefficient,
+
 - $\rho$ is the air density,
+
 - $A$ is the cross-sectional area of the projectile, and
+
 - $v$ is the velocity of the projectile.
 
 This makes the equations non-linear, requiring numerical methods to solve the trajectory and range.
@@ -133,7 +148,8 @@ This makes the equations non-linear, requiring numerical methods to solve the tr
 
 #### 4. Implementation
 
-To simulate projectile motion and visualize the range as a function of the angle of projection for different initial conditions, we can create a computational tool. Below is a simple Python code to calculate and plot the range as a function of launch angle for a given initial velocity.
+To simulate projectile motion and visualize the range as a function of the angle of projection for different initial conditions, we can create a computational tool. 
+Below is a simple Python code to calculate and plot the range as a function of launch angle for a given initial velocity.
 
 ```python
 import numpy as np
@@ -165,8 +181,12 @@ plt.show()
 
 ##### Output and Interpretation:
 
-Running this code will generate a plot of the range as a function of launch angle for a given initial velocity. The curve will peak at 45 degrees, illustrating the theoretical result. This visualization provides insight into the optimal launch angle for maximum range.
+Running this code will generate a plot of the range as a function of launch angle for a given initial velocity. 
+The curve will peak at 45 degrees, illustrating the theoretical result. 
+This visualization provides insight into the optimal launch angle for maximum range.
 
 #### Conclusion
 
-By examining the range of a projectile as a function of the launch angle, we've seen how simple principles of physics can lead to rich and complex relationships. This analysis not only provides foundational understanding but also enables practical applications in diverse fields, from sports to engineering. Simulation tools like the one described can be further enhanced to incorporate more real-world complexities, such as air resistance and varying terrain.
+By examining the range of a projectile as a function of the launch angle, we've seen how simple principles of physics can lead to rich and complex relationships. 
+This analysis not only provides foundational understanding but also enables practical applications in diverse fields, from sports to engineering. 
+Simulation tools like the one described can be further enhanced to incorporate more real-world complexities, such as air resistance and varying terrain.
