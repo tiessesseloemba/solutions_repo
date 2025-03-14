@@ -47,6 +47,7 @@ Here:
 ##### Time of Flight:
 
 The projectile will hit the ground when $y(t) = 0$. 
+
 Setting the vertical motion equation equal to zero and solving for $t$, we get the time of flight:
 
 $$
