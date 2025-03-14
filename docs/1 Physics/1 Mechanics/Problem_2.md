@@ -112,6 +112,7 @@ This amplification is critical in systems where energy buildup is desired or mus
 Here’s a JavaScript simulation using HTML5 canvas to model and visualize the forced damped pendulum. It includes phase plots and allows parameter adjustment:
 
 [Simulation](Simulation_2.html)
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -240,6 +241,7 @@ Here’s a JavaScript simulation using HTML5 canvas to model and visualize the f
 - Try $b = 0.2$, $F = 0.5$, $\omega = 1.0$ for periodic motion.
 
 - Increase $F = 1.5$ or more for chaotic behavior (phase plot shows a strange attractor).
+
 
 
 6. Conclusion
