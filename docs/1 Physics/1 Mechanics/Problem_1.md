@@ -72,7 +72,12 @@ $$
 
 The range $R$ of the projectile is the horizontal distance traveled when it hits the ground, i.e., when $y(t) = 0$. 
 
-Substituting the time of flight $t = \frac{2 v_0 \sin(\theta)}{g}$ into the horizontal motion equation:
+Substituting the time of flight 
+
+
+$$t = \frac{2 v_0 \sin(\theta)}{g}$$ 
+
+into the horizontal motion equation:
 
 $$
 R = x(t) = v_0 \cos(\theta) \cdot \left( \frac{2 v_0 \sin(\theta)}{g} \right)
