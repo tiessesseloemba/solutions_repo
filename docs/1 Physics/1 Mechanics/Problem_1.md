@@ -179,7 +179,9 @@ plt.grid(True)
 plt.show()
 ```
 ![alt text](image.png)
+
 [Simulation](simulation_projectle.html)
+
 [Other Example](https://i.pinimg.com/originals/32/a9/ab/32a9abd19a170984b88292be84cc5ff8.gif)
 
 
