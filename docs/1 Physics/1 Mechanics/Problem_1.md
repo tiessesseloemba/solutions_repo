@@ -15,9 +15,12 @@ We assume:
 
 - The projectile is launched with an initial velocity $v_0$ at an angle $\theta$ relative to the horizontal.
 
+
 - The initial position of the projectile is at the origin: $(x_0, y_0) = (0, 0)$.
 
+
 - The acceleration due to gravity is $g$ (which acts downward).
+
 
 In this setup, the motion of the projectile can be described by the following equations:
 
