@@ -2,7 +2,7 @@
 ### Investigating the Range as a Function of the Angle of Projection
 
 
-[Simulation](simulation_projectle.html)
+
 #### 1. Theoretical Foundation
 
 To begin, we must derive the basic equations of motion for projectile motion, assuming no air resistance and constant gravitational acceleration.
@@ -179,8 +179,9 @@ plt.grid(True)
 plt.show()
 ```
 ![alt text](image.png)
-
+[Simulation](simulation_projectle.html)
 [Other Example](https://i.pinimg.com/originals/32/a9/ab/32a9abd19a170984b88292be84cc5ff8.gif)
+
 
 ##### Output and Interpretation:
 
