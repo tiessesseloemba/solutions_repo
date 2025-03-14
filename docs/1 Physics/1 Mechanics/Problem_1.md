@@ -179,7 +179,7 @@ plt.show()
 ```
 ![alt text](image.png)
 
-[https://i.pinimg.com/originals/32/a9/ab/32a9abd19a170984b88292be84cc5ff8.gif]
+[Other Example](https://i.pinimg.com/originals/32/a9/ab/32a9abd19a170984b88292be84cc5ff8.gif)
 
 ##### Output and Interpretation:
 
