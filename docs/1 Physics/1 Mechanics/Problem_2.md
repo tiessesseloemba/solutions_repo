@@ -59,9 +59,12 @@ The general solution is the sum of the homogeneous and particular solutions:
 
 - Homogeneous: 
 
+
 $$\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)$$
 
+
 , where 
+
 
 $$\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}$$
 
