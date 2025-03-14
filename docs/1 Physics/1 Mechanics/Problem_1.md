@@ -180,9 +180,9 @@ plt.show()
 ```
 ![alt text](image.png)
 
-[Simulation](simulation_projectle.html)
+[Simulation1](simulation_projectle.html)
 
-[Other Example](https://i.pinimg.com/originals/32/a9/ab/32a9abd19a170984b88292be84cc5ff8.gif)
+[Simulation2](https://i.pinimg.com/originals/32/a9/ab/32a9abd19a170984b88292be84cc5ff8.gif)
 
 
 ##### Output and Interpretation:
