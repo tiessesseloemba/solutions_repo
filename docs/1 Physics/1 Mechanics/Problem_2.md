@@ -57,14 +57,14 @@ Where
 
 The general solution is the sum of the homogeneous and particular solutions:
 
-- Homogeneous: $\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)$, where $\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}$
+- Homogeneous: $$\theta_h(t) = A e^{-\frac{b}{2}t} \cos(\omega_r t + \phi)$$, where $$\omega_r = \sqrt{\omega_0^2 - \left(\frac{b}{2}\right)^2}$$
 
 
-- Particular: $\theta_p(t) = A_p \cos(\omega t - \delta)$, where:
+- Particular: $$\theta_p(t) = A_p \cos(\omega t - \delta)$$, where:
 
-  - $A_p = \frac{F}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}}$
+  - $$A_p = \frac{F}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}}$$
 
-  - $\delta = \tan^{-1}\left(\frac{b\omega}{\omega_0^2 - \omega^2}\right)$
+  - $$\delta = \tan^{-1}\left(\frac{b\omega}{\omega_0^2 - \omega^2}\right)$$
 
 
 #### Resonance Conditions
