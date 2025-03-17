@@ -20,6 +20,7 @@ These principles are essential for launching satellites, interplanetary missions
 
    - The minimum speed needed for an object to stay in a **stable circular orbit** around a celestial body without propulsion.  
 
+
    - Derived from balancing **gravitational force** and **centripetal force**:  
 
 
@@ -37,7 +38,9 @@ These principles are essential for launching satellites, interplanetary missions
 
    - The speed required to **escape completely** from a planet’s gravitational influence.  
 
+
    - Derived from **energy conservation** (gravitational potential energy vs. kinetic energy):  
+
 
 
      $$
@@ -45,9 +48,14 @@ These principles are essential for launching satellites, interplanetary missions
      $$
 
 
+
    - It is **$\sqrt{2}$ times** the first cosmic velocity. 
 
-   - Example: On Earth, $v_2 \approx 11.2$ km/s, meaning a rocket must reach this speed to leave Earth without further propulsion.  
+
+   - Example:
+   
+    On Earth, $v_2 \approx 11.2$ km/s, meaning a rocket must reach this speed to leave Earth without further propulsion.  
+
 
 
 
@@ -55,6 +63,7 @@ These principles are essential for launching satellites, interplanetary missions
 
 
    - The speed needed to escape **the gravitational pull of the entire solar system** (or another star system).  
+
 
    - Depends on **both the Sun’s gravity** and the **planet’s position** in its orbit:  
 
@@ -67,7 +76,9 @@ These principles are essential for launching satellites, interplanetary missions
      where $v_s$ is the planet’s orbital velocity around the Sun.  
 
 
-   - Example: To **leave the Solar System from Earth’s orbit**, $v_3 \approx 42.1$ km/s.  
+   - Example:
+   
+    To **leave the Solar System from Earth’s orbit**, $v_3 \approx 42.1$ km/s.  
 
 
 ## **Mathematical Analysis & Visualization**  
