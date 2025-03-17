@@ -129,28 +129,31 @@ plt.show()
 
 3. **Corrections for Non-Ideal Cases**:
    - Perturbations from other celestial bodies
+   
    - Relativistic effects for strong gravitational fields
 
 
 [Simulation](Simulation_1.html)
 
 
- ### **Interpretation of the Simulation ** 
+ ### **Interpretation of the Simulation**  
 
 
 This simulation visually demonstrates **Kepler's Third Law**, which states that the square of a planet's orbital period is proportional to the cube of its orbital radius.  
 
 
+
 #### **How the Simulation Works:** 
 
 
-1. A **yellow Sun** is fixed at the center. 
+1. A **yellow Sun** is fixed at the center.  
 
 2. A **blue planet** orbits around the Sun in a circular trajectory.  
 
 3. The **slider** allows you to adjust the **orbital radius** (the distance from the Sun).  
 
 4. The **planet moves slower in a larger orbit** and faster in a smaller orbit, illustrating Kepler’s law.  
+
 
 #### **Key Observations:**  
 
@@ -163,8 +166,8 @@ This simulation visually demonstrates **Kepler's Third Law**, which states that 
   T^2 \propto r^3
   $$
 
-
 - This is the same principle used by astronomers to predict **planetary motion, satellite orbits, and exoplanet detection**.  
+
 
 
 
