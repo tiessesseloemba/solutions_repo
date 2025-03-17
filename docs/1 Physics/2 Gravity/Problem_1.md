@@ -129,14 +129,14 @@ plt.show()
 
 3. **Corrections for Non-Ideal Cases**:
    - Perturbations from other celestial bodies
-   
+
    - Relativistic effects for strong gravitational fields
 
 
 [Simulation](Simulation_1.html)
 
 
- ### **Interpretation of the Simulation**  
+  **Interpretation of the Simulation**  
 
 
 This simulation visually demonstrates **Kepler's Third Law**, which states that the square of a planet's orbital period is proportional to the cube of its orbital radius.  
