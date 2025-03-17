@@ -133,6 +133,7 @@ plt.show()
 
 ### **Interpretation of the Simulation**  
 
+
 This interactive simulation visually demonstrates **Kepler’s Third Law**, which states that the square of the orbital period ($T^2$) is proportional to the cube of the orbital radius ($r^3$).
  The simulation consists of:  
 

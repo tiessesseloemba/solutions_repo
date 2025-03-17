@@ -16,43 +16,32 @@
             border: 1px solid white;
             margin-top: 10px;
         }
-        #controls {
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
     <h1>Kepler's Third Law Simulation</h1>
-    <canvas id="orbitCanvas" width="500" height="500"></canvas>
-    <div id="controls">
-        <label for="radiusSlider">Orbital Radius: </label>
-        <input type="range" id="radiusSlider" min="50" max="200" value="100">
-        <span id="radiusValue">100</span>
-    </div>
+    <canvas id="orbitCanvas" width="400" height="400"></canvas>
+    <br>
+    <label for="radius">Orbital Radius: </label>
+    <input type="range" id="radius" min="50" max="150" value="100">
+    <span id="radiusValue">100</span>
 
     <script>
-        // Get canvas and context
         const canvas = document.getElementById("orbitCanvas");
         const ctx = canvas.getContext("2d");
 
-        // Define center of the canvas
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
-
-        // Sun (fixed)
-        const sunRadius = 20;
-
-        // Initial orbital parameters
+        const sunRadius = 15;
         let orbitRadius = 100;
         let angle = 0;
 
-        // Update displayed radius value
-        document.getElementById("radiusSlider").addEventListener("input", function(event) {
+        document.getElementById("radius").addEventListener("input", function(event) {
             orbitRadius = parseInt(event.target.value);
             document.getElementById("radiusValue").textContent = orbitRadius;
         });
 
-        function updateSimulation() {
+        function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             // Draw the Sun
@@ -61,15 +50,12 @@
             ctx.fillStyle = "yellow";
             ctx.fill();
 
-            // Compute orbital speed (T^2 = r^3 -> v ∝ 1/sqrt(r))
-            let orbitalSpeed = 0.05 / Math.sqrt(orbitRadius / 100);
-
-            // Update planet position
-            angle += orbitalSpeed;
+            // Compute planet position
+            angle += 0.02 / Math.sqrt(orbitRadius / 100); 
             let planetX = centerX + orbitRadius * Math.cos(angle);
             let planetY = centerY + orbitRadius * Math.sin(angle);
 
-            // Draw orbit path
+            // Draw the orbit
             ctx.beginPath();
             ctx.arc(centerX, centerY, orbitRadius, 0, Math.PI * 2);
             ctx.strokeStyle = "white";
@@ -77,17 +63,16 @@
 
             // Draw the planet
             ctx.beginPath();
-            ctx.arc(planetX, planetY, 10, 0, Math.PI * 2);
+            ctx.arc(planetX, planetY, 8, 0, Math.PI * 2);
             ctx.fillStyle = "blue";
             ctx.fill();
 
-            // Keep the animation running
-            requestAnimationFrame(updateSimulation);
+            requestAnimationFrame(draw);
         }
 
-        // Start the simulation
-        updateSimulation();
+        draw();
     </script>
 </body>
 </html>
+
 
