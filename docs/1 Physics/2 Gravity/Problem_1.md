@@ -52,7 +52,9 @@ v^2 = \frac{GM}{r}
 $$
 
 
-Since orbital period $T$ is given by $T = \frac{2\pi r}{v}$, substituting $v$:
+Since orbital period $T$ is given by $T = \frac{2\pi r}{v}$, 
+
+substituting $v$:
 
 $$
 T^2 = \frac{4\pi^2 r^3}{GM}
@@ -61,9 +63,11 @@ $$
 
 This confirms Kepler's Third Law:
 
+
 $$
 T^2 \propto r^3
 $$
+
 
 where the proportionality constant depends on the central mass $M$.
 
@@ -131,53 +135,36 @@ plt.show()
 [Simulation](Simulation_1.html)
 
 
-### **Interpretation of the Simulation**  
+ ### **Interpretation of the Simulation ** 
 
 
-This interactive simulation visually demonstrates **Kepler’s Third Law**, which states that the square of the orbital period ($T^2$) is proportional to the cube of the orbital radius ($r^3$).
- The simulation consists of:  
+This simulation visually demonstrates **Kepler's Third Law**, which states that the square of a planet's orbital period is proportional to the cube of its orbital radius.  
 
-1. **A Central Star (Yellow Circle)** 
 
-   - Represents the **Sun** or another massive celestial body exerting gravitational force.  
+#### **How the Simulation Works:** 
 
-2. **An Orbiting Planet (Blue Circle)** 
 
-   - Moves in a circular path around the central star, following the laws of planetary motion.  
+1. A **yellow Sun** is fixed at the center. 
 
-3. **Orbital Radius Slider**  
+2. A **blue planet** orbits around the Sun in a circular trajectory.  
 
-   - Allows the user to adjust the orbit size dynamically.
-   - When the **radius increases**, the planet's orbit grows larger, and its velocity decreases.
-   - When the **radius decreases**, the planet moves faster in its orbit.  
+3. The **slider** allows you to adjust the **orbital radius** (the distance from the Sun).  
 
-### **Kepler’s Third Law in Action**  
+4. The **planet moves slower in a larger orbit** and faster in a smaller orbit, illustrating Kepler’s law.  
 
-- The planet’s **orbital speed** and **orbital period** adjust according to the equation:  
+#### **Key Observations:**  
 
- $$
+
+- As the **orbit increases**, the planet’s speed **decreases** because a larger orbit requires a longer period to complete.  
+
+- The relationship between **radius and speed** follows the equation:  
+
+  $$
   T^2 \propto r^3
   $$
 
-  This means that if the orbital radius increases, the orbital period increases as well, but at a specific cubic rate.  
 
-### **Observations from the Simulation**
-
-1. **Larger Orbits → Longer Periods**  
-
-   - When the orbital radius increases, the planet moves slower, taking more time to complete one revolution.  
-
-2. **Smaller Orbits → Faster Motion** 
-
-   - When the orbit is smaller, the gravitational force is stronger, making the planet move faster and complete an orbit in less time.  
-
-### **Real-World Applications**
-
-- **Planetary Motion:** Explains why outer planets (e.g., Jupiter, Saturn) take longer to orbit the Sun than inner planets (e.g., Mercury, Venus).  
-
-- **Satellite Orbits:** Helps design stable satellite paths around Earth.  
-
-- **Exoplanet Detection:** Used in astronomy to determine the mass and distance of exoplanets based on their orbits.  
+- This is the same principle used by astronomers to predict **planetary motion, satellite orbits, and exoplanet detection**.  
 
 
 
