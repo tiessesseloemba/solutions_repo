@@ -147,11 +147,8 @@ Right side:
  $r^3 = (3.844 \times 10^8)^3 = 5.68 \times 10^{25} \, \text{m}^3$,
 
 
-
 $$\frac{4\pi^2}{G M} = \frac{4 \times (3.1416)^2}{6.6743 \times 10^{-11} \times 5.972 \times 10^{24}} \approx 9.87 \times 10^{-14} \, \text{s}^2 \text{m}^{-3},
-
-
-$$\frac{4\pi^2 r^3}{G M} = 9.87 \times 10^{-14} \times 5.68 \times 10^{25} \approx 5.61 \times 10^{12} \, \text{s}^2$$.
+\frac{4\pi^2 r^3}{G M} = 9.87 \times 10^{-14} \times 5.68 \times 10^{25} \approx 5.61 \times 10^{12} \, \text{s}^2$$.
 
 
 
