@@ -116,21 +116,16 @@ For exoplanets, observing orbital periods (via transits) and estimating radii (v
 
 
 - **Orbital Period**:
-
  $T \approx 27.32$ days $\approx 2.36 \times 10^6$ seconds.
 
 - **Orbital Radius**: 
-
 $r \approx 384,400$ km $\approx 3.844 \times 10^8$ meters.
 
 - **Earth’s Mass**: 
-
 $M \approx 5.972 \times 10^{24}$ kg.
 
 - **Gravitational Constant**:
-
  $G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}$.
-
 
 Check Kepler’s Third Law:
 
@@ -139,15 +134,13 @@ $$T^2 = \frac{4\pi^2 r^3}{G M}$$
 
 
 Left side: 
-
 $T^2 = (2.36 \times 10^6)^2 = 5.57 \times 10^{12} \, \text{s}^2$.
 
 Right side:
-
  $r^3 = (3.844 \times 10^8)^3 = 5.68 \times 10^{25} \, \text{m}^3$,
 
 
-$$\frac{4\pi^2}{G M} = \frac{4 \times (3.1416)^2}{6.6743 \times 10^{-11} \times 5.972 \times 10^{24}} \approx 9.87 \times 10^{-14} \, \text{s}^2 \text{m}^{-3},
+$$ \frac{4\pi^2}{G M} = \frac{4 \times (3.1416)^2}{6.6743 \times 10^{-11} \times 5.972 \times 10^{24}} \approx 9.87 \times 10^{-14} \, \text{s}^2 \text{m}^{-3},
 \frac{4\pi^2 r^3}{G M} = 9.87 \times 10^{-14} \times 5.68 \times 10^{25} \approx 5.61 \times 10^{12} \, \text{s}^2$$.
 
 
