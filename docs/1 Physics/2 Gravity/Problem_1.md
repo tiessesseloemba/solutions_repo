@@ -175,15 +175,11 @@ The values are very close, confirming the law holds (small discrepancies arise f
 
  $M \approx 1.989 \times 10^{30}$ kg.
 
-
 $$T^2 = (3.156 \times 10^7)^2 \approx 9.96 \times 10^{14} \, \text{s}^2,
-
 
 $$r^3 = (1.496 \times 10^{11})^3 \approx 3.35 \times 10^{33} \, \text{m}^3$$,
 
-
 $$\frac{4\pi^2}{G M} \approx \frac{39.478}{6.6743 \times 10^{-11} \times 1.989 \times 10^{30}} \approx 2.97 \times 10^{-19} \, \text{s}^2 \text{m}^{-3},
-
 
 $$\frac{4\pi^2 r^3}{G M} \approx 2.97 \times 10^{-19} \times 3.35 \times 10^{33} \approx 9.95 \times 10^{14} \, \text{s}^2$$.
 
