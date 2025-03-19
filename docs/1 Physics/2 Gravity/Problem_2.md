@@ -12,11 +12,9 @@ Let’s explore the fascinating concepts of escape velocity and the first, secon
 
 
    - **Definition**: 
-   
    The minimum speed required for an object to achieve a stable circular orbit around a celestial body at a low altitude (near the surface, neglecting atmospheric drag).
 
    - **Physical Meaning**:
-   
     This is the speed at which the centrifugal force balances the gravitational pull, allowing an object to circle the body without falling back or escaping.
 
 
@@ -25,11 +23,9 @@ Let’s explore the fascinating concepts of escape velocity and the first, secon
 
 
    - **Definition**:
-   
     The speed needed to completely escape a celestial body’s gravitational influence, starting from its surface, without further propulsion.
 
    - **Physical Meaning**:
-   
     At this velocity, an object’s kinetic energy equals the gravitational potential energy binding it to the body, allowing it to reach infinity with zero residual speed.
 
 
@@ -38,11 +34,9 @@ Let’s explore the fascinating concepts of escape velocity and the first, secon
 
 
    - **Definition**: 
-   
    The speed required to escape the gravitational influence of a star system (e.g., the Solar System), typically starting from a planet’s surface or orbit.
 
    - **Physical Meaning**:
-   
     This velocity accounts for escaping both the planet’s gravity and the star’s gravity, relevant for interstellar travel.
 
 ### Mathematical Derivations
@@ -103,6 +97,7 @@ Notice: $v_2 = \sqrt{2} \cdot v_1$.
 
 
 #### Third Cosmic Velocity ($v_3$)
+
 
 
 This is more complex, as it involves escaping the star’s gravity (e.g., the Sun) from a planet’s orbit.
