@@ -75,7 +75,9 @@ $$ v_1 = \sqrt{\frac{G M}{R}} $$
 Escape velocity comes from energy conservation. At the surface, total mechanical energy is:
 
 
+
 $$ E = K + U = \frac{1}{2} m v_2^2 - \frac{G M m}{R} $$
+
 
 
 To escape, energy must be zero at infinity (where $U = 0$, $v = 0$):
@@ -244,3 +246,5 @@ This draws bars for each velocity, scaled for visibility.
 
 
 These velocities shape mission design, fuel requirements, and trajectories, making them foundational to exploring our cosmic neighborhood and beyond.
+
+[Simulation](Simulation_2.html)
