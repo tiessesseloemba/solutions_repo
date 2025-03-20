@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Escape and Cosmic Velocities</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        canvas { background-color: white; margin: 10px; border: 1px solid black; }
+        .container { display: flex; justify-content: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Escape and Cosmic Velocities</h1>
+    <label>Select Celestial Body:
+        <select id="bodySelect">
+            <option value="earth">Earth</option>
+            <option value="moon">Moon</option>
+            <option value="mars">Mars</option>
+        </select>
+    </label>
+    <label>Velocity:
+        <select id="velocitySelect">
+            <option value="v1">V1 (Orbit)</option>
+            <option value="v2">V2 (Escape)</option>
+        </select>
+    </label>
+    <button onclick="updateSimulation()">Update</button>
+    
+    <div class="container">
+        <canvas id="orbitCanvas" width="300" height="300"></canvas>
+        <div id="velocityInfo" style="width: 300px; height: 300px; text-align: left; padding: 10px;"></div>
+    </div>
+    <p>Left: Orbital visualization (not to scale) <br> Right: Velocity info (km/s)</p>
+    
+    <script>
+        const bodies = {
+            earth: { radius: 6371e3, mass: 5.972e24, v1: 7.91, v2: 11.19, v3: 16.6, color: "blue" },
+            moon: { radius: 1737e3, mass: 7.342e22, v1: 1.68, v2: 2.38, v3: 2.5, color: "gray" },
+            mars: { radius: 3389e3, mass: 6.417e23, v1: 3.55, v2: 5.03, v3: 11.2, color: "red" }
+        };
+
+        const G = 6.6743e-11;
+        let angle = 0;
+        let particle = { x: 0, y: 0, vx: 0, vy: 0 };
+        let selectedBody = "earth";
+        let selectedVelocity = "v1";
+        const canvas = document.getElementById("orbitCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function drawOrbit() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const body = bodies[selectedBody];
+            const planetRadius = 20; // Taille fixe pour visibilité
+            const orbitRadius = 80;
+
+            // Dessiner la planète
+            ctx.beginPath();
+            ctx.arc(150, 150, planetRadius, 0, Math.PI * 2);
+            ctx.fillStyle = body.color;
+            ctx.fill();
+            ctx.closePath();
+
+            if (selectedVelocity === "v1") {
+                // Orbite circulaire
+                ctx.beginPath();
+                ctx.arc(150, 150, orbitRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = "green";
+                ctx.stroke();
+                ctx.closePath();
+
+                // Objet en orbite
+                const x = 150 + orbitRadius * Math.cos(angle);
+                const y = 150 + orbitRadius * Math.sin(angle);
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "black";
+                ctx.fill();
+                ctx.closePath();
+
+                // Animation
+                angle += 0.05; // Vitesse fixe pour simplicité
+                if (angle > Math.PI * 2) angle -= Math.PI * 2;
+            } else if (selectedVelocity === "v2") {
+                // Trajectoire d'échappement
+                const r = Math.sqrt(particle.x ** 2 + particle.y ** 2);
+                if (r > body.radius) {
+                    const a = -G * body.mass / (r ** 3);
+                    particle.vx += a * particle.x * 0.05;
+                    particle.vy += a * particle.y * 0.05;
+                    particle.x += particle.vx * 0.05;
+                    particle.y += particle.vy * 0.05;
+                }
+
+                const scale = 80 / body.radius;
+                const x = 150 + particle.x * scale;
+                const y = 150 + particle.y * scale;
+                if (x >= 0 && x <= 300 && y >= 0 && y <= 300) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, 5, 0, Math.PI * 2);
+                    ctx.fillStyle = "red";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+
+            requestAnimationFrame(drawOrbit);
+        }
+
+        function updateVelocityInfo() {
+            const body = bodies[selectedBody];
+            const infoDiv = document.getElementById("velocityInfo");
+            infoDiv.innerHTML = `
+                <strong>${selectedBody.charAt(0).toUpperCase() + selectedBody.slice(1)} Velocities:</strong><br>
+                V1 (Orbit): ${body.v1} km/s<br>
+                V2 (Escape): ${body.v2} km/s<br>
+                V3 (System): ${body.v3} km/s
+            `;
+        }
+
+        function updateSimulation() {
+            selectedBody = document.getElementById("bodySelect").value;
+            selectedVelocity = document.getElementById("velocitySelect").value;
+            const body = bodies[selectedBody];
+
+            if (selectedVelocity === "v2") {
+                particle = { x: body.radius, y: 0, vx: body.v2 * 1000, vy: 0 };
+            }
+
+            updateVelocityInfo();
+        }
+
+        // Démarrer
+        updateSimulation();
+        drawOrbit();
+    </script>
+</body>
+</html>

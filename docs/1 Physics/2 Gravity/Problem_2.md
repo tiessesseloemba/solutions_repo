@@ -226,6 +226,7 @@ These velocities shape mission design, fuel requirements, and trajectories, maki
 [Simulation](Simulationescape_.html)
 
 
+
 **Interpretation of the Escape and Orbital Velocities Simulation**
 
 This simulation illustrates the fundamental concepts of escape and orbital velocities for different celestial bodies, such as Earth, the Moon, and Mars. It provides a visual representation of an orbiting object and a comparative analysis of the velocities required for stable orbit and escape from gravitational influence.

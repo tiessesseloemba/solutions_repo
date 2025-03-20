@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbital & Escape Velocity Simulation</title>
+<style>
+       body { text-align: center; font-family: Arial, sans-serif; }
+       canvas { background: black; display: block; margin: auto; border: 1px solid white; }
+       input { margin-top: 10px; }
+</style>
+</head>
+<body>
+<h2>Orbital & Escape Velocity Simulation</h2>
+<p>Adjust velocity to see if the object stays in orbit, escapes, or falls.</p>
+<label for="velocity">Velocity (km/s): </label>
+<input type="range" id="velocity" min="5" max="20" step="0.1" value="7.91">
+<span id="velocityValue">7.91</span> km/s
+<canvas id="simulationCanvas" width="500" height="500"></canvas>
+<script>
+       const canvas = document.getElementById("simulationCanvas");
+       const ctx = canvas.getContext("2d");
+       const velocityInput = document.getElementById("velocity");
+       const velocityValue = document.getElementById("velocityValue");
+       const G = 6.67430e-11; // Gravitational constant
+       const M = 5.972e24; // Mass of Earth (kg)
+       const r = 200; // Arbitrary orbit radius in pixels
+       let angle = 0;
+       let velocity = parseFloat(velocityInput.value);
+       function updateVelocity() {
+           velocity = parseFloat(velocityInput.value);
+           velocityValue.textContent = velocity.toFixed(2);
+       }
+       function drawSimulation() {
+           ctx.clearRect(0, 0, canvas.width, canvas.height);
+           // Draw the center (Earth)
+           ctx.fillStyle = "yellow";
+           ctx.beginPath();
+           ctx.arc(canvas.width / 2, canvas.height / 2, 20, 0, Math.PI * 2);
+           ctx.fill();
+           // Calculate position
+           let x = canvas.width / 2 + r * Math.cos(angle);
+           let y = canvas.height / 2 + r * Math.sin(angle);
+           // Draw object
+           ctx.fillStyle = "blue";
+           ctx.beginPath();
+           ctx.arc(x, y, 10, 0, Math.PI * 2);
+           ctx.fill();
+           // Update angle based on velocity
+           let orbitalVelocity = Math.sqrt(G * M / (r * 1e6)) / 1000; // Convert to km/s
+           if (velocity < orbitalVelocity) {
+               angle += 0.01; // Falls towards Earth
+           } else if (velocity >= 11.2) {
+               angle += 0.03; // Escapes Earth's gravity
+           } else {
+               angle += 0.02; // Stays in orbit
+           }
+           requestAnimationFrame(drawSimulation);
+       }
+       velocityInput.addEventListener("input", updateVelocity);
+       drawSimulation();
+</script>
+</body>
+</html>
