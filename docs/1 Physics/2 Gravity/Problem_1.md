@@ -221,7 +221,7 @@ plt.show()
    - Relativistic effects for strong gravitational fields
 
 
-[Simulation](Simulation_2.html)
+
 
 
  **Interpretation of the Simulation**  
