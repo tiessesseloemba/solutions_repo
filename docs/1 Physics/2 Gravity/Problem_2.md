@@ -247,4 +247,3 @@ This draws bars for each velocity, scaled for visibility.
 
 These velocities shape mission design, fuel requirements, and trajectories, making them foundational to exploring our cosmic neighborhood and beyond.
 
-[Simulation2 ](Simulation_2.html)
