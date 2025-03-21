@@ -169,7 +169,9 @@ $M_{\text{Sun}} = 1.989 \times 10^{30} \, \text{kg}$
 
 
 - $v_3$: 
+
 From surface to Solar System escape:
+
 
  $$v_{\text{Sun escape}} = \sqrt{\frac{2 \cdot 6.6743 \times 10^{-11} \cdot 1.989 \times 10^{30}}{1.496 \times 10^{11}}} \approx 42.1 \, \text{km/s}$$
  
