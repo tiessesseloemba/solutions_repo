@@ -229,48 +229,19 @@ These velocities shape mission design, fuel requirements, and trajectories, maki
 
 ### Interpretation of the Escape and Cosmic Velocities Simulation
 
-The simulation developed in this project, implemented using HTML and JavaScript within Visual Studio Code, provides an interactive visualization of escape and cosmic velocities for different celestial bodies—Earth, Moon, and Mars.
-
- This tool serves as an educational aid to illustrate fundamental concepts in celestial mechanics, specifically the first cosmic velocity ($v_1 $), representing the speed required for a circular orbit, and the second cosmic velocity ($v_2 $), the escape velocity needed to break free from a body’s gravitational pull.
- 
-  While the third cosmic velocity ($v_3 $), for escaping a star system, is included in the data display, it is not animated due to scale limitations within the canvas.
+This HTML/JavaScript simulation visualizes the motion of a particle around a celestial body (Earth, Moon, or Mars) under two velocity scenarios: orbital velocity (V1) and escape velocity (V2). 
 
 
-#### Functionality and Design
+- **V1 (Orbit)**: The particle moves in a circular orbit (green path) around the selected body, shown as a colored circle (blue for Earth, gray for Moon, red for Mars).
+ The orbit is animated with a constant angular speed.
 
+- **V2 (Escape)**: The particle is launched with the escape velocity, following a trajectory (red dot) that moves away from the body under gravitational influence, calculated using numerical integration.
 
-The simulation is structured around two main components displayed side-by-side within a web interface:
+- **Features**: Users can select the celestial body and velocity type via dropdowns, and the simulation updates accordingly. 
+A panel displays the body's orbital (V1), escape (V2), and system (V3) velocities in km/s.
 
-
-1. **Left Canvas – Orbital Visualization**:
-
- This 300x300 pixel canvas dynamically renders a celestial body (colored blue for Earth, gray for Moon, red for Mars) with a fixed radius of 20 pixels for visibility. 
- Depending on the selected velocity:
-
-   - For $v_1 $ (Orbit), a green orbital path (radius 80 pixels) is drawn, and a black dot animates along this path, simulating a satellite in circular orbit.
-    The animation uses a constant angular speed, updated via `requestAnimationFrame`, to demonstrate continuous motion.
-
-   - For $v_2 $ (Escape), a red dot is launched from the planet’s surface with an initial velocity matching the body’s escape speed (e.g., 11.19 km/s for Earth).
-   
-    The dot’s trajectory is influenced by a simplified gravitational force, calculated as $a = -\frac{GM}{r^3} \cdot \vec{r} $, showing it moving away from the planet.
-
-
-2. **Right Panel – Velocity Information**: Instead of a graphical chart, a text-based display lists $v_1 $, $v_2 $, and $v_3 $ in kilometers per second for the selected body, updated dynamically when the user changes the celestial body via a dropdown menu.
-
-
-User interaction is facilitated through two dropdown menus—one for selecting the celestial body and another for choosing between $v_1 $ and $v_2 $—and an "Update" button to reset the simulation with the new parameters. 
-This design ensures the simulation is both intuitive and responsive, leveraging Visual Studio Code’s lightweight environment for editing and previewing the HTML file.
-
-
-#### Educational Purpose
-
-
-The simulation bridges theoretical physics with visual representation, making abstract concepts tangible.
-
- By animating an object at $v_1 $, students can observe how gravitational and centripetal forces balance to maintain a stable orbit, aligning with the derived formula $v_1 = \sqrt{\frac{GM}{R}} $.
-  Switching to $v_2 $ illustrates the escape condition where kinetic energy overcomes gravitational potential, as per $v_2 = \sqrt{\frac{2GM}{R}} $, with the object visibly departing the planet.
-  The inclusion of $v_3 $ in the text data hints at broader applications, such as interstellar travel, though its animation would require a larger scale to depict the Solar System’s dynamics.
-
+- **Purpose**: It demonstrates the difference between orbiting a body and escaping its gravitational pull, highlighting how velocity determines the trajectory.
+ The simulation simplifies the physics (e.g., fixed orbit radius, basic numerical integration) for educational clarity.
 
 ---
 
