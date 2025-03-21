@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced Orbital Trajectories Simulation</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+            margin: 20px;
+        }
+        canvas {
+            background-color: black;
+            border: 1px solid white;
+            display: block;
+            margin: 20px auto;
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        .legend {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            font-size: 16px;
+        }
+        label {
+            margin: 0 10px;
+        }
+        input, button {
+            padding: 5px;
+            margin: 5px;
+        }
+        .visibility-controls {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enhanced Orbital Trajectories Simulation</h1>
+    <div class="legend">
+        <p style="color: green;">Green: Low Earth Orbit (LEO)</p>
+        <p style="color: red;">Red: Medium Earth Orbit (MEO)</p>
+        <p style="color: blue;">Blue: Geostationary-like Orbit (GEO)</p>
+        <p style="color: yellow;">Yellow: Escape Trajectory</p>
+    </div>
+    <div class="controls">
+        <label>LEO Altitude (km): <input type="number" id="leoAltitude" value="400" step="10"></label>
+        <label>LEO Velocity (km/s): <input type="number" id="leoVelocity" value="7.67" step="0.1"></label>
+        <br>
+        <label>MEO Altitude (km): <input type="number" id="meoAltitude" value="20000" step="100"></label>
+        <label>MEO Velocity (km/s): <input type="number" id="meoVelocity" value="3.87" step="0.1"></label>
+        <br>
+        <label>GEO Altitude (km): <input type="number" id="geoAltitude" value="35786" step="100"></label>
+        <label>GEO Velocity (km/s): <input type="number" id="geoVelocity" value="3.07" step="0.1"></label>
+        <br>
+        <label>Escape Velocity (km/s): <input type="number" id="escapeVelocity" value="11.19" step="0.1"></label>
+        <button onclick="updateSimulation()">Update</button>
+        <button onclick="resetEscape()">Reset Escape</button>
+        <div class="visibility-controls">
+            <label><input type="checkbox" id="showLEO" checked> Show LEO</label>
+            <label><input type="checkbox" id="showMEO" checked> Show MEO</label>
+            <label><input type="checkbox" id="showGEO" checked> Show GEO</label>
+            <label><input type="checkbox" id="showEscape" checked> Show Escape</label>
+        </div>
+    </div>
+    <canvas id="simulationCanvas"></canvas>
+
+    <script>
+        // Canvas setup
+        const canvas = document.getElementById("simulationCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 1000;
+        canvas.height = 800;
+
+        // Physical constants
+        const G = 6.67430e-11;      // Gravitational constant (m³ kg⁻¹ s⁻²)
+        const M_earth = 5.972e24;   // Mass of Earth (kg)
+        const R_earth = 6371e3;     // Radius of Earth (m)
+        const scale = 1e-6;         // Pixels per meter
+        const dt = 0.1;             // Time step (s)
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        // Orbital parameters
+        let leo = {
+            altitude: 400e3,  // m
+            velocity: 7.67e3, // m/s
+            radius: 0,        // Computed
+            angle: 0,
+            angularSpeed: 0,
+            trail: []
+        };
+        let meo = {
+            altitude: 20000e3,
+            velocity: 3.87e3,
+            radius: 0,
+            angle: 0,
+            angularSpeed: 0,
+            trail: []
+        };
+        let geo = {
+            altitude: 35786e3,
+            velocity: 3.07e3,
+            radius: 0,
+            angle: 0,
+            angularSpeed: 0,
+            trail: []
+        };
+        let escape = {
+            x: R_earth,  // Start at surface (m)
+            y: 0,
+            vx: 11.19e3, // m/s
+            vy: 0,
+            ax: 0,
+            ay: 0,
+            trail: []
+        };
+
+        // Visibility toggles
+        let showLEO = true;
+        let showMEO = true;
+        let showGEO = true;
+        let showEscape = true;
+
+        // Update orbital parameters
+        function updateSimulation() {
+            // Read user inputs
+            leo.altitude = parseFloat(document.getElementById("leoAltitude").value) * 1000;
+            leo.velocity = parseFloat(document.getElementById("leoVelocity").value) * 1000;
+            meo.altitude = parseFloat(document.getElementById("meoAltitude").value) * 1000;
+            meo.velocity = parseFloat(document.getElementById("meoVelocity").value) * 1000;
+            geo.altitude = parseFloat(document.getElementById("geoAltitude").value) * 1000;
+            geo.velocity = parseFloat(document.getElementById("geoVelocity").value) * 1000;
+            escape.vx = parseFloat(document.getElementById("escapeVelocity").value) * 1000;
+
+            // Compute radii and angular speeds
+            leo.radius = (R_earth + leo.altitude) * scale;
+            meo.radius = (R_earth + meo.altitude) * scale;
+            geo.radius = (R_earth + geo.altitude) * scale;
+            leo.angularSpeed = (leo.velocity / (R_earth + leo.altitude)) * 0.1;
+            meo.angularSpeed = (meo.velocity / (R_earth + meo.altitude)) * 0.05;
+            geo.angularSpeed = (geo.velocity / (R_earth + geo.altitude)) * 0.02;
+
+            // Update visibility
+            showLEO = document.getElementById("showLEO").checked;
+            showMEO = document.getElementById("showMEO").checked;
+            showGEO = document.getElementById("showGEO").checked;
+            showEscape = document.getElementById("showEscape").checked;
+
+            resetEscape();
+        }
+
+        // Reset escape trajectory
+        function resetEscape() {
+            escape.x = R_earth;
+            escape.y = 0;
+            escape.vx = parseFloat(document.getElementById("escapeVelocity").value) * 1000;
+            escape.vy = 0;
+            escape.ax = 0;
+            escape.ay = 0;
+            escape.trail = [];
+        }
+
+        // Update escape trajectory
+        function updateEscape() {
+            const dx = escape.x / scale;
+            const dy = escape.y / scale;
+            const r = Math.sqrt(dx * dx + dy * dy);
+
+            if (r < R_earth) return;  // Stop if it hits Earth
+
+            const a = -G * M_earth / (r * r);
+            escape.ax = a * (dx / r);
+            escape.ay = a * (dy / r);
+
+            escape.vx += escape.ax * dt;
+            escape.vy += escape.ay * dt;
+            escape.x += escape.vx * dt;
+            escape.y += escape.vy * dt;
+
+            const trailX = centerX + escape.x * scale;
+            const trailY = centerY + escape.y * scale;
+            escape.trail.push({ x: trailX, y: trailY });
+            if (escape.trail.length > 300) escape.trail.shift();
+        }
+
+        // Draw the scene
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Earth
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, R_earth * scale, 0, Math.PI * 2);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.closePath();
+
+            // Draw LEO
+            if (showLEO) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, leo.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = "green";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.closePath();
+
+                const leoX = centerX + leo.radius * Math.cos(leo.angle);
+                const leoY = centerY + leo.radius * Math.sin(leo.angle);
+                ctx.beginPath();
+                ctx.arc(leoX, leoY, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "green";
+                ctx.fill();
+                ctx.closePath();
+                ctx.fillStyle = "green";
+                ctx.font = "12px Arial";
+                ctx.fillText(`Speed: ${(leo.velocity / 1000).toFixed(2)} km/s`, leoX + 40, leoY);
+                ctx.fillText(`Alt: ${(leo.altitude / 1000).toFixed(0)} km`, leoX + 40, leoY + 15);
+
+                leo.angle += leo.angularSpeed * dt;
+                if (leo.angle > Math.PI * 2) leo.angle -= Math.PI * 2;
+            }
+
+            // Draw MEO
+            if (showMEO) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, meo.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = "red";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.closePath();
+
+                const meoX = centerX + meo.radius * Math.cos(meo.angle);
+                const meoY = centerY + meo.radius * Math.sin(meo.angle);
+                ctx.beginPath();
+                ctx.arc(meoX, meoY, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "red";
+                ctx.fill();
+                ctx.closePath();
+                ctx.fillStyle = "red";
+                ctx.font = "12px Arial";
+                ctx.fillText(`Speed: ${(meo.velocity / 1000).toFixed(2)} km/s`, meoX + 40, meoY);
+                ctx.fillText(`Alt: ${(meo.altitude / 1000).toFixed(0)} km`, meoX + 40, meoY + 15);
+
+                meo.angle += meo.angularSpeed * dt;
+                if (meo.angle > Math.PI * 2) meo.angle -= Math.PI * 2;
+            }
+
+            // Draw GEO
+            if (showGEO) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, geo.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = "blue";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.closePath();
+
+                const geoX = centerX + geo.radius * Math.cos(geo.angle);
+                const geoY = centerY + geo.radius * Math.sin(geo.angle);
+                ctx.beginPath();
+                ctx.arc(geoX, geoY, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "blue";
+                ctx.fill();
+                ctx.closePath();
+                ctx.fillStyle = "blue";
+                ctx.font = "12px Arial";
+                ctx.fillText(`Speed: ${(geo.velocity / 1000).toFixed(2)} km/s`, geoX + 40, geoY);
+                ctx.fillText(`Alt: ${(geo.altitude / 1000).toFixed(0)} km`, geoX + 40, geoY + 15);
+
+                geo.angle += geo.angularSpeed * dt;
+                if (geo.angle > Math.PI * 2) geo.angle -= Math.PI * 2;
+            }
+
+            // Draw Escape Trajectory
+            if (showEscape) {
+                updateEscape();
+                ctx.beginPath();
+                ctx.strokeStyle = "yellow";
+                ctx.lineWidth = 2;
+                escape.trail.forEach((point, i) => {
+                    if (i === 0) ctx.moveTo(point.x, point.y);
+                    else ctx.lineTo(point.x, point.y);
+                });
+                ctx.stroke();
+                ctx.closePath();
+
+                const escapeX = centerX + escape.x * scale;
+                const escapeY = centerY + escape.y * scale;
+                if (escapeX >= 0 && escapeX <= canvas.width && escapeY >= 0 && escapeY <= canvas.height) {
+                    ctx.beginPath();
+                    ctx.arc(escapeX, escapeY, 5, 0, Math.PI * 2);
+                    ctx.fillStyle = "yellow";
+                    ctx.fill();
+                    ctx.closePath();
+
+                    const speed = Math.sqrt(escape.vx * escape.vx + escape.vy * escape.vy);
+                    const r = Math.sqrt(escape.x * escape.x + escape.y * escape.y);
+                    const altitude = (r - R_earth) / 1000;
+                    ctx.fillStyle = "yellow";
+                    ctx.font = "12px Arial";
+                    ctx.fillText(`Speed: ${(speed / 1000).toFixed(2)} km/s`, escapeX + 40, escapeY);
+                    ctx.fillText(`Alt: ${altitude.toFixed(0)} km`, escapeX + 40, escapeY + 15);
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        // Initial setup
+        updateSimulation();
+        draw();
+    </script>
+</body>
+</html>
