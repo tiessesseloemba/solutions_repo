@@ -176,6 +176,7 @@ At 400 km altitude, $v_{\text{esc}} \approx 10.9 \, \text{km/s}$, relevant for m
 
   - Toggle visibility to focus on specific trajectories.
 
+![alt text](<DALL·E 2025-03-21 09.25.50 - A space simulation illustration featuring Earth as a blue globe in the center against a black space background with stars. Various orbital paths are d.webp>)
 ---
 
 
