@@ -66,7 +66,12 @@ where $\vec{r} = (x, y)$ is the position vector from Earth’s center, and $r = 
 We use a simple Euler method for integration:
 
 - Acceleration:
- $a_x = -\frac{GM}{r^3} x$, $a_y = -\frac{GM}{r^3} y$
+
+ $$a_x = -\frac{GM}{r^3} x$$
+ 
+ , 
+ 
+ $$a_y = -\frac{GM}{r^3} y$$
 
 - Velocity update:
  $v_x \leftarrow v_x + a_x \Delta t$, $v_y \leftarrow v_y + a_y \Delta t$
@@ -175,6 +180,7 @@ At 400 km altitude, $v_{\text{esc}} \approx 10.9 \, \text{km/s}$, relevant for m
   - Adjust altitudes and velocities to explore different scenarios (e.g., elliptical orbits, reentry, faster escape).
 
   - Toggle visibility to focus on specific trajectories.
+
 
 ![alt text](<DALL·E 2025-03-21 09.25.50 - A space simulation illustration featuring Earth as a blue globe in the center against a black space background with stars. Various orbital paths are d.webp>)
 ---
