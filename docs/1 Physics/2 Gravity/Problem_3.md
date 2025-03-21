@@ -67,11 +67,11 @@ We use a simple Euler method for integration:
 
 - Acceleration:
 
- $$a_x = -\frac{GM}{r^3} x$$
+$$a_x = -\frac{GM}{r^3} x$$
  
  , 
  
- $$a_y = -\frac{GM}{r^3} y$$
+$$a_y = -\frac{GM}{r^3} y$$
 
 - Velocity update:
  $v_x \leftarrow v_x + a_x \Delta t$, $v_y \leftarrow v_y + a_y \Delta t$

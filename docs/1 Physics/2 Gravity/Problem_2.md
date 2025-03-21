@@ -223,10 +223,10 @@ $$\sqrt{5.02^2 + (34.1 - 24.1)^2} \approx 11.2 \, \text{km/s}$$
 - $v_3$: Sun escape at 5.203 AU:
 
 
- $$\sqrt{\frac{2 G M_{\text{Sun}}}{5.203 \cdot 1.496 \times 10^{11}}} \approx 18.5 \, \text{km/s}$$
+$$\sqrt{\frac{2 G M_{\text{Sun}}}{5.203 \cdot 1.496 \times 10^{11}}} \approx 18.5 \, \text{km/s}$$
  
 
- , orbital velocity $13.1 \, \text{km/s}$, combined: 
+, orbital velocity $13.1 \, \text{km/s}$, combined: 
  
 
 $$\sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}$$
