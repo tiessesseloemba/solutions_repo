@@ -172,11 +172,10 @@ $M_{\text{Sun}} = 1.989 \times 10^{30} \, \text{kg}$
 
 From surface to Solar System escape:
 
-
- $$v_{\text{Sun escape}} = \sqrt{\frac{2 \cdot 6.6743 \times 10^{-11} \cdot 1.989 \times 10^{30}}{1.496 \times 10^{11}}} \approx 42.1 \, \text{km/s}$$
+$$v_{\text{Sun escape}} = \sqrt{\frac{2 \cdot 6.6743 \times 10^{-11} \cdot 1.989 \times 10^{30}}{1.496 \times 10^{11}}} \approx 42.1 \, \text{km/s}$$
  
 
- , combined: 
+, combined: 
 
 
 $$v_3 \approx \sqrt{11.19^2 + (42.1 - 29.8)^2} \approx 16.6 \, \text{km/s}$$
@@ -207,7 +206,7 @@ $$\sqrt{\frac{2 G M_{\text{Sun}}}{1.524 \cdot 1.496 \times 10^{11}}} \approx 34.
 combined:
 
 
- $$\sqrt{5.02^2 + (34.1 - 24.1)^2} \approx 11.2 \, \text{km/s}$$
+$$\sqrt{5.02^2 + (34.1 - 24.1)^2} \approx 11.2 \, \text{km/s}$$
 
 
 
@@ -230,7 +229,7 @@ combined:
  , orbital velocity $13.1 \, \text{km/s}$, combined: 
  
 
- $$\sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}$$
+$$\sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}$$
 
 
 
