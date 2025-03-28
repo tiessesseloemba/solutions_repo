@@ -183,7 +183,10 @@
 <p>$$
   \mathbf{F} = -\frac{G M m}{r^3} \mathbf{r}
   $$</p>
-<p>where <span class="arithmatex">\(G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}\)</span>, <span class="arithmatex">\(M = 5.972 \times 10^{24} \, \text{kg}\)</span> (Earth’s mass), <span class="arithmatex">\(m\)</span> is the payload’s mass, <span class="arithmatex">\(r = |\mathbf{r}|\)</span> is the distance from Earth’s center, and <span class="arithmatex">\(\mathbf{r}\)</span> is the position vector.</p>
+<p>where <span class="arithmatex">\(G = 6.6743 \times 10^{-11} \,
+   \text{m}^3 \text{kg}^{-1} \text{s}^{-2}\)</span>, <span class="arithmatex">\(M = 5.972 \times 10^{24} \, \text{kg}\)</span> (Earth’s mass),
+    <span class="arithmatex">\(m\)</span> is the payload’s mass,
+     <span class="arithmatex">\(r = |\mathbf{r}|\)</span> is the distance from Earth’s center, and <span class="arithmatex">\(\mathbf{r}\)</span> is the position vector.</p>
 <ul>
 <li><strong>Equation of Motion</strong>:</li>
 </ul>
@@ -198,17 +201,23 @@
 \]</div>
 <p>where <span class="arithmatex">\(v\)</span> is the speed, and <span class="arithmatex">\(r\)</span> is the distance from Earth’s center.</p>
 <ul>
-<li><strong>Elliptical Orbit (<span class="arithmatex">\(\epsilon &lt; 0\)</span>)</strong>: The payload is bound to Earth, following a closed elliptical path (e.g., a satellite in orbit).</li>
-<li><strong>Parabolic Trajectory (<span class="arithmatex">\(\epsilon = 0\)</span>)</strong>: The payload escapes to infinity with zero speed at infinity (escape velocity).</li>
-<li><strong>Hyperbolic Trajectory (<span class="arithmatex">\(\epsilon &gt; 0\)</span>)</strong>: The payload escapes Earth’s gravity with excess speed, following an open hyperbolic path.</li>
+<li>
+<p><strong>Elliptical Orbit (<span class="arithmatex">\(\epsilon &lt; 0\)</span>)</strong>: The payload is bound to Earth, following a closed elliptical path (e.g., a satellite in orbit).</p>
+</li>
+<li>
+<p><strong>Parabolic Trajectory (<span class="arithmatex">\(\epsilon = 0\)</span>)</strong>: The payload escapes to infinity with zero speed at infinity (escape velocity).</p>
+</li>
+<li>
+<p><strong>Hyperbolic Trajectory (<span class="arithmatex">\(\epsilon &gt; 0\)</span>)</strong>: The payload escapes Earth’s gravity with excess speed, following an open hyperbolic path.</p>
+</li>
 </ul>
 <h4 id="key-velocities"><strong>Key Velocities</strong></h4>
 <ul>
-<li><strong>Escape Velocity</strong> at distance <span class="arithmatex">\(r\)</span>:
-  $$
-  v_{\text{esc}} = \sqrt{\frac{2 \mu}{r}}
-  $$</li>
+<li><strong>Escape Velocity</strong> at distance <span class="arithmatex">\(r\)</span>:#</li>
 </ul>
+<p>$$
+  v_{\text{esc}} = \sqrt{\frac{2 \mu}{r}}
+  $$</p>
 <p>At Earth’s surface (<span class="arithmatex">\(R_E = 6.371 \times 10^6 \, \text{m}\)</span>):</p>
 <p>$$
   v_{\text{esc}} = \sqrt{\frac{2 \cdot (3.986 \times 10^{14})}{6.371 \times 10^6}} \approx 11.19 \, \text{km/s}
@@ -246,29 +255,41 @@
   v_{\text{esc}} = \sqrt{\frac{2 \mu}{r_0}} = \sqrt{\frac{2 \cdot (3.986 \times 10^{14})}{6.671 \times 10^6}} \approx 10.93 \, \text{km/s}
   $$</p>
 <ul>
-<li><strong>Test Cases</strong> (velocity in the tangential direction, <span class="arithmatex">\(\mathbf{v}_0 = (0, v_0)\)</span>):</li>
-<li><strong>Case 1 (Elliptical)</strong>: <span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span> (below circular velocity).</li>
-<li><strong>Case 2 (Parabolic)</strong>: <span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span> (escape velocity).</li>
-<li><strong>Case 3 (Hyperbolic)</strong>: <span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span> (above escape velocity).</li>
+<li>
+<p><strong>Test Cases</strong> (velocity in the tangential direction, <span class="arithmatex">\(\mathbf{v}_0 = (0, v_0)\)</span>):</p>
+</li>
+<li>
+<p><strong>Case 1 (Elliptical)</strong>: <span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span> (below circular velocity).</p>
+</li>
+<li>
+<p><strong>Case 2 (Parabolic)</strong>: <span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span> (escape velocity).</p>
+</li>
+<li>
+<p><strong>Case 3 (Hyperbolic)</strong>: <span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span> (above escape velocity).</p>
+</li>
 </ul>
 <h4 id="specific-energy-for-each-case"><strong>Specific Energy for Each Case</strong></h4>
 <ul>
-<li><strong>Elliptical (<span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span>)</strong>:
-  $$
-  \epsilon = \frac{(7.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 2.45 \times 10^7 - 5.975 \times 10^7 \approx -3.525 \times 10^7 \, \text{J/kg}
-  $$
-  Negative energy confirms an elliptical orbit.</li>
-<li><strong>Parabolic (<span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span>)</strong>:
-  $$
-  \epsilon = \frac{(10.93 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 5.975 \times 10^7 - 5.975 \times 10^7 \approx 0
-  $$
-  Zero energy confirms a parabolic trajectory.</li>
-<li><strong>Hyperbolic (<span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span>)</strong>:
-  $$
-  \epsilon = \frac{(12.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 7.2 \times 10^7 - 5.975 \times 10^7 \approx 1.225 \times 10^7 \, \text{J/kg}
-  $$
-  Positive energy confirms a hyperbolic trajectory.</li>
+<li><strong>Elliptical (<span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span>)</strong>:</li>
 </ul>
+<p>$$
+  \epsilon = \frac{(7.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 2.45 \times 10^7 - 5.975 \times 10^7 \approx -3.525 \times 10^7 \, \text{J/kg}
+  $$</p>
+<p>Negative energy confirms an elliptical orbit.</p>
+<ul>
+<li><strong>Parabolic (<span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span>)</strong>:</li>
+</ul>
+<p>$$
+  \epsilon = \frac{(10.93 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 5.975 \times 10^7 - 5.975 \times 10^7 \approx 0
+  $$</p>
+<p>Zero energy confirms a parabolic trajectory.</p>
+<ul>
+<li><strong>Hyperbolic (<span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span>)</strong>:</li>
+</ul>
+<p>$$
+  \epsilon = \frac{(12.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 7.2 \times 10^7 - 5.975 \times 10^7 \approx 1.225 \times 10^7 \, \text{J/kg}
+  $$</p>
+<p>Positive energy confirms a hyperbolic trajectory.</p>
 <h4 id="numerical-integration"><strong>Numerical Integration</strong></h4>
 <p>We’ll use the 4th-order Runge-Kutta (RK4) method to solve the differential equations:</p>
 <div class="arithmatex">\[
@@ -277,29 +298,43 @@
 <hr/>
 <h3 id="step-3-discuss-trajectories-in-orbital-contexts">Step 3: Discuss Trajectories in Orbital Contexts</h3>
 <ul>
-<li><strong>Elliptical Trajectory (<span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span>)</strong>:</li>
-<li>The payload enters an elliptical orbit with a perigee closer to Earth than the release point.</li>
+<li>
+<p><strong>Elliptical Trajectory (<span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span>)</strong>:</p>
+</li>
+<li>
+<p>The payload enters an elliptical orbit with a perigee closer to Earth than the release point.</p>
+</li>
 <li>
 <p><strong>Implication</strong>: If the perigee is below ~100 km, the payload may reenter Earth’s atmosphere (e.g., a returning capsule). Otherwise, it remains in orbit, potentially as a satellite.</p>
 </li>
 <li>
 <p><strong>Parabolic Trajectory (<span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span>)</strong>:</p>
 </li>
-<li>The payload escapes Earth’s gravity, reaching infinity with zero residual speed.</li>
+<li>
+<p>The payload escapes Earth’s gravity, reaching infinity with zero residual speed.</p>
+</li>
 <li>
 <p><strong>Implication</strong>: This is the minimum speed for escape, suitable for a probe leaving Earth’s influence (e.g., to interplanetary space).</p>
 </li>
 <li>
 <p><strong>Hyperbolic Trajectory (<span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span>)</strong>:</p>
 </li>
-<li>The payload escapes with excess speed, following an open hyperbolic path.</li>
+<li>
+<p>The payload escapes with excess speed, following an open hyperbolic path.</p>
+</li>
 <li><strong>Implication</strong>: This is ideal for interplanetary missions (e.g., to Mars or beyond), as the excess speed allows for faster travel.</li>
 </ul>
 <h4 id="applications"><strong>Applications</strong>:</h4>
 <ul>
-<li><strong>Orbital Insertion</strong>: Speeds near <span class="arithmatex">\(v_{\text{circ}}\)</span> (e.g., 7.73 km/s at 300 km) allow stable orbits for satellites.</li>
-<li><strong>Reentry</strong>: An elliptical orbit with a low perigee leads to atmospheric reentry, used for returning spacecraft (e.g., Crew Dragon).</li>
-<li><strong>Escape</strong>: Parabolic or hyperbolic trajectories are used for missions escaping Earth (e.g., New Horizons to Pluto).</li>
+<li>
+<p><strong>Orbital Insertion</strong>: Speeds near <span class="arithmatex">\(v_{\text{circ}}\)</span> (e.g., 7.73 km/s at 300 km) allow stable orbits for satellites.</p>
+</li>
+<li>
+<p><strong>Reentry</strong>: An elliptical orbit with a low perigee leads to atmospheric reentry, used for returning spacecraft (e.g., Crew Dragon).</p>
+</li>
+<li>
+<p><strong>Escape</strong>: Parabolic or hyperbolic trajectories are used for missions escaping Earth (e.g., New Horizons to Pluto).</p>
+</li>
 </ul>
 <hr/>
 <h3 id="step-4-develop-a-computational-tool-python-simulation">Step 4: Develop a Computational Tool (Python Simulation)</h3>
