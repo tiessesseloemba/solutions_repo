@@ -134,8 +134,19 @@ and add the additional speed to reach the Sun’s escape velocity ($\sqrt{2} \cd
 
   
 ---
-Let’s organize the given data and calculations for Earth, Mars, and Jupiter into a table in English. The data includes masses ($M$), radii ($R$), distances from the Sun ($r$), and various velocities ($v_1$, $v_2$, $v_3$) along with combined velocities for escaping the Solar System. I’ll extract the relevant values and present them in a clear table format.
+Let’s organize the given data and calculations for Earth, Mars, and Jupiter into a table .
+ The data includes masses ($M$), radii ($R$), distances from the Sun ($r$), and various velocities ($v_1$, $v_2$, $v_3$) along with combined velocities for escaping the Solar System. 
+ I’ll extract the relevant values and present them in a clear table format.
 
+### Table: Velocity Calculations for Earth, Mars, and Jupiter
+
+| **Body**   | **$v_1$ (km/s)** | **$v_2$ (km/s)** | **$v_3$ (Sun Escape, km/s)** | **Combined Velocity (km/s)** |
+|------------|-------------------|-------------------|-------------------------------|-----------------------------|
+| **Earth**  | 7.91              | 11.19             | 42.1                          | 16.6                        |
+| **Mars**   | 3.55              | 5.02              | 34.1                          | 11.2                        |
+| **Jupiter**| 42.6              | 60.2              | 18.5                          | 60.5                        |
+
+---
 
 ### Extracted Data and Calculations:
 - **Constants**:
@@ -170,18 +181,6 @@ Let’s organize the given data and calculations for Earth, Mars, and Jupiter in
   - $v_3$: Sun escape at 5.203 AU = $\sqrt{\frac{2GM_{\text{Sun}}}{r}} \approx 18.5 \, \text{km/s}$
   - Combined: $v_x = \sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}$ (using orbital velocity 13.1 km/s)
 
-
-
-
-### Table: Velocity Calculations for Earth, Mars, and Jupiter
-
-| **Body**   | **$v_1$ (km/s)** | **$v_2$ (km/s)** | **$v_3$ (Sun Escape, km/s)** | **Combined Velocity (km/s)** |
-|------------|-------------------|-------------------|-------------------------------|-----------------------------|
-| **Earth**  | 7.91              | 11.19             | 42.1                          | 16.6                        |
-| **Mars**   | 3.55              | 5.02              | 34.1                          | 11.2                        |
-| **Jupiter**| 42.6              | 60.2              | 18.5                          | 60.5                        |
-
----
 
 ### Notes:
 
