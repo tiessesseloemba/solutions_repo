@@ -194,6 +194,8 @@ Let’s organize the given data and calculations for Earth, Mars, and Jupiter in
 
 - Values are rounded to one decimal place for consistency with the provided data.
 
+![alt text](Figure_2.png)
+
 
 
 ### Importance in Space Exploration
@@ -242,7 +244,7 @@ A panel displays the body's orbital (V1), escape (V2), and system (V3) velocitie
 - **Purpose**: It demonstrates the difference between orbiting a body and escaping its gravitational pull, highlighting how velocity determines the trajectory.
  The simulation simplifies the physics (e.g., fixed orbit radius, basic numerical integration) for educational clarity.
 
-![alt text](Figure_2.png)
+
 ---
 
 
