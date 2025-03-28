@@ -253,79 +253,105 @@
 <p>For simplicity, if starting from Earth’s orbit (1 AU), we often compute it from Earth’s orbital velocity around the Sun 
 (<span class="arithmatex">\(v_{\text{orb}} = \sqrt{\frac{G M_{\text{Sun}}}{r}} \approx 29.8 \, \text{km/s}\)</span>) 
 and add the additional speed to reach the Sun’s escape velocity (<span class="arithmatex">\(\sqrt{2} \cdot v_{\text{orb}} \approx 42.1 \, \text{km/s}\)</span>), adjusted for Earth’s gravity.</p>
-<h3 id="calculations-for-earth-mars-and-jupiter">Calculations for Earth, Mars, and Jupiter</h3>
-<p>Using:</p>
+<hr/>
+<p>Let’s organize the given data and calculations for Earth, Mars, and Jupiter into a table in English. The data includes masses (<span class="arithmatex">\(M\)</span>), radii (<span class="arithmatex">\(R\)</span>), distances from the Sun (<span class="arithmatex">\(r\)</span>), and various velocities (<span class="arithmatex">\(v_1\)</span>, <span class="arithmatex">\(v_2\)</span>, <span class="arithmatex">\(v_3\)</span>) along with combined velocities for escaping the Solar System. I’ll extract the relevant values and present them in a clear table format.</p>
+<h3 id="extracted-data-and-calculations">Extracted Data and Calculations:</h3>
+<ul>
+<li><strong>Constants</strong>:</li>
+<li>Gravitational constant: <span class="arithmatex">\(G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}\)</span></li>
+<li>1 AU = <span class="arithmatex">\(1.496 \times 10^{11} \, \text{m}\)</span></li>
+<li>
+<p>Sun’s mass: <span class="arithmatex">\(M_{\text{Sun}} = 1.989 \times 10^{30} \, \text{kg}\)</span></p>
+</li>
+<li>
+<p><strong>Earth</strong>:</p>
+</li>
+<li>Mass: <span class="arithmatex">\(M = 5.972 \times 10^{24} \, \text{kg}\)</span></li>
+<li>Radius: <span class="arithmatex">\(R = 6.371 \times 10^6 \, \text{m}\)</span></li>
+<li>Distance: <span class="arithmatex">\(r = 1 \, \text{AU} = 1.496 \times 10^{11} \, \text{m}\)</span></li>
+<li><span class="arithmatex">\(v_1 = \sqrt{\frac{GM}{R}} \approx 7.91 \, \text{km/s}\)</span></li>
+<li><span class="arithmatex">\(v_2 = \sqrt{2} \cdot v_1 \approx 11.19 \, \text{km/s}\)</span></li>
+<li><span class="arithmatex">\(v_3\)</span>: Sun escape at 1 AU = <span class="arithmatex">\(\sqrt{\frac{2GM_{\text{Sun}}}{r}} \approx 42.1 \, \text{km/s}\)</span></li>
+<li>
+<p>Combined: <span class="arithmatex">\(v_x = \sqrt{11.19^2 + (42.1 - 29.8)^2} \approx 16.6 \, \text{km/s}\)</span> (using orbital velocity 29.8 km/s)</p>
+</li>
+<li>
+<p><strong>Mars</strong>:</p>
+</li>
+<li>Mass: <span class="arithmatex">\(M = 6.417 \times 10^{23} \, \text{kg}\)</span></li>
+<li>Radius: <span class="arithmatex">\(R = 3.39 \times 10^6 \, \text{m}\)</span></li>
+<li>Distance: <span class="arithmatex">\(r = 1.524 \, \text{AU} = 1.524 \times 1.496 \times 10^{11} \, \text{m}\)</span></li>
+<li><span class="arithmatex">\(v_1 = \sqrt{\frac{GM}{R}} \approx 3.55 \, \text{km/s}\)</span></li>
+<li><span class="arithmatex">\(v_2 = \sqrt{2} \cdot v_1 \approx 5.02 \, \text{km/s}\)</span></li>
+<li><span class="arithmatex">\(v_3\)</span>: Sun escape at 1.524 AU = <span class="arithmatex">\(\sqrt{\frac{2GM_{\text{Sun}}}{r}} \approx 34.1 \, \text{km/s}\)</span></li>
+<li>
+<p>Combined: <span class="arithmatex">\(v_x = \sqrt{5.02^2 + (34.1 - 24.1)^2} \approx 11.2 \, \text{km/s}\)</span> (using orbital velocity 24.1 km/s)</p>
+</li>
+<li>
+<p><strong>Jupiter</strong>:</p>
+</li>
+<li>Mass: <span class="arithmatex">\(M = 1.898 \times 10^{27} \, \text{kg}\)</span></li>
+<li>Radius: <span class="arithmatex">\(R = 6.991 \times 10^7 \, \text{m}\)</span></li>
+<li>Distance: <span class="arithmatex">\(r = 5.203 \, \text{AU} = 5.203 \times 1.496 \times 10^{11} \, \text{m}\)</span></li>
+<li><span class="arithmatex">\(v_1 = \sqrt{\frac{GM}{R}} \approx 42.6 \, \text{km/s}\)</span></li>
+<li><span class="arithmatex">\(v_2 = \sqrt{2} \cdot v_1 \approx 60.2 \, \text{km/s}\)</span></li>
+<li><span class="arithmatex">\(v_3\)</span>: Sun escape at 5.203 AU = <span class="arithmatex">\(\sqrt{\frac{2GM_{\text{Sun}}}{r}} \approx 18.5 \, \text{km/s}\)</span></li>
+<li>Combined: <span class="arithmatex">\(v_x = \sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}\)</span> (using orbital velocity 13.1 km/s)</li>
+</ul>
+<h3 id="table-velocity-calculations-for-earth-mars-and-jupiter">Table: Velocity Calculations for Earth, Mars, and Jupiter</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Body</strong></th>
+<th><strong><span class="arithmatex">\(v_1\)</span> (km/s)</strong></th>
+<th><strong><span class="arithmatex">\(v_2\)</span> (km/s)</strong></th>
+<th><strong><span class="arithmatex">\(v_3\)</span> (Sun Escape, km/s)</strong></th>
+<th><strong>Combined Velocity (km/s)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Earth</strong></td>
+<td>7.91</td>
+<td>11.19</td>
+<td>42.1</td>
+<td>16.6</td>
+</tr>
+<tr>
+<td><strong>Mars</strong></td>
+<td>3.55</td>
+<td>5.02</td>
+<td>34.1</td>
+<td>11.2</td>
+</tr>
+<tr>
+<td><strong>Jupiter</strong></td>
+<td>42.6</td>
+<td>60.2</td>
+<td>18.5</td>
+<td>60.5</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h3 id="notes">Notes:</h3>
 <ul>
 <li>
-<p><span class="arithmatex">\(G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}\)</span></p>
+<p><strong><span class="arithmatex">\(v_1\)</span></strong>: Surface escape velocity from the planet, <span class="arithmatex">\(\sqrt{\frac{GM}{R}}\)</span>.</p>
 </li>
 <li>
-<p>Earth:</p>
+<p><strong><span class="arithmatex">\(v_2\)</span></strong>: Escape velocity from the planet’s surface, <span class="arithmatex">\(\sqrt{2} \cdot v_1\)</span>.</p>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(v_3\)</span></strong>: Escape velocity from the Sun at the planet’s orbital distance, <span class="arithmatex">\(\sqrt{\frac{2GM_{\text{Sun}}}{r}}\)</span>.</p>
+</li>
+<li>
+<p><strong>Combined Velocity</strong>: <span class="arithmatex">\(\sqrt{v_2^2 + (v_3 - v_{\text{orbital}})^2}\)</span>, where <span class="arithmatex">\(v_{\text{orbital}}\)</span> is the planet’s orbital velocity (Earth: 29.8 km/s, Mars: 24.1 km/s, Jupiter: 13.1 km/s).</p>
+</li>
+<li>
+<p>Values are rounded to one decimal place for consistency with the provided data.</p>
 </li>
 </ul>
-<p><span class="arithmatex">\(M = 5.972 \times 10^{24} \, \text{kg}\)</span>, <span class="arithmatex">\(R = 6.371 \times 10^6 \, \text{m}\)</span>, <span class="arithmatex">\(r = 1 \, \text{AU} = 1.496 \times 10^{11} \, \text{m}\)</span></p>
-<ul>
-<li>
-<p>Mars:
-<span class="arithmatex">\(M = 6.417 \times 10^{23} \, \text{kg}\)</span>, <span class="arithmatex">\(R = 3.39 \times 10^6 \, \text{m}\)</span>, <span class="arithmatex">\(r = 1.524 \, \text{AU}\)</span></p>
-</li>
-<li>
-<p>Jupiter: 
-<span class="arithmatex">\(M = 1.898 \times 10^{27} \, \text{kg}\)</span>, <span class="arithmatex">\(R = 6.991 \times 10^7 \, \text{m}\)</span>, <span class="arithmatex">\(r = 5.203 \, \text{AU}\)</span></p>
-</li>
-<li>
-<p>Sun: 
-<span class="arithmatex">\(M_{\text{Sun}} = 1.989 \times 10^{30} \, \text{kg}\)</span></p>
-</li>
-</ul>
-<h4 id="earth">Earth</h4>
-<ul>
-<li>
-<div class="arithmatex">\[v_1 = \sqrt{\frac{6.6743 \times 10^{-11} \cdot 5.972 \times 10^{24}}{6.371 \times 10^6}} \approx 7.91 \, \text{km/s}\]</div>
-</li>
-<li>
-<div class="arithmatex">\[v_2 = \sqrt{\frac{2 \cdot 6.6743 \times 10^{-11} \cdot 5.972 \times 10^{24}}{6.371 \times 10^6}} \approx 11.19 \, \text{km/s}\]</div>
-</li>
-<li>
-<p><span class="arithmatex">\(v_3\)</span>: </p>
-</li>
-</ul>
-<p>From surface to Solar System escape:</p>
-<div class="arithmatex">\[v_{\text{Sun escape}} = \sqrt{\frac{2 \cdot 6.6743 \times 10^{-11} \cdot 1.989 \times 10^{30}}{1.496 \times 10^{11}}} \approx 42.1 \, \text{km/s}\]</div>
-<p>, combined: </p>
-<div class="arithmatex">\[v_3 \approx \sqrt{11.19^2 + (42.1 - 29.8)^2} \approx 16.6 \, \text{km/s}\]</div>
-<p>(approximate, from orbit).</p>
-<h4 id="mars">Mars</h4>
-<ul>
-<li>
-<div class="arithmatex">\[v_1 = \sqrt{\frac{6.6743 \times 10^{-11} \cdot 6.417 \times 10^{23}}{3.39 \times 10^6}} \approx 3.55 \, \text{km/s}\]</div>
-</li>
-<li>
-<div class="arithmatex">\[v_2 = \sqrt{2} \cdot 3.55 \approx 5.02 \, \text{km/s}\]</div>
-</li>
-<li>
-<p><span class="arithmatex">\(v_3\)</span>: Sun escape at 1.524 AU: </p>
-</li>
-</ul>
-<div class="arithmatex">\[\sqrt{\frac{2 G M_{\text{Sun}}}{1.524 \cdot 1.496 \times 10^{11}}} \approx 34.1 \, \text{km/s}\]</div>
-<p>,orbital velocity <span class="arithmatex">\(24.1 \, \text{km/s}\)</span>, </p>
-<p>combined:</p>
-<div class="arithmatex">\[\sqrt{5.02^2 + (34.1 - 24.1)^2} \approx 11.2 \, \text{km/s}\]</div>
-<h4 id="jupiter">Jupiter</h4>
-<ul>
-<li>
-<div class="arithmatex">\[v_1 = \sqrt{\frac{6.6743 \times 10^{-11} \cdot 1.898 \times 10^{27}}{6.991 \times 10^7}} \approx 42.6 \, \text{km/s}\]</div>
-</li>
-<li>
-<div class="arithmatex">\[v_2 = \sqrt{2} \cdot 42.6 \approx 60.2 \, \text{km/s}\]</div>
-</li>
-<li>
-<p><span class="arithmatex">\(v_3\)</span>: Sun escape at 5.203 AU:</p>
-</li>
-</ul>
-<div class="arithmatex">\[\sqrt{\frac{2 G M_{\text{Sun}}}{5.203 \cdot 1.496 \times 10^{11}}} \approx 18.5 \, \text{km/s}\]</div>
-<p>, orbital velocity <span class="arithmatex">\(13.1 \, \text{km/s}\)</span>, combined: </p>
-<div class="arithmatex">\[\sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}\]</div>
 <h3 id="importance-in-space-exploration">Importance in Space Exploration</h3>
 <ol>
 <li>
@@ -369,7 +395,7 @@ A panel displays the body's orbital (V1), escape (V2), and system (V3) velocitie
  The simulation simplifies the physics (e.g., fixed orbit radius, basic numerical integration) for educational clarity.</p>
 </li>
 </ul>
-<hr/>
+<h2 id="_1"><img alt="alt text" src="../Figure_2.png"/></h2>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

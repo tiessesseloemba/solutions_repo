@@ -173,195 +173,235 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-3">Problem 3</h1>
 <h1 id="trajectories-of-a-freely-released-payload-near-earth">Trajectories of a Freely Released Payload Near Earth</h1>
-<p>Let’s tackle this task comprehensively by analyzing the trajectories of a freely released payload near Earth, performing a numerical analysis, discussing the implications for space missions, and developing a computational tool to simulate and visualize the motion.
- We'll use HTML and JavaScript to create an interactive simulation.</p>
+<h3 id="step-1-analyze-possible-trajectories">Step 1: Analyze Possible Trajectories</h3>
+<p>The trajectory of a payload released near Earth depends on its <strong>specific mechanical energy</strong>, which determines the type of orbit: elliptical, parabolic, or hyperbolic. The motion is governed by <strong>Newton’s Law of Gravitation</strong> and can be analyzed using <strong>Kepler’s Laws</strong>.</p>
+<h4 id="governing-equations"><strong>Governing Equations</strong></h4>
+<ul>
+<li><strong>Gravitational Force</strong>: </li>
+</ul>
+<p>The force on the payload due to Earth’s gravity is:</p>
+<p>$$
+  \mathbf{F} = -\frac{G M m}{r^3} \mathbf{r}
+  $$</p>
+<p>where <span class="arithmatex">\(G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}\)</span>, <span class="arithmatex">\(M = 5.972 \times 10^{24} \, \text{kg}\)</span> (Earth’s mass), <span class="arithmatex">\(m\)</span> is the payload’s mass, <span class="arithmatex">\(r = |\mathbf{r}|\)</span> is the distance from Earth’s center, and <span class="arithmatex">\(\mathbf{r}\)</span> is the position vector.</p>
+<ul>
+<li><strong>Equation of Motion</strong>:</li>
+</ul>
+<p>$$
+  \mathbf{\ddot{r}} = -\frac{\mu}{r^3} \mathbf{r}
+  $$
+  where <span class="arithmatex">\(\mu = G M \approx 3.986 \times 10^{14} \, \text{m}^3 \text{s}^{-2}\)</span> (Earth’s gravitational parameter).</p>
+<h4 id="specific-mechanical-energy"><strong>Specific Mechanical Energy</strong></h4>
+<p>The specific energy (<span class="arithmatex">\(\epsilon\)</span>) is:</p>
+<div class="arithmatex">\[
+\epsilon = \frac{v^2}{2} - \frac{\mu}{r}
+\]</div>
+<p>where <span class="arithmatex">\(v\)</span> is the speed, and <span class="arithmatex">\(r\)</span> is the distance from Earth’s center.</p>
+<ul>
+<li><strong>Elliptical Orbit (<span class="arithmatex">\(\epsilon &lt; 0\)</span>)</strong>: The payload is bound to Earth, following a closed elliptical path (e.g., a satellite in orbit).</li>
+<li><strong>Parabolic Trajectory (<span class="arithmatex">\(\epsilon = 0\)</span>)</strong>: The payload escapes to infinity with zero speed at infinity (escape velocity).</li>
+<li><strong>Hyperbolic Trajectory (<span class="arithmatex">\(\epsilon &gt; 0\)</span>)</strong>: The payload escapes Earth’s gravity with excess speed, following an open hyperbolic path.</li>
+</ul>
+<h4 id="key-velocities"><strong>Key Velocities</strong></h4>
+<ul>
+<li><strong>Escape Velocity</strong> at distance <span class="arithmatex">\(r\)</span>:
+  $$
+  v_{\text{esc}} = \sqrt{\frac{2 \mu}{r}}
+  $$</li>
+</ul>
+<p>At Earth’s surface (<span class="arithmatex">\(R_E = 6.371 \times 10^6 \, \text{m}\)</span>):</p>
+<p>$$
+  v_{\text{esc}} = \sqrt{\frac{2 \cdot (3.986 \times 10^{14})}{6.371 \times 10^6}} \approx 11.19 \, \text{km/s}
+  $$</p>
+<ul>
+<li><strong>Circular Orbit Velocity</strong> at distance <span class="arithmatex">\(r\)</span>:</li>
+</ul>
+<p>$$
+  v_{\text{circ}} = \sqrt{\frac{\mu}{r}}
+  $$</p>
+<p>At Earth’s surface:</p>
+<p>$$
+  v_{\text{circ}} = \sqrt{\frac{3.986 \times 10^{14}}{6.371 \times 10^6}} \approx 7.91 \, \text{km/s}
+  $$</p>
 <hr/>
-<h3 id="1-analysis-of-possible-trajectories">1. Analysis of Possible Trajectories</h3>
-<p>When a payload is released from a moving rocket near Earth, its trajectory is determined by its initial position, velocity, and the gravitational force of Earth. 
-The possible trajectories can be classified based on the payload’s specific mechanical energy (<span class="arithmatex">\(\epsilon\)</span>):</p>
+<h3 id="step-2-numerical-analysis-of-the-payloads-path">Step 2: Numerical Analysis of the Payload’s Path</h3>
+<h4 id="initial-conditions"><strong>Initial Conditions</strong></h4>
+<p>Assume the payload is released from a rocket at an altitude of 300 km (a typical low Earth orbit altitude):</p>
 <ul>
 <li>
-<p><strong>Elliptical Trajectory (<span class="arithmatex">\(\epsilon &lt; 0\)</span>)</strong>:
- If the payload’s energy is negative, it follows a closed, elliptical orbit around Earth. This occurs when the initial velocity is less than the escape velocity but sufficient to maintain an orbit (e.g., greater than the circular orbit velocity at that altitude). 
- This is typical for orbital insertion scenarios, like deploying a satellite into Low Earth Orbit (LEO).</p>
+<p><strong>Position</strong>: <span class="arithmatex">\(r_0 = R_E + 300 \, \text{km} = 6.371 \times 10^6 + 300 \times 10^3 = 6.671 \times 10^6 \, \text{m}\)</span>.</p>
 </li>
 <li>
-<p><strong>Parabolic Trajectory (<span class="arithmatex">\(\epsilon = 0\)</span>)</strong>: 
-If the payload’s energy is exactly zero, it follows a parabolic path, just escaping Earth’s gravity to infinity with zero residual speed. 
-This occurs at the escape velocity (<span class="arithmatex">\(v_{\text{esc}} = \sqrt{\frac{2GM}{r}}\)</span>).</p>
+<p><strong>Initial Position Vector</strong>: Release at the equator in the orbital plane, <span class="arithmatex">\(\mathbf{r}_0 = (r_0, 0)\)</span>.</p>
 </li>
 <li>
-<p><strong>Hyperbolic Trajectory (<span class="arithmatex">\(\epsilon &gt; 0\)</span>)</strong>: 
-If the payload’s energy is positive, it follows an open, hyperbolic path, escaping Earth’s gravity with excess speed at infinity. 
-This happens when the initial velocity exceeds the escape velocity, common in escape scenarios like interplanetary missions.</p>
+<p><strong>Initial Velocity</strong>: The rocket is in a circular orbit at this altitude:</p>
 </li>
 </ul>
-<p>The specific energy is given by:</p>
-<div class="arithmatex">\[\epsilon = \frac{v^2}{2} - \frac{GM}{r} \]</div>
-<p>where <span class="arithmatex">\(v\)</span> is the payload’s speed, <span class="arithmatex">\(r\)</span> is its distance from Earth’s center, <span class="arithmatex">\(G\)</span> is the gravitational constant, and <span class="arithmatex">\(M\)</span> is Earth’s mass. 
-The trajectory type depends on whether <span class="arithmatex">\(\epsilon\)</span> is negative, zero, or positive.</p>
+<p>$$
+  v_{\text{circ}} = \sqrt{\frac{\mu}{r_0}} = \sqrt{\frac{3.986 \times 10^{14}}{6.671 \times 10^6}} \approx 7.73 \, \text{km/s}
+  $$</p>
+<p>Escape velocity at this altitude:</p>
+<p>$$
+  v_{\text{esc}} = \sqrt{\frac{2 \mu}{r_0}} = \sqrt{\frac{2 \cdot (3.986 \times 10^{14})}{6.671 \times 10^6}} \approx 10.93 \, \text{km/s}
+  $$</p>
+<ul>
+<li><strong>Test Cases</strong> (velocity in the tangential direction, <span class="arithmatex">\(\mathbf{v}_0 = (0, v_0)\)</span>):</li>
+<li><strong>Case 1 (Elliptical)</strong>: <span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span> (below circular velocity).</li>
+<li><strong>Case 2 (Parabolic)</strong>: <span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span> (escape velocity).</li>
+<li><strong>Case 3 (Hyperbolic)</strong>: <span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span> (above escape velocity).</li>
+</ul>
+<h4 id="specific-energy-for-each-case"><strong>Specific Energy for Each Case</strong></h4>
+<ul>
+<li><strong>Elliptical (<span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span>)</strong>:
+  $$
+  \epsilon = \frac{(7.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 2.45 \times 10^7 - 5.975 \times 10^7 \approx -3.525 \times 10^7 \, \text{J/kg}
+  $$
+  Negative energy confirms an elliptical orbit.</li>
+<li><strong>Parabolic (<span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span>)</strong>:
+  $$
+  \epsilon = \frac{(10.93 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 5.975 \times 10^7 - 5.975 \times 10^7 \approx 0
+  $$
+  Zero energy confirms a parabolic trajectory.</li>
+<li><strong>Hyperbolic (<span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span>)</strong>:
+  $$
+  \epsilon = \frac{(12.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 7.2 \times 10^7 - 5.975 \times 10^7 \approx 1.225 \times 10^7 \, \text{J/kg}
+  $$
+  Positive energy confirms a hyperbolic trajectory.</li>
+</ul>
+<h4 id="numerical-integration"><strong>Numerical Integration</strong></h4>
+<p>We’ll use the 4th-order Runge-Kutta (RK4) method to solve the differential equations:</p>
+<div class="arithmatex">\[
+\frac{d}{dt} \begin{pmatrix} x \\ y \\ v_x \\ v_y \end{pmatrix} = \begin{pmatrix} v_x \\ v_y \\ -\frac{\mu}{r^3} x \\ -\frac{\mu}{r^3} y \end{pmatrix}, \quad r = \sqrt{x^2 + y^2}
+\]</div>
 <hr/>
-<h3 id="2-numerical-analysis-to-compute-the-path">2. Numerical Analysis to Compute the Path</h3>
-<p>To compute the payload’s path, we use numerical integration of the equations of motion under Earth’s gravity.
- The gravitational force provides an acceleration:</p>
-<div class="arithmatex">\[\vec{a} = -\frac{GM}{r^3} \vec{r} \]</div>
-<p>where <span class="arithmatex">\(\vec{r} = (x, y)\)</span> is the position vector from Earth’s center, and <span class="arithmatex">\(r = |\vec{r}|\)</span>.</p>
-<h4 id="initial-conditions">Initial Conditions</h4>
+<h3 id="step-3-discuss-trajectories-in-orbital-contexts">Step 3: Discuss Trajectories in Orbital Contexts</h3>
 <ul>
+<li><strong>Elliptical Trajectory (<span class="arithmatex">\(v_0 = 7.0 \, \text{km/s}\)</span>)</strong>:</li>
+<li>The payload enters an elliptical orbit with a perigee closer to Earth than the release point.</li>
 <li>
-<p><strong>Position</strong>: The payload is released at an altitude <span class="arithmatex">\(h\)</span> above Earth’s surface, so its initial distance from Earth’s center is <span class="arithmatex">\(r_0 = R_{\text{earth}} + h\)</span>.
- We’ll assume it starts along the x-axis for simplicity: <span class="arithmatex">\((x_0, y_0) = (r_0, 0)\)</span>.</p>
+<p><strong>Implication</strong>: If the perigee is below ~100 km, the payload may reenter Earth’s atmosphere (e.g., a returning capsule). Otherwise, it remains in orbit, potentially as a satellite.</p>
 </li>
 <li>
-<p><strong>Velocity</strong>: The initial velocity has components <span class="arithmatex">\((v_x, v_y)\)</span>, which could be inherited from the rocket’s motion or imparted during release.</p>
+<p><strong>Parabolic Trajectory (<span class="arithmatex">\(v_0 = 10.93 \, \text{km/s}\)</span>)</strong>:</p>
+</li>
+<li>The payload escapes Earth’s gravity, reaching infinity with zero residual speed.</li>
+<li>
+<p><strong>Implication</strong>: This is the minimum speed for escape, suitable for a probe leaving Earth’s influence (e.g., to interplanetary space).</p>
 </li>
 <li>
-<p><strong>Altitude</strong>: We’ll allow the user to specify the release altitude.</p>
+<p><strong>Hyperbolic Trajectory (<span class="arithmatex">\(v_0 = 12.0 \, \text{km/s}\)</span>)</strong>:</p>
 </li>
+<li>The payload escapes with excess speed, following an open hyperbolic path.</li>
+<li><strong>Implication</strong>: This is ideal for interplanetary missions (e.g., to Mars or beyond), as the excess speed allows for faster travel.</li>
 </ul>
-<h4 id="numerical-integration">Numerical Integration</h4>
-<p>We use a simple Euler method for integration:</p>
+<h4 id="applications"><strong>Applications</strong>:</h4>
 <ul>
-<li>Acceleration:</li>
-</ul>
-<div class="arithmatex">\[a_x = -\frac{GM}{r^3} x\]</div>
-<p>, </p>
-<div class="arithmatex">\[a_y = -\frac{GM}{r^3} y\]</div>
-<ul>
-<li>
-<p>Velocity update:
- <span class="arithmatex">\(v_x \leftarrow v_x + a_x \Delta t\)</span>, <span class="arithmatex">\(v_y \leftarrow v_y + a_y \Delta t\)</span></p>
-</li>
-<li>
-<p>Position update:
- <span class="arithmatex">\(x \leftarrow x + v_x \Delta t\)</span>, <span class="arithmatex">\(y \leftarrow y + v_y \Delta t\)</span></p>
-</li>
-</ul>
-<p>This method approximates the trajectory over small time steps <span class="arithmatex">\(\Delta t\)</span>.</p>
-<hr/>
-<h3 id="3-relation-to-orbital-insertion-reentry-or-escape-scenarios">3. Relation to Orbital Insertion, Reentry, or Escape Scenarios</h3>
-<ul>
-<li>
-<p><strong>Orbital Insertion</strong>: If the payload’s velocity at release matches the circular orbit velocity (<span class="arithmatex">\(v_{\text{circ}} = \sqrt{\frac{GM}{r}}\)</span>), it enters a circular orbit (e.g., LEO at 400 km requires ~7.67 km/s). 
-Slightly lower or higher velocities result in elliptical orbits, useful for satellite deployment.</p>
-</li>
-<li>
-<p><strong>Reentry</strong>: If the velocity is too low, the payload’s orbit decays, intersecting Earth’s surface (or atmosphere), leading to reentry.
-For example, a suborbital trajectory with insufficient tangential velocity will fall back.</p>
-</li>
-<li>
-<p><strong>Escape</strong>: If the velocity exceeds the escape velocity (<span class="arithmatex">\(v_{\text{esc}} = \sqrt{\frac{2GM}{r}}\)</span>), the payload escapes Earth’s gravity, following a parabolic or hyperbolic path. 
-At 400 km altitude, <span class="arithmatex">\(v_{\text{esc}} \approx 10.9 \, \text{km/s}\)</span>, relevant for missions leaving Earth’s sphere of influence.</p>
-</li>
+<li><strong>Orbital Insertion</strong>: Speeds near <span class="arithmatex">\(v_{\text{circ}}\)</span> (e.g., 7.73 km/s at 300 km) allow stable orbits for satellites.</li>
+<li><strong>Reentry</strong>: An elliptical orbit with a low perigee leads to atmospheric reentry, used for returning spacecraft (e.g., Crew Dragon).</li>
+<li><strong>Escape</strong>: Parabolic or hyperbolic trajectories are used for missions escaping Earth (e.g., New Horizons to Pluto).</li>
 </ul>
 <hr/>
-<h3 id="4-computational-tool-simulation-and-visualization">4. Computational Tool: Simulation and Visualization</h3>
-<p><a href="../playloadsimulation.html">Simulation</a></p>
-<h3 id="explanation-of-the-enhanced-simulation">Explanation of the Enhanced Simulation</h3>
-<ol>
-<li>
-<p><strong>Structure</strong>:</p>
-</li>
-<li>
-<p>A larger <code>&lt;canvas&gt;</code> (1000x800 pixels) for better visibility of all trajectories.</p>
-</li>
-<li>
-<p>A legend in the top-left corner, matching your provided image.</p>
-</li>
-<li>
-<p>Controls for adjusting altitudes and velocities for LEO, MEO, GEO, and escape trajectory.</p>
-</li>
-<li>
-<p>Checkboxes to toggle visibility of each trajectory.</p>
-</li>
-<li>
-<p>Buttons to update the simulation or reset the escape trajectory.</p>
-</li>
-<li>
-<p><strong>Trajectories</strong>:</p>
-</li>
-<li>
-<p><strong>Low Earth Orbit (LEO)</strong>: Green dot orbiting at 400 km altitude (default velocity 7.67 km/s, circular at this altitude).</p>
-</li>
-<li>
-<p><strong>Medium Earth Orbit (MEO)</strong>: Red dot at 20,000 km (default velocity 3.87 km/s).</p>
-</li>
-<li>
-<p><strong>Geostationary-like Orbit (GEO)</strong>: Blue dot at 35,786 km (default velocity 3.07 km/s, matching GEO velocity).</p>
-</li>
-<li>
-<p><strong>Escape Trajectory</strong>: Yellow dot starting at Earth’s surface with escape velocity (default 11.19 km/s), following a hyperbolic path.</p>
-</li>
-<li>
-<p><strong>Physics</strong>:</p>
-</li>
-<li>
-<p><strong>Circular Orbits (LEO, MEO, GEO)</strong>: Simplified as circular paths with user-defined velocities. Angular speeds are scaled for visibility.</p>
-</li>
-<li>
-<p><strong>Escape Trajectory</strong>: Uses numerical integration (Euler method) to compute the path under gravity, with acceleration <span class="arithmatex">\(a = -\frac{GM}{r^2}\)</span>.</p>
-</li>
-<li>
-<p><strong>Features</strong>:</p>
-</li>
-<li>
-<p><strong>Adjustable Parameters</strong>: Users can set altitudes (km) and velocities (km/s) for each orbit.</p>
-</li>
-<li>
-<p><strong>Visibility Toggles</strong>: Checkboxes to show/hide LEO, MEO, GEO, or escape trajectory.</p>
-</li>
-<li>
-<p><strong>Real-Time Data</strong>: Each dot displays its current speed and altitude.</p>
-</li>
-<li>
-<p><strong>Reset Escape</strong>: Restarts the escape trajectory without affecting the circular orbits.</p>
-</li>
-<li>
-<p><strong>Trails</strong>: The escape trajectory has a yellow trail; circular orbits don’t need trails since they’re repetitive.</p>
-</li>
-<li>
-<p><strong>Interaction</strong>:</p>
-</li>
-<li>
-<p>Default settings produce stable circular orbits for LEO, MEO, and GEO, and an escape trajectory.</p>
-</li>
-<li>Change LEO velocity to 5 km/s: The green dot will fall back to Earth (reentry scenario).</li>
-<li>Increase escape velocity to 15 km/s: The yellow dot escapes faster.</li>
-<li>Toggle off MEO to focus on other trajectories.</li>
-</ol>
+<h3 id="step-4-develop-a-computational-tool-python-simulation">Step 4: Develop a Computational Tool (Python Simulation)</h3>
+<p>Here’s a Python script to simulate and visualize the payload’s trajectory using the RK4 method:</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+mu = 3.986e14  # Earth's gravitational parameter (m^3/s^2)
+R_E = 6.371e6  # Earth's radius (m)
+
+# Initial conditions
+r0 = R_E + 300e3  # Altitude 300 km
+v_esc = np.sqrt(2 * mu / r0)  # Escape velocity at r0
+v_circ = np.sqrt(mu / r0)  # Circular velocity at r0
+
+# Test cases
+cases = [
+    ('Elliptical', 7.0e3),  # Below circular velocity
+    ('Parabolic', v_esc),   # Escape velocity
+    ('Hyperbolic', 12.0e3)  # Above escape velocity
+]
+
+# Time setup
+t_max = 12000  # Simulation time (s)
+dt = 10  # Time step (s)
+t = np.arange(0, t_max, dt)
+
+# Numerical integration (RK4)
+def derivatives(state, mu):
+    x, y, vx, vy = state
+    r = np.sqrt(x**2 + y**2)
+    ax = -mu * x / r**3
+    ay = -mu * y / r**3
+    return np.array([vx, vy, ax, ay])
+
+def rk4_step(state, dt, mu):
+    k1 = derivatives(state, mu)
+    k2 = derivatives(state + 0.5 * dt * k1, mu)
+    k3 = derivatives(state + 0.5 * dt * k2, mu)
+    k4 = derivatives(state + dt * k3, mu)
+    return state + (dt / 6) * (k1 + 2*k2 + 2*k3 + k4)
+
+# Simulate trajectories
+plt.figure(figsize=(10, 8))
+for label, v0 in cases:
+    # Initial state: [x, y, vx, vy]
+    state = np.array([r0, 0, 0, v0])
+    trajectory = [state[:2]]
+
+    for _ in t[1:]:
+        state = rk4_step(state, dt, mu)
+        trajectory.append(state[:2])
+        # Stop if too far (for hyperbolic)
+        if np.sqrt(state[0]**2 + state[1]**2) &gt; 5 * R_E:
+            break
+
+    trajectory = np.array(trajectory)
+    plt.plot(trajectory[:, 0] / R_E, trajectory[:, 1] / R_E, label=label)
+
+# Plot Earth
+theta = np.linspace(0, 2*np.pi, 100)
+plt.plot(np.cos(theta), np.sin(theta), 'k-', label='Earth')
+plt.axis('equal')
+plt.xlabel('x / R_E')
+plt.ylabel('y / R_E')
+plt.title('Payload Trajectories Near Earth (Altitude 300 km)')
+plt.legend()
+plt.grid(True)
+plt.show()
+</code></pre>
 <hr/>
-<h3 id="expected-output">Expected Output</h3>
+<h3 id="step-5-results-and-discussion">Step 5: Results and Discussion</h3>
 <ul>
-<li><strong>Canvas</strong>:</li>
-<li>
-<p>A blue Earth at the center.</p>
-</li>
-<li>
-<p><strong>LEO</strong>: Green dot orbiting quickly at 400 km.</p>
-</li>
-<li>
-<p><strong>MEO</strong>: Red dot orbiting slower at 20,000 km.</p>
-</li>
-<li>
-<p><strong>GEO</strong>: Blue dot orbiting slowest at 35,786 km.</p>
-</li>
-<li>
-<p><strong>Escape</strong>: Yellow dot escaping with a trail, starting at Earth’s surface.</p>
-</li>
-<li>
-<p>Each dot has a label showing speed (km/s) and altitude (km).</p>
-</li>
-<li>
-<p><strong>Controls</strong>:</p>
-</li>
-<li>
-<p>Adjust altitudes and velocities to explore different scenarios (e.g., elliptical orbits, reentry, faster escape).</p>
-</li>
-<li>
-<p>Toggle visibility to focus on specific trajectories.</p>
-</li>
+<li><strong>Elliptical Trajectory</strong>: The payload follows a closed elliptical orbit, with a perigee lower than the release altitude, potentially leading to reentry if it intersects the atmosphere.</li>
+<li><strong>Parabolic Trajectory</strong>: The payload escapes Earth, following a path that asymptotically approaches infinity.</li>
+<li><strong>Hyperbolic Trajectory</strong>: The payload escapes with excess speed, following a more open path, suitable for interplanetary travel.</li>
+<li><strong>Visualization</strong>: The plot shows:</li>
+<li><strong>Elliptical</strong>: A closed loop around Earth.</li>
+<li><strong>Parabolic</strong>: A path that curves away, just escaping.</li>
+<li><strong>Hyperbolic</strong>: A sharper curve, escaping rapidly.</li>
 </ul>
-<h2 id="_1"><img alt="alt text" src="../DALL%C2%B7E%202025-03-21%2009.25.50%20-%20A%20space%20simulation%20illustration%20featuring%20Earth%20as%20a%20blue%20globe%20in%20the%20center%20against%20a%20black%20space%20background%20with%20stars.%20Various%20orbital%20paths%20are%20d.webp"/></h2>
+<h4 id="space-exploration-implications"><strong>Space Exploration Implications</strong>:</h4>
+<ul>
+<li><strong>Orbital Insertion</strong>: Achieving a speed near <span class="arithmatex">\(v_{\text{circ}}\)</span> ensures a stable orbit for satellites (e.g., communication satellites in LEO).</li>
+<li><strong>Reentry</strong>: Elliptical orbits with low perigees are used for controlled reentry (e.g., reentry capsules like Soyuz).</li>
+<li><strong>Escape Scenarios</strong>: Parabolic or hyperbolic trajectories are critical for missions leaving Earth (e.g., interplanetary probes like Voyager).</li>
+</ul>
+<hr/>
+<h3 id="summary">Summary</h3>
+<ul>
+<li><strong>Trajectories</strong>:</li>
+<li>Elliptical (<span class="arithmatex">\(v_0 &lt; v_{\text{esc}}\)</span>): Bound orbit, potential reentry.</li>
+<li>Parabolic (<span class="arithmatex">\(v_0 = v_{\text{esc}}\)</span>): Escape to infinity.</li>
+<li>Hyperbolic (<span class="arithmatex">\(v_0 &gt; v_{\text{esc}}\)</span>): Escape with excess speed.</li>
+<li><strong>Numerical Analysis</strong>:</li>
+<li>Initial conditions at 300 km altitude: <span class="arithmatex">\(v_{\text{circ}} \approx 7.73 \, \text{km/s}\)</span>, <span class="arithmatex">\(v_{\text{esc}} \approx 10.93 \, \text{km/s}\)</span>.</li>
+<li>Simulated for <span class="arithmatex">\(v_0 = 7.0, 10.93, 12.0 \, \text{km/s}\)</span>.</li>
+<li><strong>Applications</strong>:</li>
+<li>Orbital insertion, reentry, and escape scenarios are foundational for space missions.</li>
+<li><strong>Simulation Tool</strong>: The Python script simulates and visualizes the trajectories, showing distinct paths for each case.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
