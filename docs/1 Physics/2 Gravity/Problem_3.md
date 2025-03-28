@@ -237,6 +237,11 @@ plt.grid(True)
 plt.show()
 ```
 
+
+![alt text](Figure_3.png)
+
+
+
 ---
 
 ### Step 5: Results and Discussion
