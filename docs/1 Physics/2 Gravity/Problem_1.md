@@ -127,26 +127,6 @@ $M \approx 5.972 \times 10^{24}$ kg.
 - **Gravitational Constant**:
  $G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}$.
 
-Check Kepler’s Third Law:
-
-
-$$T^2 = \frac{4\pi^2 r^3}{G M}$$
-
-
-Left side: 
-$T^2 = (2.36 \times 10^6)^2 = 5.57 \times 10^{12} \, \text{s}^2$.
-
-Right side:
- $r^3 = (3.844 \times 10^8)^3 = 5.68 \times 10^{25} \, \text{m}^3$,
-
-
-$$ \frac{4\pi^2}{G M} = \frac{4 \times (3.1416)^2}{6.6743 \times 10^{-11} \times 5.972 \times 10^{24}} \approx 9.87 \times 10^{-14} \, \text{s}^2 \text{m}^{-3},
-\frac{4\pi^2 r^3}{G M} = 9.87 \times 10^{-14} \times 5.68 \times 10^{25} \approx 5.61 \times 10^{12} \, \text{s}^2$$.
-
-
-
-The values are very close, confirming the law holds (small discrepancies arise from approximations and the Moon’s slightly elliptical orbit).
-
 
 #### Earth’s Orbit Around the Sun
 
@@ -161,14 +141,6 @@ The values are very close, confirming the law holds (small discrepancies arise f
 
 - **Sun’s Mass**:
  $M \approx 1.989 \times 10^{30}$ kg.
-
-$$ T^2 = (3.156 \times 10^7)^2 \approx 9.96 \times 10^{14} \, \text{s}^2,
- r^3 = (1.496 \times 10^{11})^3 \approx 3.35 \times 10^{33} \, \text{m}^3$$,
-
-$$ \frac{4\pi^2}{G M} \approx \frac{39.478}{6.6743 \times 10^{-11} \times 1.989 \times 10^{30}} \approx 2.97 \times 10^{-19} \, \text{s}^2 \text{m}^{-3},
-\frac{4\pi^2 r^3}{G M} \approx 2.97 \times 10^{-19} \times 3.35 \times 10^{33} \approx 9.95 \times 10^{14} \, \text{s}^2$$.
-
-Again, a match, reinforcing the law’s consistency.
 
 
 
