@@ -132,105 +132,68 @@ and add the additional speed to reach the Sun’s escape velocity ($\sqrt{2} \cd
 
 
 
-### Calculations for Earth, Mars, and Jupiter
+  
+---
+Let’s organize the given data and calculations for Earth, Mars, and Jupiter into a table in English. The data includes masses ($M$), radii ($R$), distances from the Sun ($r$), and various velocities ($v_1$, $v_2$, $v_3$) along with combined velocities for escaping the Solar System. I’ll extract the relevant values and present them in a clear table format.
 
 
-Using:
+### Extracted Data and Calculations:
+- **Constants**:
+  - Gravitational constant: $G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}$
+  - 1 AU = $1.496 \times 10^{11} \, \text{m}$
+  - Sun’s mass: $M_{\text{Sun}} = 1.989 \times 10^{30} \, \text{kg}$
 
+- **Earth**:
+  - Mass: $M = 5.972 \times 10^{24} \, \text{kg}$
+  - Radius: $R = 6.371 \times 10^6 \, \text{m}$
+  - Distance: $r = 1 \, \text{AU} = 1.496 \times 10^{11} \, \text{m}$
+  - $v_1 = \sqrt{\frac{GM}{R}} \approx 7.91 \, \text{km/s}$
+  - $v_2 = \sqrt{2} \cdot v_1 \approx 11.19 \, \text{km/s}$
+  - $v_3$: Sun escape at 1 AU = $\sqrt{\frac{2GM_{\text{Sun}}}{r}} \approx 42.1 \, \text{km/s}$
+  - Combined: $v_x = \sqrt{11.19^2 + (42.1 - 29.8)^2} \approx 16.6 \, \text{km/s}$ (using orbital velocity 29.8 km/s)
 
-- $G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}$
+- **Mars**:
+  - Mass: $M = 6.417 \times 10^{23} \, \text{kg}$
+  - Radius: $R = 3.39 \times 10^6 \, \text{m}$
+  - Distance: $r = 1.524 \, \text{AU} = 1.524 \times 1.496 \times 10^{11} \, \text{m}$
+  - $v_1 = \sqrt{\frac{GM}{R}} \approx 3.55 \, \text{km/s}$
+  - $v_2 = \sqrt{2} \cdot v_1 \approx 5.02 \, \text{km/s}$
+  - $v_3$: Sun escape at 1.524 AU = $\sqrt{\frac{2GM_{\text{Sun}}}{r}} \approx 34.1 \, \text{km/s}$
+  - Combined: $v_x = \sqrt{5.02^2 + (34.1 - 24.1)^2} \approx 11.2 \, \text{km/s}$ (using orbital velocity 24.1 km/s)
 
-
-- Earth:
-
- $M = 5.972 \times 10^{24} \, \text{kg}$, $R = 6.371 \times 10^6 \, \text{m}$, $r = 1 \, \text{AU} = 1.496 \times 10^{11} \, \text{m}$
-
-
-- Mars:
-$M = 6.417 \times 10^{23} \, \text{kg}$, $R = 3.39 \times 10^6 \, \text{m}$, $r = 1.524 \, \text{AU}$
-
-
-- Jupiter: 
-$M = 1.898 \times 10^{27} \, \text{kg}$, $R = 6.991 \times 10^7 \, \text{m}$, $r = 5.203 \, \text{AU}$
-
-
-- Sun: 
-$M_{\text{Sun}} = 1.989 \times 10^{30} \, \text{kg}$
-
-
-
-#### Earth
-
-
-- $$v_1 = \sqrt{\frac{6.6743 \times 10^{-11} \cdot 5.972 \times 10^{24}}{6.371 \times 10^6}} \approx 7.91 \, \text{km/s}$$
-
-
-- $$v_2 = \sqrt{\frac{2 \cdot 6.6743 \times 10^{-11} \cdot 5.972 \times 10^{24}}{6.371 \times 10^6}} \approx 11.19 \, \text{km/s}$$
-
-
-- $v_3$: 
-
-From surface to Solar System escape:
-
-$$v_{\text{Sun escape}} = \sqrt{\frac{2 \cdot 6.6743 \times 10^{-11} \cdot 1.989 \times 10^{30}}{1.496 \times 10^{11}}} \approx 42.1 \, \text{km/s}$$
- 
-
-, combined: 
-
-
-$$v_3 \approx \sqrt{11.19^2 + (42.1 - 29.8)^2} \approx 16.6 \, \text{km/s}$$
-
-
- (approximate, from orbit).
-
-
-#### Mars
-
-
-- $$v_1 = \sqrt{\frac{6.6743 \times 10^{-11} \cdot 6.417 \times 10^{23}}{3.39 \times 10^6}} \approx 3.55 \, \text{km/s}$$
+- **Jupiter**:
+  - Mass: $M = 1.898 \times 10^{27} \, \text{kg}$
+  - Radius: $R = 6.991 \times 10^7 \, \text{m}$
+  - Distance: $r = 5.203 \, \text{AU} = 5.203 \times 1.496 \times 10^{11} \, \text{m}$
+  - $v_1 = \sqrt{\frac{GM}{R}} \approx 42.6 \, \text{km/s}$
+  - $v_2 = \sqrt{2} \cdot v_1 \approx 60.2 \, \text{km/s}$
+  - $v_3$: Sun escape at 5.203 AU = $\sqrt{\frac{2GM_{\text{Sun}}}{r}} \approx 18.5 \, \text{km/s}$
+  - Combined: $v_x = \sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}$ (using orbital velocity 13.1 km/s)
 
 
 
-- $$v_2 = \sqrt{2} \cdot 3.55 \approx 5.02 \, \text{km/s}$$
 
+### Table: Velocity Calculations for Earth, Mars, and Jupiter
 
+| **Body**   | **$v_1$ (km/s)** | **$v_2$ (km/s)** | **$v_3$ (Sun Escape, km/s)** | **Combined Velocity (km/s)** |
+|------------|-------------------|-------------------|-------------------------------|-----------------------------|
+| **Earth**  | 7.91              | 11.19             | 42.1                          | 16.6                        |
+| **Mars**   | 3.55              | 5.02              | 34.1                          | 11.2                        |
+| **Jupiter**| 42.6              | 60.2              | 18.5                          | 60.5                        |
 
-- $v_3$: Sun escape at 1.524 AU: 
+---
 
+### Notes:
 
-$$\sqrt{\frac{2 G M_{\text{Sun}}}{1.524 \cdot 1.496 \times 10^{11}}} \approx 34.1 \, \text{km/s}$$
+- **$v_1$**: Surface escape velocity from the planet, $\sqrt{\frac{GM}{R}}$.
 
+- **$v_2$**: Escape velocity from the planet’s surface, $\sqrt{2} \cdot v_1$.
 
-,orbital velocity $24.1 \, \text{km/s}$, 
+- **$v_3$**: Escape velocity from the Sun at the planet’s orbital distance, $\sqrt{\frac{2GM_{\text{Sun}}}{r}}$.
 
-combined:
+- **Combined Velocity**: $\sqrt{v_2^2 + (v_3 - v_{\text{orbital}})^2}$, where $v_{\text{orbital}}$ is the planet’s orbital velocity (Earth: 29.8 km/s, Mars: 24.1 km/s, Jupiter: 13.1 km/s).
 
-
-$$\sqrt{5.02^2 + (34.1 - 24.1)^2} \approx 11.2 \, \text{km/s}$$
-
-
-
-#### Jupiter
-
-
-- $$v_1 = \sqrt{\frac{6.6743 \times 10^{-11} \cdot 1.898 \times 10^{27}}{6.991 \times 10^7}} \approx 42.6 \, \text{km/s}$$
-
-
-- $$v_2 = \sqrt{2} \cdot 42.6 \approx 60.2 \, \text{km/s}$$
-
-
-
-- $v_3$: Sun escape at 5.203 AU:
-
-
-$$\sqrt{\frac{2 G M_{\text{Sun}}}{5.203 \cdot 1.496 \times 10^{11}}} \approx 18.5 \, \text{km/s}$$
- 
-
-, orbital velocity $13.1 \, \text{km/s}$, combined: 
- 
-
-$$\sqrt{60.2^2 + (18.5 - 13.1)^2} \approx 60.5 \, \text{km/s}$$
-
+- Values are rounded to one decimal place for consistency with the provided data.
 
 
 
@@ -280,6 +243,7 @@ A panel displays the body's orbital (V1), escape (V2), and system (V3) velocitie
 - **Purpose**: It demonstrates the difference between orbiting a body and escaping its gravitational pull, highlighting how velocity determines the trajectory.
  The simulation simplifies the physics (e.g., fixed orbit radius, basic numerical integration) for educational clarity.
 
+![alt text](Figure_2.png)
 ---
 
 

@@ -173,6 +173,7 @@ plt.ylabel('y')
 plt.grid(True)
 plt.show()
 ```
+![alt text](Figure_1.png)
 
 ### Explanation of the Python Code
 - **Parameters**: Set $A = 1$, $\lambda = 1$, $f = 1$, and $t = 0$.
@@ -194,6 +195,8 @@ This plot can be embedded in a Jupyter Notebook or saved as an image for a Markd
 ## Interactive Simulation (HTML/JavaScript)
 
 Below is the HTML/JavaScript code for an interactive simulation, updated to ensure it works reliably. I’ve simplified the color mapping to grayscale for better visibility and reduced the canvas size for performance.
+
+[Simulation](Simulation.html)
 
 ```html
 <!DOCTYPE html>
