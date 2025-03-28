@@ -8,6 +8,7 @@
 
 The trajectory of a payload released near Earth depends on its **specific mechanical energy**, which determines the type of orbit: elliptical, parabolic, or hyperbolic. The motion is governed by **Newton’s Law of Gravitation** and can be analyzed using **Kepler’s Laws**.
 
+
 #### **Governing Equations**
 
 - **Gravitational Force**: 
@@ -19,7 +20,11 @@ The force on the payload due to Earth’s gravity is:
   $$
 
 
-  where $G = 6.6743 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}$, $M = 5.972 \times 10^{24} \, \text{kg}$ (Earth’s mass), $m$ is the payload’s mass, $r = |\mathbf{r}|$ is the distance from Earth’s center, and $\mathbf{r}$ is the position vector.
+  where $G = 6.6743 \times 10^{-11} \,
+   \text{m}^3 \text{kg}^{-1} \text{s}^{-2}$, $M = 5.972 \times 10^{24} \, \text{kg}$ (Earth’s mass),
+    $m$ is the payload’s mass,
+     $r = |\mathbf{r}|$ is the distance from Earth’s center, and $\mathbf{r}$ is the position vector.
+
 
 - **Equation of Motion**:
 
@@ -28,6 +33,7 @@ The force on the payload due to Earth’s gravity is:
   \mathbf{\ddot{r}} = -\frac{\mu}{r^3} \mathbf{r}
   $$
   where $\mu = G M \approx 3.986 \times 10^{14} \, \text{m}^3 \text{s}^{-2}$ (Earth’s gravitational parameter).
+
 
 #### **Specific Mechanical Energy**
 
@@ -42,13 +48,16 @@ $$
 where $v$ is the speed, and $r$ is the distance from Earth’s center.
 
 - **Elliptical Orbit ($\epsilon < 0$)**: The payload is bound to Earth, following a closed elliptical path (e.g., a satellite in orbit).
+
 - **Parabolic Trajectory ($\epsilon = 0$)**: The payload escapes to infinity with zero speed at infinity (escape velocity).
+
 - **Hyperbolic Trajectory ($\epsilon > 0$)**: The payload escapes Earth’s gravity with excess speed, following an open hyperbolic path.
 
 
 #### **Key Velocities**
 
-- **Escape Velocity** at distance $r$:
+- **Escape Velocity** at distance $r$:#
+
   $$
   v_{\text{esc}} = \sqrt{\frac{2 \mu}{r}}
   $$
@@ -81,7 +90,9 @@ where $v$ is the speed, and $r$ is the distance from Earth’s center.
 
 ### Step 2: Numerical Analysis of the Payload’s Path
 
+
 #### **Initial Conditions**
+
 Assume the payload is released from a rocket at an altitude of 300 km (a typical low Earth orbit altitude):
 
 - **Position**: $r_0 = R_E + 300 \, \text{km} = 6.371 \times 10^6 + 300 \times 10^3 = 6.671 \times 10^6 \, \text{m}$.
@@ -105,27 +116,50 @@ Assume the payload is released from a rocket at an altitude of 300 km (a typical
 
 
 - **Test Cases** (velocity in the tangential direction, $\mathbf{v}_0 = (0, v_0)$):
+
   - **Case 1 (Elliptical)**: $v_0 = 7.0 \, \text{km/s}$ (below circular velocity).
+
   - **Case 2 (Parabolic)**: $v_0 = 10.93 \, \text{km/s}$ (escape velocity).
+
   - **Case 3 (Hyperbolic)**: $v_0 = 12.0 \, \text{km/s}$ (above escape velocity).
+
+
 
 #### **Specific Energy for Each Case**
 
+
 - **Elliptical ($v_0 = 7.0 \, \text{km/s}$)**:
+
+
   $$
   \epsilon = \frac{(7.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 2.45 \times 10^7 - 5.975 \times 10^7 \approx -3.525 \times 10^7 \, \text{J/kg}
   $$
+
+
   Negative energy confirms an elliptical orbit.
+
+
 - **Parabolic ($v_0 = 10.93 \, \text{km/s}$)**:
+
+
   $$
   \epsilon = \frac{(10.93 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 5.975 \times 10^7 - 5.975 \times 10^7 \approx 0
   $$
+
+
   Zero energy confirms a parabolic trajectory.
+
+
 - **Hyperbolic ($v_0 = 12.0 \, \text{km/s}$)**:
+
+
   $$
   \epsilon = \frac{(12.0 \times 10^3)^2}{2} - \frac{3.986 \times 10^{14}}{6.671 \times 10^6} \approx 7.2 \times 10^7 - 5.975 \times 10^7 \approx 1.225 \times 10^7 \, \text{J/kg}
   $$
+
+
   Positive energy confirms a hyperbolic trajectory.
+
 
 #### **Numerical Integration**
 
@@ -143,14 +177,20 @@ $$
 
 
 - **Elliptical Trajectory ($v_0 = 7.0 \, \text{km/s}$)**:
+
+
   - The payload enters an elliptical orbit with a perigee closer to Earth than the release point.
   - **Implication**: If the perigee is below ~100 km, the payload may reenter Earth’s atmosphere (e.g., a returning capsule). Otherwise, it remains in orbit, potentially as a satellite.
 
 - **Parabolic Trajectory ($v_0 = 10.93 \, \text{km/s}$)**:
+
+
   - The payload escapes Earth’s gravity, reaching infinity with zero residual speed.
   - **Implication**: This is the minimum speed for escape, suitable for a probe leaving Earth’s influence (e.g., to interplanetary space).
 
 - **Hyperbolic Trajectory ($v_0 = 12.0 \, \text{km/s}$)**:
+
+
   - The payload escapes with excess speed, following an open hyperbolic path.
   - **Implication**: This is ideal for interplanetary missions (e.g., to Mars or beyond), as the excess speed allows for faster travel.
 
@@ -158,8 +198,11 @@ $$
 
 
 - **Orbital Insertion**: Speeds near $v_{\text{circ}}$ (e.g., 7.73 km/s at 300 km) allow stable orbits for satellites.
+
 - **Reentry**: An elliptical orbit with a low perigee leads to atmospheric reentry, used for returning spacecraft (e.g., Crew Dragon).
+
 - **Escape**: Parabolic or hyperbolic trajectories are used for missions escaping Earth (e.g., New Horizons to Pluto).
+
 
 ---
 
@@ -254,7 +297,10 @@ plt.show()
   - **Parabolic**: A path that curves away, just escaping.
   - **Hyperbolic**: A sharper curve, escaping rapidly.
 
+
 #### **Space Exploration Implications**:
+
+
 - **Orbital Insertion**: Achieving a speed near $v_{\text{circ}}$ ensures a stable orbit for satellites (e.g., communication satellites in LEO).
 - **Reentry**: Elliptical orbits with low perigees are used for controlled reentry (e.g., reentry capsules like Soyuz).
 - **Escape Scenarios**: Parabolic or hyperbolic trajectories are critical for missions leaving Earth (e.g., interplanetary probes like Voyager).
