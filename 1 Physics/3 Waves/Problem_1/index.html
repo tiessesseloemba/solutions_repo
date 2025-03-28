@@ -204,17 +204,25 @@
 <h1 id="problem-1">Problem 1</h1>
 <h2 id="chapter-wave-interference">Chapter: Wave Interference</h2>
 <h3 id="introduction-to-wave-interference">Introduction to Wave Interference</h3>
-<p><strong>Definition of Interference</strong><br/>
-Wave interference occurs when two or more waves overlap in space, combining to form a new wave pattern. This phenomenon arises from the <strong>superposition principle</strong>, which states that the total displacement at any point is the sum of the displacements of the individual waves at that point. Interference can result in regions where waves reinforce each other (constructive interference) or cancel each other out (destructive interference).</p>
-<p><strong>Key Concepts</strong><br/>
-1. <strong>Superposition Principle</strong>: For <span class="arithmatex">\(N\)</span> waves, the total displacement is:</p>
+<p><strong>Definition of Interference</strong> </p>
+<p>Wave interference occurs when two or more waves overlap in space, combining to form a new wave pattern. This phenomenon arises from the <strong>superposition principle</strong>, which states that the total displacement at any point is the sum of the displacements of the individual waves at that point. </p>
+<p>Interference can result in regions where waves reinforce each other (constructive interference) or cancel each other out (destructive interference).</p>
+<p><strong>Key Concepts</strong> </p>
+<ol>
+<li><strong>Superposition Principle</strong>: </li>
+</ol>
+<p>For <span class="arithmatex">\(N\)</span> waves, the total displacement is:</p>
 <p>$$
    \eta_{\text{sum}}(x, y, t) = \sum_{i=1}^N \eta_i(x, y, t)
    $$</p>
 <p>where <span class="arithmatex">\(\eta_i(x, y, t)\)</span> is the displacement due to the <span class="arithmatex">\(i\)</span>-th wave.</p>
 <ol>
-<li><strong>Types of Interference</strong>:</li>
-<li><strong>Constructive Interference</strong>: Occurs when waves are in phase (phase difference is an integer multiple of <span class="arithmatex">\(2\pi\)</span>), leading to increased amplitude.</li>
+<li>
+<p><strong>Types of Interference</strong>:</p>
+</li>
+<li>
+<p><strong>Constructive Interference</strong>: Occurs when waves are in phase (phase difference is an integer multiple of <span class="arithmatex">\(2\pi\)</span>), leading to increased amplitude.</p>
+</li>
 <li>
 <p><strong>Destructive Interference</strong>: Occurs when waves are out of phase (phase difference is an odd multiple of <span class="arithmatex">\(\pi\)</span>), leading to cancellation.</p>
 </li>
@@ -224,16 +232,28 @@ Wave interference occurs when two or more waves overlap in space, combining to f
 <li>
 <p><strong>Wave Parameters</strong>:</p>
 </li>
-<li><strong>Amplitude (<span class="arithmatex">\(A\)</span>)</strong>: Maximum displacement of the wave.</li>
-<li><strong>Wavelength (<span class="arithmatex">\(\lambda\)</span>)</strong>: Distance between consecutive crests.</li>
-<li><strong>Frequency (<span class="arithmatex">\(f\)</span>)</strong>: Number of cycles per second.</li>
-<li><strong>Wave Number (<span class="arithmatex">\(k\)</span>)</strong>: <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>.</li>
-<li><strong>Angular Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: <span class="arithmatex">\(\omega = 2\pi f\)</span>.</li>
+<li>
+<p><strong>Amplitude (<span class="arithmatex">\(A\)</span>)</strong>: Maximum displacement of the wave.</p>
+</li>
+<li>
+<p><strong>Wavelength (<span class="arithmatex">\(\lambda\)</span>)</strong>: Distance between consecutive crests.</p>
+</li>
+<li>
+<p><strong>Frequency (<span class="arithmatex">\(f\)</span>)</strong>: Number of cycles per second.</p>
+</li>
+<li>
+<p><strong>Wave Number (<span class="arithmatex">\(k\)</span>)</strong>: <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>.</p>
+</li>
+<li>
+<p><strong>Angular Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: <span class="arithmatex">\(\omega = 2\pi f\)</span>.</p>
+</li>
 <li>
 <p><strong>Phase (<span class="arithmatex">\(\phi\)</span>)</strong>: Initial offset of the wave cycle.</p>
 </li>
 <li>
-<p><strong>Circular Waves in 2D</strong>: For a point source on a water surface, the wave propagates as a circular wave, with amplitude decreasing as <span class="arithmatex">\(\frac{1}{\sqrt{r}}\)</span> due to energy spreading in two dimensions. The displacement is:</p>
+<p><strong>Circular Waves in 2D</strong>:
+ For a point source on a water surface, the wave propagates as a circular wave, with amplitude decreasing as <span class="arithmatex">\(\frac{1}{\sqrt{r}}\)</span> due to energy spreading in two dimensions.
+  The displacement is:</p>
 </li>
 </ol>
 <p>$$
@@ -241,81 +261,180 @@ Wave interference occurs when two or more waves overlap in space, combining to f
    $$</p>
 <p>where <span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span> is the distance from the source at <span class="arithmatex">\((x_0, y_0)\)</span>.</p>
 <p><strong>Applications</strong><br/>
-Interference is crucial in:
-- <strong>Optics</strong>: Young’s double-slit experiment shows light’s wave nature.
-- <strong>Acoustics</strong>: Sound wave interference affects audio design.
-- <strong>Water Waves</strong>: Ripples from multiple sources create visible patterns.
-- <strong>Quantum Mechanics</strong>: Interference of probability amplitudes.</p>
+Interference is crucial in:</p>
+<ul>
+<li>
+<p><strong>Optics</strong>: Young’s double-slit experiment shows light’s wave nature.</p>
+</li>
+<li>
+<p><strong>Acoustics</strong>: Sound wave interference affects audio design.</p>
+</li>
+<li>
+<p><strong>Water Waves</strong>: Ripples from multiple sources create visible patterns.</p>
+</li>
+<li>
+<p><strong>Quantum Mechanics</strong>: Interference of probability amplitudes.</p>
+</li>
+</ul>
 <hr/>
 <h2 id="problem-interference-patterns-on-a-water-surface">Problem: Interference Patterns on a Water Surface</h2>
 <h3 id="problem-statement">Problem Statement</h3>
-<p>Analyze the interference patterns on a water surface due to circular waves from point sources at the vertices of a regular polygon. The wave equation for a source at <span class="arithmatex">\((x_0, y_0)\)</span> is:
-$$
+<p>Analyze the interference patterns on a water surface due to circular waves from point sources at the vertices of a regular polygon. 
+The wave equation for a source at <span class="arithmatex">\((x_0, y_0)\)</span> is:</p>
+<div class="arithmatex">\[
 \eta(x, y, t) = \frac{A}{\sqrt{r}} \cos(kr - \omega t + \phi)
-$$
-where:
-- <span class="arithmatex">\(\eta(x, y, t)\)</span>: Displacement at <span class="arithmatex">\((x, y)\)</span> at time <span class="arithmatex">\(t\)</span>.
-- <span class="arithmatex">\(A\)</span>: Amplitude.
-- <span class="arithmatex">\(r\)</span>: Distance from the source.
-- <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>: Wave number.
-- <span class="arithmatex">\(\omega = 2\pi f\)</span>: Angular frequency.
-- <span class="arithmatex">\(\phi\)</span>: Initial phase.</p>
+\]</div>
+<p>where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\eta(x, y, t)\)</span>: Displacement at <span class="arithmatex">\((x, y)\)</span> at time <span class="arithmatex">\(t\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(A\)</span>: Amplitude.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(r\)</span>: Distance from the source.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>: Wave number.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\omega = 2\pi f\)</span>: Angular frequency.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\phi\)</span>: Initial phase.</p>
+</li>
+</ul>
 <p><strong>Steps</strong>:
-1. Select a regular polygon.
-2. Position the sources.
-3. Write the wave equations.
-4. Apply superposition.
-5. Analyze the interference pattern.
-6. Visualize the pattern (using Python and HTML/JavaScript).</p>
-<p><strong>Considerations</strong>:
-- All sources have the same <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(\lambda\)</span>, and <span class="arithmatex">\(f\)</span>.
-- Waves are coherent (<span class="arithmatex">\(\phi = 0\)</span>).
-- Deliverables include a Python script, explanation, and graphical representation.</p>
+1. Select a regular polygon.</p>
+<ol>
+<li>
+<p>Position the sources.</p>
+</li>
+<li>
+<p>Write the wave equations.</p>
+</li>
+<li>
+<p>Apply superposition.</p>
+</li>
+<li>
+<p>Analyze the interference pattern.</p>
+</li>
+<li>
+<p>Visualize the pattern (using Python and HTML/JavaScript).</p>
+</li>
+</ol>
+<p><strong>Considerations</strong>:</p>
+<ul>
+<li>
+<p>All sources have the same <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(\lambda\)</span>, and <span class="arithmatex">\(f\)</span>.</p>
+</li>
+<li>
+<p>Waves are coherent (<span class="arithmatex">\(\phi = 0\)</span>).</p>
+</li>
+<li>
+<p>Deliverables include a Python script, explanation, and graphical representation.</p>
+</li>
+</ul>
 <hr/>
 <h3 id="solution">Solution</h3>
 <h4 id="step-1-select-a-regular-polygon">Step 1: Select a Regular Polygon</h4>
-<p>Choose a <strong>square</strong> with 4 vertices:
-- Side length <span class="arithmatex">\(2a\)</span>, centered at the origin.
-- Set <span class="arithmatex">\(a = 1\)</span>:
-  - <span class="arithmatex">\(S_1 = (1, 1)\)</span>
-  - <span class="arithmatex">\(S_2 = (1, -1)\)</span>
-  - <span class="arithmatex">\(S_3 = (-1, 1)\)</span>
-  - <span class="arithmatex">\(S_4 = (-1, -1)\)</span></p>
+<p>Choose a <strong>square</strong> with 4 vertices:</p>
+<ul>
+<li>
+<p>Side length <span class="arithmatex">\(2a\)</span>, centered at the origin.</p>
+</li>
+<li>
+<p>Set <span class="arithmatex">\(a = 1\)</span>:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(S_1 = (1, 1)\)</span></p>
+</li>
+<li><span class="arithmatex">\(S_2 = (1, -1)\)</span></li>
+<li><span class="arithmatex">\(S_3 = (-1, 1)\)</span></li>
+<li><span class="arithmatex">\(S_4 = (-1, -1)\)</span></li>
+</ul>
 <h4 id="step-2-position-the-sources">Step 2: Position the Sources</h4>
-<p>Sources are at:
-- Source 1: <span class="arithmatex">\((1, 1)\)</span>
-- Source 2: <span class="arithmatex">\((1, -1)\)</span>
-- Source 3: <span class="arithmatex">\((-1, 1)\)</span>
-- Source 4: <span class="arithmatex">\((-1, -1)\)</span></p>
+<p>Sources are at:</p>
+<ul>
+<li>
+<p>Source 1: <span class="arithmatex">\((1, 1)\)</span></p>
+</li>
+<li>
+<p>Source 2: <span class="arithmatex">\((1, -1)\)</span></p>
+</li>
+<li>
+<p>Source 3: <span class="arithmatex">\((-1, 1)\)</span></p>
+</li>
+<li>
+<p>Source 4: <span class="arithmatex">\((-1, -1)\)</span></p>
+</li>
+</ul>
 <h4 id="step-3-wave-equations">Step 3: Wave Equations</h4>
-<p>Set parameters:
-- <span class="arithmatex">\(A = 1\)</span>
-- <span class="arithmatex">\(\lambda = 1\)</span>, so <span class="arithmatex">\(k = 2\pi\)</span>
-- <span class="arithmatex">\(f = 1\)</span>, so <span class="arithmatex">\(\omega = 2\pi\)</span>
-- <span class="arithmatex">\(\phi = 0\)</span></p>
-<p>For each source:
-- Source 1: <span class="arithmatex">\(r_1 = \sqrt{(x - 1)^2 + (y - 1)^2}\)</span>, <span class="arithmatex">\(\eta_1 = \frac{1}{\sqrt{r_1}} \cos(2\pi r_1 - 2\pi t)\)</span>
-- Source 2: <span class="arithmatex">\(r_2 = \sqrt{(x - 1)^2 + (y + 1)^2}\)</span>, <span class="arithmatex">\(\eta_2 = \frac{1}{\sqrt{r_2}} \cos(2\pi r_2 - 2\pi t)\)</span>
-- Source 3: <span class="arithmatex">\(r_3 = \sqrt{(x + 1)^2 + (y - 1)^2}\)</span>, <span class="arithmatex">\(\eta_3 = \frac{1}{\sqrt{r_3}} \cos(2\pi r_3 - 2\pi t)\)</span>
-- Source 4: <span class="arithmatex">\(r_4 = \sqrt{(x + 1)^2 + (y + 1)^2}\)</span>, <span class="arithmatex">\(\eta_4 = \frac{1}{\sqrt{r_4}} \cos(2\pi r_4 - 2\pi t)\)</span></p>
+<p>Set parameters:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(A = 1\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\lambda = 1\)</span>, so <span class="arithmatex">\(k = 2\pi\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(f = 1\)</span>, so <span class="arithmatex">\(\omega = 2\pi\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\phi = 0\)</span></p>
+</li>
+</ul>
+<p>For each source:</p>
+<ul>
+<li>
+<p>Source 1: <span class="arithmatex">\(r_1 = \sqrt{(x - 1)^2 + (y - 1)^2}\)</span>, <span class="arithmatex">\(\eta_1 = \frac{1}{\sqrt{r_1}} \cos(2\pi r_1 - 2\pi t)\)</span></p>
+</li>
+<li>
+<p>Source 2: <span class="arithmatex">\(r_2 = \sqrt{(x - 1)^2 + (y + 1)^2}\)</span>, <span class="arithmatex">\(\eta_2 = \frac{1}{\sqrt{r_2}} \cos(2\pi r_2 - 2\pi t)\)</span></p>
+</li>
+<li>
+<p>Source 3: <span class="arithmatex">\(r_3 = \sqrt{(x + 1)^2 + (y - 1)^2}\)</span>, <span class="arithmatex">\(\eta_3 = \frac{1}{\sqrt{r_3}} \cos(2\pi r_3 - 2\pi t)\)</span></p>
+</li>
+<li>
+<p>Source 4: <span class="arithmatex">\(r_4 = \sqrt{(x + 1)^2 + (y + 1)^2}\)</span>, <span class="arithmatex">\(\eta_4 = \frac{1}{\sqrt{r_4}} \cos(2\pi r_4 - 2\pi t)\)</span></p>
+</li>
+</ul>
 <h4 id="step-4-superposition-of-waves">Step 4: Superposition of Waves</h4>
 <div class="arithmatex">\[
 \eta_{\text{sum}}(x, y, t) = \sum_{i=1}^4 \frac{1}{\sqrt{r_i}} \cos(2\pi r_i - 2\pi t)
-$$
-At $t = 0$:
-$$
+\]</div>
+<p>At <span class="arithmatex">\(t = 0\)</span>:</p>
+<div class="arithmatex">\[
 \eta_{\text{sum}}(x, y, 0) = \sum_{i=1}^4 \frac{1}{\sqrt{r_i}} \cos(2\pi r_i)
 \]</div>
 <h4 id="step-5-analyze-interference-patterns">Step 5: Analyze Interference Patterns</h4>
 <ul>
-<li><strong>Constructive Interference</strong>: Where phases align (e.g., <span class="arithmatex">\(2\pi (r_i - r_j) \approx 2\pi n\)</span>).</li>
-<li><strong>Destructive Interference</strong>: Where phases differ by <span class="arithmatex">\(\pi\)</span> (e.g., <span class="arithmatex">\(2\pi (r_i - r_j) \approx (2n+1)\pi\)</span>).</li>
-<li><strong>At the origin <span class="arithmatex">\((0, 0)\)</span></strong>:</li>
-<li><span class="arithmatex">\(r_1 = r_2 = r_3 = r_4 = \sqrt{2}\)</span></li>
-<li><span class="arithmatex">\(\frac{1}{\sqrt{r_i}} \approx 0.841\)</span></li>
-<li><span class="arithmatex">\(2\pi r_i \approx 8.885\)</span>, <span class="arithmatex">\(\cos(2\pi \sqrt{2}) \approx -0.266\)</span></li>
-<li>Total: <span class="arithmatex">\(4 \times 0.841 \times (-0.266) \approx -0.895\)</span> (destructive).</li>
-<li><strong>Symmetry</strong>: The square creates a grid-like pattern with nodes along <span class="arithmatex">\(x = 0\)</span>, <span class="arithmatex">\(y = 0\)</span>, and diagonals.</li>
+<li>
+<p><strong>Constructive Interference</strong>: Where phases align (e.g., <span class="arithmatex">\(2\pi (r_i - r_j) \approx 2\pi n\)</span>).</p>
+</li>
+<li>
+<p><strong>Destructive Interference</strong>: Where phases differ by <span class="arithmatex">\(\pi\)</span> (e.g., <span class="arithmatex">\(2\pi (r_i - r_j) \approx (2n+1)\pi\)</span>).</p>
+</li>
+<li>
+<p><strong>At the origin <span class="arithmatex">\((0, 0)\)</span></strong>:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(r_1 = r_2 = r_3 = r_4 = \sqrt{2}\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\frac{1}{\sqrt{r_i}} \approx 0.841\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(2\pi r_i \approx 8.885\)</span>, <span class="arithmatex">\(\cos(2\pi \sqrt{2}) \approx -0.266\)</span></p>
+</li>
+<li>
+<p>Total: <span class="arithmatex">\(4 \times 0.841 \times (-0.266) \approx -0.895\)</span> (destructive).</p>
+</li>
+<li>
+<p><strong>Symmetry</strong>: The square creates a grid-like pattern with nodes along <span class="arithmatex">\(x = 0\)</span>, <span class="arithmatex">\(y = 0\)</span>, and diagonals.</p>
+</li>
 </ul>
 <hr/>
 <h2 id="python-simulation-static-visualization">Python Simulation (Static Visualization)</h2>
