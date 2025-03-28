@@ -66,6 +66,36 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#chapter-wave-interference">Chapter: Wave Interference</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction-to-wave-interference">Introduction to Wave Interference</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#problem-interference-patterns-on-a-water-surface">Problem: Interference Patterns on a Water Surface</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#problem-statement">Problem Statement</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#solution">Solution</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-simulation-static-visualization">Python Simulation (Static Visualization)</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#explanation-of-the-python-code">Explanation of the Python Code</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-simulation-htmljavascript">Interactive Simulation (HTML/JavaScript)</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#expected-output">Expected Output</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +202,360 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h2 id="chapter-wave-interference">Chapter: Wave Interference</h2>
+<h3 id="introduction-to-wave-interference">Introduction to Wave Interference</h3>
+<p><strong>Definition of Interference</strong><br/>
+Wave interference occurs when two or more waves overlap in space, combining to form a new wave pattern. This phenomenon arises from the <strong>superposition principle</strong>, which states that the total displacement at any point is the sum of the displacements of the individual waves at that point. Interference can result in regions where waves reinforce each other (constructive interference) or cancel each other out (destructive interference).</p>
+<p><strong>Key Concepts</strong><br/>
+1. <strong>Superposition Principle</strong>: For <span class="arithmatex">\(N\)</span> waves, the total displacement is:</p>
+<p>$$
+   \eta_{\text{sum}}(x, y, t) = \sum_{i=1}^N \eta_i(x, y, t)
+   $$</p>
+<p>where <span class="arithmatex">\(\eta_i(x, y, t)\)</span> is the displacement due to the <span class="arithmatex">\(i\)</span>-th wave.</p>
+<ol>
+<li><strong>Types of Interference</strong>:</li>
+<li><strong>Constructive Interference</strong>: Occurs when waves are in phase (phase difference is an integer multiple of <span class="arithmatex">\(2\pi\)</span>), leading to increased amplitude.</li>
+<li>
+<p><strong>Destructive Interference</strong>: Occurs when waves are out of phase (phase difference is an odd multiple of <span class="arithmatex">\(\pi\)</span>), leading to cancellation.</p>
+</li>
+<li>
+<p><strong>Coherence</strong>: Stable interference patterns require coherent waves, meaning they have the same frequency and a constant phase relationship.</p>
+</li>
+<li>
+<p><strong>Wave Parameters</strong>:</p>
+</li>
+<li><strong>Amplitude (<span class="arithmatex">\(A\)</span>)</strong>: Maximum displacement of the wave.</li>
+<li><strong>Wavelength (<span class="arithmatex">\(\lambda\)</span>)</strong>: Distance between consecutive crests.</li>
+<li><strong>Frequency (<span class="arithmatex">\(f\)</span>)</strong>: Number of cycles per second.</li>
+<li><strong>Wave Number (<span class="arithmatex">\(k\)</span>)</strong>: <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>.</li>
+<li><strong>Angular Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: <span class="arithmatex">\(\omega = 2\pi f\)</span>.</li>
+<li>
+<p><strong>Phase (<span class="arithmatex">\(\phi\)</span>)</strong>: Initial offset of the wave cycle.</p>
+</li>
+<li>
+<p><strong>Circular Waves in 2D</strong>: For a point source on a water surface, the wave propagates as a circular wave, with amplitude decreasing as <span class="arithmatex">\(\frac{1}{\sqrt{r}}\)</span> due to energy spreading in two dimensions. The displacement is:</p>
+</li>
+</ol>
+<p>$$
+   \eta(x, y, t) = \frac{A}{\sqrt{r}} \cos(kr - \omega t + \phi)
+   $$</p>
+<p>where <span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span> is the distance from the source at <span class="arithmatex">\((x_0, y_0)\)</span>.</p>
+<p><strong>Applications</strong><br/>
+Interference is crucial in:
+- <strong>Optics</strong>: Young’s double-slit experiment shows light’s wave nature.
+- <strong>Acoustics</strong>: Sound wave interference affects audio design.
+- <strong>Water Waves</strong>: Ripples from multiple sources create visible patterns.
+- <strong>Quantum Mechanics</strong>: Interference of probability amplitudes.</p>
+<hr/>
+<h2 id="problem-interference-patterns-on-a-water-surface">Problem: Interference Patterns on a Water Surface</h2>
+<h3 id="problem-statement">Problem Statement</h3>
+<p>Analyze the interference patterns on a water surface due to circular waves from point sources at the vertices of a regular polygon. The wave equation for a source at <span class="arithmatex">\((x_0, y_0)\)</span> is:
+$$
+\eta(x, y, t) = \frac{A}{\sqrt{r}} \cos(kr - \omega t + \phi)
+$$
+where:
+- <span class="arithmatex">\(\eta(x, y, t)\)</span>: Displacement at <span class="arithmatex">\((x, y)\)</span> at time <span class="arithmatex">\(t\)</span>.
+- <span class="arithmatex">\(A\)</span>: Amplitude.
+- <span class="arithmatex">\(r\)</span>: Distance from the source.
+- <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>: Wave number.
+- <span class="arithmatex">\(\omega = 2\pi f\)</span>: Angular frequency.
+- <span class="arithmatex">\(\phi\)</span>: Initial phase.</p>
+<p><strong>Steps</strong>:
+1. Select a regular polygon.
+2. Position the sources.
+3. Write the wave equations.
+4. Apply superposition.
+5. Analyze the interference pattern.
+6. Visualize the pattern (using Python and HTML/JavaScript).</p>
+<p><strong>Considerations</strong>:
+- All sources have the same <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(\lambda\)</span>, and <span class="arithmatex">\(f\)</span>.
+- Waves are coherent (<span class="arithmatex">\(\phi = 0\)</span>).
+- Deliverables include a Python script, explanation, and graphical representation.</p>
+<hr/>
+<h3 id="solution">Solution</h3>
+<h4 id="step-1-select-a-regular-polygon">Step 1: Select a Regular Polygon</h4>
+<p>Choose a <strong>square</strong> with 4 vertices:
+- Side length <span class="arithmatex">\(2a\)</span>, centered at the origin.
+- Set <span class="arithmatex">\(a = 1\)</span>:
+  - <span class="arithmatex">\(S_1 = (1, 1)\)</span>
+  - <span class="arithmatex">\(S_2 = (1, -1)\)</span>
+  - <span class="arithmatex">\(S_3 = (-1, 1)\)</span>
+  - <span class="arithmatex">\(S_4 = (-1, -1)\)</span></p>
+<h4 id="step-2-position-the-sources">Step 2: Position the Sources</h4>
+<p>Sources are at:
+- Source 1: <span class="arithmatex">\((1, 1)\)</span>
+- Source 2: <span class="arithmatex">\((1, -1)\)</span>
+- Source 3: <span class="arithmatex">\((-1, 1)\)</span>
+- Source 4: <span class="arithmatex">\((-1, -1)\)</span></p>
+<h4 id="step-3-wave-equations">Step 3: Wave Equations</h4>
+<p>Set parameters:
+- <span class="arithmatex">\(A = 1\)</span>
+- <span class="arithmatex">\(\lambda = 1\)</span>, so <span class="arithmatex">\(k = 2\pi\)</span>
+- <span class="arithmatex">\(f = 1\)</span>, so <span class="arithmatex">\(\omega = 2\pi\)</span>
+- <span class="arithmatex">\(\phi = 0\)</span></p>
+<p>For each source:
+- Source 1: <span class="arithmatex">\(r_1 = \sqrt{(x - 1)^2 + (y - 1)^2}\)</span>, <span class="arithmatex">\(\eta_1 = \frac{1}{\sqrt{r_1}} \cos(2\pi r_1 - 2\pi t)\)</span>
+- Source 2: <span class="arithmatex">\(r_2 = \sqrt{(x - 1)^2 + (y + 1)^2}\)</span>, <span class="arithmatex">\(\eta_2 = \frac{1}{\sqrt{r_2}} \cos(2\pi r_2 - 2\pi t)\)</span>
+- Source 3: <span class="arithmatex">\(r_3 = \sqrt{(x + 1)^2 + (y - 1)^2}\)</span>, <span class="arithmatex">\(\eta_3 = \frac{1}{\sqrt{r_3}} \cos(2\pi r_3 - 2\pi t)\)</span>
+- Source 4: <span class="arithmatex">\(r_4 = \sqrt{(x + 1)^2 + (y + 1)^2}\)</span>, <span class="arithmatex">\(\eta_4 = \frac{1}{\sqrt{r_4}} \cos(2\pi r_4 - 2\pi t)\)</span></p>
+<h4 id="step-4-superposition-of-waves">Step 4: Superposition of Waves</h4>
+<div class="arithmatex">\[
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^4 \frac{1}{\sqrt{r_i}} \cos(2\pi r_i - 2\pi t)
+$$
+At $t = 0$:
+$$
+\eta_{\text{sum}}(x, y, 0) = \sum_{i=1}^4 \frac{1}{\sqrt{r_i}} \cos(2\pi r_i)
+\]</div>
+<h4 id="step-5-analyze-interference-patterns">Step 5: Analyze Interference Patterns</h4>
+<ul>
+<li><strong>Constructive Interference</strong>: Where phases align (e.g., <span class="arithmatex">\(2\pi (r_i - r_j) \approx 2\pi n\)</span>).</li>
+<li><strong>Destructive Interference</strong>: Where phases differ by <span class="arithmatex">\(\pi\)</span> (e.g., <span class="arithmatex">\(2\pi (r_i - r_j) \approx (2n+1)\pi\)</span>).</li>
+<li><strong>At the origin <span class="arithmatex">\((0, 0)\)</span></strong>:</li>
+<li><span class="arithmatex">\(r_1 = r_2 = r_3 = r_4 = \sqrt{2}\)</span></li>
+<li><span class="arithmatex">\(\frac{1}{\sqrt{r_i}} \approx 0.841\)</span></li>
+<li><span class="arithmatex">\(2\pi r_i \approx 8.885\)</span>, <span class="arithmatex">\(\cos(2\pi \sqrt{2}) \approx -0.266\)</span></li>
+<li>Total: <span class="arithmatex">\(4 \times 0.841 \times (-0.266) \approx -0.895\)</span> (destructive).</li>
+<li><strong>Symmetry</strong>: The square creates a grid-like pattern with nodes along <span class="arithmatex">\(x = 0\)</span>, <span class="arithmatex">\(y = 0\)</span>, and diagonals.</li>
+</ul>
+<hr/>
+<h2 id="python-simulation-static-visualization">Python Simulation (Static Visualization)</h2>
+<p>Below is a Python script using Matplotlib to generate a static 2D heatmap of the interference pattern at <span class="arithmatex">\(t = 0\)</span>. This can be included in a Jupyter Notebook or Markdown document.</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+A = 1  # Amplitude
+lambda_ = 1  # Wavelength
+k = 2 * np.pi / lambda_  # Wave number
+f = 1  # Frequency
+omega = 2 * np.pi * f  # Angular frequency
+t = 0  # Time snapshot
+
+# Source positions (square vertices)
+sources = [(1, 1), (1, -1), (-1, 1), (-1, -1)]
+
+# Create a grid for plotting
+x = np.linspace(-5, 5, 200)
+y = np.linspace(-5, 5, 200)
+X, Y = np.meshgrid(x, y)
+Z = np.zeros_like(X)
+
+# Compute total displacement using superposition
+for (sx, sy) in sources:
+    r = np.sqrt((X - sx)**2 + (Y - sy)**2)
+    # Avoid division by zero at source points
+    r = np.where(r &lt; 0.01, 0.01, r)
+    Z += (A / np.sqrt(r)) * np.cos(k * r - omega * t)
+
+# Plot the interference pattern
+plt.figure(figsize=(8, 6))
+plt.contourf(X, Y, Z, levels=50, cmap='seismic')
+plt.colorbar(label='Displacement')
+plt.title('Interference Pattern from Square Sources (Python)')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid(True)
+plt.show()
+</code></pre>
+<h3 id="explanation-of-the-python-code">Explanation of the Python Code</h3>
+<ul>
+<li><strong>Parameters</strong>: Set <span class="arithmatex">\(A = 1\)</span>, <span class="arithmatex">\(\lambda = 1\)</span>, <span class="arithmatex">\(f = 1\)</span>, and <span class="arithmatex">\(t = 0\)</span>.</li>
+<li><strong>Sources</strong>: Defined as the vertices of a square.</li>
+<li><strong>Grid</strong>: A 2D grid over <span class="arithmatex">\([-5, 5] \times [-5, 5]\)</span> with 200 points in each direction.</li>
+<li><strong>Superposition</strong>: Compute the displacement at each point by summing the contributions from all sources.</li>
+<li><strong>Visualization</strong>: Use <code>contourf</code> to create a heatmap, with the <code>seismic</code> colormap (red for positive, blue for negative).</li>
+</ul>
+<h3 id="output">Output</h3>
+<p>The script generates a static heatmap showing the interference pattern, with:
+- <strong>Red regions</strong>: Constructive interference (positive displacement).
+- <strong>Blue regions</strong>: Destructive interference (negative displacement).
+- <strong>White regions</strong>: Near-zero displacement.</p>
+<p>This plot can be embedded in a Jupyter Notebook or saved as an image for a Markdown document.</p>
+<h2 id="interactive-simulation-htmljavascript">Interactive Simulation (HTML/JavaScript)</h2>
+<p>Below is the HTML/JavaScript code for an interactive simulation, updated to ensure it works reliably. I’ve simplified the color mapping to grayscale for better visibility and reduced the canvas size for performance.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Wave Interference Simulation&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid black;
+            background-color: #000;
+        }
+        .controls {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            margin-right: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Wave Interference Simulation&lt;/h1&gt;
+    &lt;div class="controls"&gt;
+        &lt;label for="wavelength"&gt;Wavelength (λ): &lt;span id="wavelengthValue"&gt;1.0&lt;/span&gt;&lt;/label&gt;
+        &lt;input type="range" id="wavelength" min="0.5" max="3.0" step="0.1" value="1.0"&gt;&lt;br&gt;
+
+        &lt;label for="frequency"&gt;Frequency (f): &lt;span id="frequencyValue"&gt;1.0&lt;/span&gt; Hz&lt;/label&gt;
+        &lt;input type="range" id="frequency" min="0.5" max="3.0" step="0.1" value="1.0"&gt;&lt;br&gt;
+
+        &lt;label for="amplitude"&gt;Amplitude (A): &lt;span id="amplitudeValue"&gt;1.0&lt;/span&gt;&lt;/label&gt;
+        &lt;input type="range" id="amplitude" min="0.5" max="2.0" step="0.1" value="1.0"&gt;
+    &lt;/div&gt;
+    &lt;canvas id="waveCanvas" width="400" height="400"&gt;&lt;/canvas&gt;
+
+    &lt;script&gt;
+        // Get canvas and context
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+            console.error("Canvas context not supported. Please use a modern browser.");
+            alert("Canvas context not supported. Please use a modern browser.");
+            throw new Error("Canvas context not supported");
+        }
+
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Source positions (square vertices, centered at origin)
+        const sources = [
+            { x: 1, y: 1 },
+            { x: 1, y: -1 },
+            { x: -1, y: 1 },
+            { x: -1, y: -1 }
+        ];
+
+        // Parameters with default values
+        let wavelength = 1.0;
+        let frequency = 1.0;
+        let amplitude = 1.0;
+        let time = 0;
+
+        // Get sliders and value displays
+        const wavelengthSlider = document.getElementById('wavelength');
+        const wavelengthValue = document.getElementById('wavelengthValue');
+        const frequencySlider = document.getElementById('frequency');
+        const frequencyValue = document.getElementById('frequencyValue');
+        const amplitudeSlider = document.getElementById('amplitude');
+        const amplitudeValue = document.getElementById('amplitudeValue');
+
+        // Update parameters on slider change
+        wavelengthSlider.addEventListener('input', () =&gt; {
+            wavelength = parseFloat(wavelengthSlider.value);
+            wavelengthValue.textContent = wavelength.toFixed(1);
+        });
+
+        frequencySlider.addEventListener('input', () =&gt; {
+            frequency = parseFloat(frequencySlider.value);
+            frequencyValue.textContent = frequency.toFixed(1);
+        });
+
+        amplitudeSlider.addEventListener('input', () =&gt; {
+            amplitude = parseFloat(amplitudeSlider.value);
+            amplitudeValue.textContent = amplitude.toFixed(1);
+        });
+
+        // Scale factor to map simulation coordinates to canvas
+        const scale = 50; // 1 unit = 50 pixels
+        const offsetX = width / 2; // Center of canvas
+        const offsetY = height / 2;
+
+        // Animation loop
+        function animate() {
+            try {
+                // Clear canvas
+                ctx.fillStyle = 'black';
+                ctx.fillRect(0, 0, width, height);
+
+                // Compute wave parameters
+                const k = 2 * Math.PI / wavelength; // Wave number
+                const omega = 2 * Math.PI * frequency; // Angular frequency
+
+                // Create image data for rendering
+                const imageData = ctx.createImageData(width, height);
+                const data = imageData.data;
+
+                // Loop over each pixel
+                for (let px = 0; px &lt; width; px++) {
+                    for (let py = 0; py &lt; height; py++) {
+                        // Convert pixel coordinates to simulation coordinates
+                        const x = (px - offsetX) / scale;
+                        const y = (py - offsetY) / scale;
+
+                        // Compute total displacement
+                        let displacement = 0;
+                        for (const source of sources) {
+                            const r = Math.sqrt((x - source.x) ** 2 + (y - source.y) ** 2);
+                            // Avoid division by zero
+                            const safeR = r &lt; 0.01 ? 0.01 : r;
+                            const wave = (amplitude / Math.sqrt(safeR)) * Math.cos(k * safeR - omega * time);
+                            displacement += wave;
+                        }
+
+                        // Map displacement to grayscale for better visibility
+                        const colorValue = 128 + (displacement * 40); // Center at 128 (gray)
+                        const scaledColor = Math.max(0, Math.min(255, colorValue));
+                        const index = (py * width + px) * 4;
+                        data[index] = scaledColor;     // R
+                        data[index + 1] = scaledColor; // G
+                        data[index + 2] = scaledColor; // B
+                        data[index + 3] = 255;         // A
+                    }
+                }
+
+                // Put image data on canvas
+                ctx.putImageData(imageData, 0, 0);
+
+                // Update time for animation
+                time += 0.02; // Adjust speed of animation
+
+                // Continue animation
+                requestAnimationFrame(animate);
+            } catch (error) {
+                console.error("Error in animation loop:", error);
+                alert("An error occurred in the simulation. Check the console for details.");
+            }
+        }
+
+        // Start the animation
+        try {
+            animate();
+        } catch (error) {
+            console.error("Failed to start animation:", error);
+            alert("Failed to start the simulation. Check the console for details.");
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr/>
+<h3 id="expected-output">Expected Output</h3>
+<ul>
+<li>The canvas displays a dynamic interference pattern with:</li>
+<li><strong>Bright regions</strong>: Constructive interference (positive displacement).</li>
+<li><strong>Dark regions</strong>: Destructive interference (negative displacement).</li>
+<li><strong>Gray regions</strong>: Near-zero displacement.</li>
+<li>The pattern oscillates over time, showing the waves moving outward from the sources.</li>
+<li>Sliders allow real-time adjustment of parameters.</li>
+</ul>
+<hr/>
+<h3 id="conclusion">Conclusion</h3>
+<p>This chapter introduced the concept of wave interference, explained the superposition principle, and demonstrated how to analyze interference patterns from multiple sources on a water surface. The problem was solved by choosing a square, deriving the wave equations, applying superposition, and analyzing the resulting pattern. The interactive simulation provides a hands-on way to explore how changes in wavelength, frequency, and amplitude affect the interference pattern, reinforcing the theoretical concepts.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
