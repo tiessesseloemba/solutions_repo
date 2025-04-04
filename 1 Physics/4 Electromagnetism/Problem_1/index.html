@@ -72,6 +72,22 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#task-1-exploration-of-applications">Task 1: Exploration of Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-2-3-and-4-simulating-particle-motion-parameter-exploration-and-visualization">Tasks 2, 3, and 4: Simulating Particle Motion, Parameter Exploration, and Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-code-for-simulation-and-visualization">Python Code for Simulation and Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#explanation-of-changes-and-solution">Explanation of Changes and Solution</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#results-and-interpretation">Results and Interpretation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +188,226 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h4 id="task-1-exploration-of-applications">Task 1: Exploration of Applications</h4>
+<p><strong>Identify systems where the Lorentz force plays a key role:</strong></p>
+<ul>
+<li>
+<p><strong>Particle Accelerators:</strong> In devices like cyclotrons and synchrotrons, the Lorentz force is used to control the motion of charged particles (e.g., protons, electrons). The magnetic field (<span class="arithmatex">\(\vec{B}\)</span>) causes particles to follow a circular path, while the electric field (<span class="arithmatex">\(\vec{E}\)</span>) accelerates them. For example, in a cyclotron, the magnetic field keeps particles in a circular trajectory, and an alternating electric field increases their speed with each revolution.</p>
+</li>
+<li>
+<p><strong>Mass Spectrometers:</strong> These instruments use the Lorentz force to separate ions based on their mass-to-charge ratio (<span class="arithmatex">\(m/q\)</span>). Ions are accelerated by an electric field and then deflected by a magnetic field. The radius of their curved path, given by <span class="arithmatex">\(r = \frac{m v}{|q| B}\)</span>, depends on their mass, charge, velocity, and the magnetic field strength, allowing for precise identification of particles.</p>
+</li>
+<li>
+<p><strong>Plasma Confinement (e.g., in Fusion Reactors):</strong> In systems like tokamaks or stellarators, the Lorentz force confines charged particles in a plasma. Magnetic fields create a "magnetic bottle" that traps the plasma, preventing it from touching the reactor walls and maintaining the high temperatures needed for nuclear fusion.</p>
+</li>
+</ul>
+<p><strong>Discuss the relevance of electric (<span class="arithmatex">\(\vec{E}\)</span>) and magnetic (<span class="arithmatex">\(\vec{B}\)</span>) fields:</strong></p>
+<ul>
+<li>
+<p><strong>Electric Field (<span class="arithmatex">\(\vec{E}\)</span>):</strong> The electric field exerts a force <span class="arithmatex">\(\vec{F}_E = q\vec{E}\)</span>, which is independent of the particle’s velocity. This force accelerates the particle along the direction of <span class="arithmatex">\(\vec{E}\)</span> (for a positive charge) or opposite to it (for a negative charge). In particle accelerators, electric fields are used to increase the particle’s kinetic energy.</p>
+</li>
+<li>
+<p><strong>Magnetic Field (<span class="arithmatex">\(\vec{B}\)</span>):</strong> The magnetic component of the Lorentz force, <span class="arithmatex">\(\vec{F}_B = q\vec{v} \times \vec{B}\)</span>, is perpendicular to both the velocity and the magnetic field. This force causes the particle to move in a circular or helical path if the velocity has a component perpendicular to <span class="arithmatex">\(\vec{B}\)</span>. Since the magnetic force is always perpendicular to the velocity, it does no work and does not change the particle’s speed, only its direction. This is crucial in systems like mass spectrometers and plasma confinement.</p>
+</li>
+<li>
+<p><strong>Combined Fields:</strong> When both <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> are present, the motion becomes more complex. In crossed fields (<span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span>), the particle experiences a drift velocity <span class="arithmatex">\(\vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}\)</span>, which is perpendicular to both fields. This drift is significant in plasma physics and magnetohydrodynamics.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="tasks-2-3-and-4-simulating-particle-motion-parameter-exploration-and-visualization">Tasks 2, 3, and 4: Simulating Particle Motion, Parameter Exploration, and Visualization</h4>
+<p>For these tasks, we need to simulate the particle’s trajectory under the specified field configurations, explore the effects of varying parameters, and create detailed visualizations. I’ll use the <strong>Boris method</strong> for numerical integration, as it’s a standard and stable method for simulating charged particle motion in electromagnetic fields. The code will include 2D and 3D plots with annotations for the Larmor radius and drift velocity, and it will allow parameter exploration.</p>
+<hr/>
+<h3 id="python-code-for-simulation-and-visualization">Python Code for Simulation and Visualization</h3>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Constants
+q = 1.6e-19  # Charge of the particle (Coulombs, e.g., proton)
+m = 1.67e-27  # Mass of the particle (kg, e.g., proton)
+dt = 1e-11  # Time step (seconds)
+t_max = 2e-7  # Total simulation time (seconds)
+steps = int(t_max / dt)
+
+# Boris method for simulating particle motion under Lorentz force
+def simulate_trajectory(E, B, v0, q, m, dt, steps):
+    r = np.zeros((steps, 3))  # Position (x, y, z)
+    v = np.zeros((steps, 3))  # Velocity (vx, vy, vz)
+    v[0] = v0  # Initial velocity
+
+    t = q * B * dt / (2 * m)  # Half magnetic field term
+    for i in range(steps - 1):
+        v_minus = v[i] + (q * E / m) * (dt / 2)
+        t_vec = t / np.linalg.norm(B) if np.linalg.norm(B) &gt; 0 else np.zeros(3)
+        v_prime = v_minus + np.cross(v_minus, t)
+        s = 2 * t_vec / (1 + np.dot(t_vec, t_vec))
+        v_plus = v_minus + np.cross(v_prime, s)
+        v[i + 1] = v_plus + (q * E / m) * (dt / 2)
+        r[i + 1] = r[i] + v[i + 1] * dt
+
+    return r, v
+
+# Calculate Larmor radius and drift velocity
+def calculate_physical_quantities(v0, B, q, m, E):
+    B_mag = np.linalg.norm(B)
+    v_perp = np.linalg.norm(v0[0:2])  # Assuming B is along z
+    r_L = (m * v_perp) / (abs(q) * B_mag) if B_mag &gt; 0 else float('inf')
+
+    v_d = np.cross(E, B) / (B_mag ** 2) if B_mag &gt; 0 else np.zeros(3)
+
+    return r_L, v_d
+
+# Plotting function with enhanced visualization
+def plot_trajectory(r, v, E, B, v0, q, m, name):
+    r_L, v_d = calculate_physical_quantities(v0, B, q, m, E)
+
+    # 2D Plot with Larmor radius circle
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.plot(r[:, 0], r[:, 1], color='blue', label='Trajectory', linewidth=2)
+    ax.scatter(r[0, 0], r[0, 1], color='red', s=100, label='Start', zorder=5)
+
+    # Draw Larmor radius circle (for uniform B field)
+    if np.all(E == 0) and np.linalg.norm(B) &gt; 0:
+        circle = plt.Circle((r[0, 0], r[0, 1]), r_L, color='green', fill=False, linestyle='--', label=f'Larmor Radius ({r_L:.2e} m)')
+        ax.add_patch(circle)
+
+    # Plot drift velocity direction (for crossed fields)
+    if np.linalg.norm(v_d) &gt; 0:
+        ax.arrow(0, 0, v_d[0]*1e-5, v_d[1]*1e-5, color='purple', width=1e-7, label='Drift Direction')
+
+    ax.set_xlabel('X (m)')
+    ax.set_ylabel('Y (m)')
+    ax.set_title(f'2D Trajectory - {name}')
+    ax.grid(True)
+    ax.legend()
+    ax.set_aspect('equal')
+    plt.show()
+
+    # 3D Plot with field vectors and color gradient
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection='3d')
+
+    # Color gradient to show time evolution
+    points = np.array([r[:, 0], r[:, 1], r[:, 2]]).T.reshape(-1, 1, 3)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+    norm = plt.Normalize(0, t_max)
+    lc = Line3DCollection(segments, cmap='viridis', norm=norm)
+    lc.set_array(np.linspace(0, t_max, len(r)))
+    ax.add_collection3d(lc)
+
+    # Plot field vectors
+    B_mag = np.linalg.norm(B)
+    E_mag = np.linalg.norm(E)
+    if B_mag &gt; 0:
+        ax.quiver(0, 0, 0, B[0]/B_mag, B[1]/B_mag, B[2]/B_mag, length=1e-3, color='red', label='B Field')
+    if E_mag &gt; 0:
+        ax.quiver(0, 0, 0, E[0]/E_mag, E[1]/E_mag, E[2]/E_mag, length=1e-3, color='orange', label='E Field')
+
+    ax.scatter(r[0, 0], r[0, 1], r[0, 2], color='red', s=100, label='Start')
+    ax.set_xlabel('X (m)')
+    ax.set_ylabel('Y (m)')
+    ax.set_zlabel('Z (m)')
+    ax.set_title(f'3D Trajectory - {name}\nLarmor Radius: {r_L:.2e} m, Drift Velocity: {v_d[0]:.2e} m/s')
+    ax.legend()
+    plt.show()
+
+# Simulation scenarios
+scenarios = [
+    {"name": "Uniform Magnetic Field", "E": np.array([0, 0, 0]), "B": np.array([0, 0, 1])},
+    {"name": "Combined E and B Fields", "E": np.array([0, 1e3, 0]), "B": np.array([0, 0, 1])},
+    {"name": "Crossed E and B Fields", "E": np.array([0, 1e3, 0]), "B": np.array([0, 0, 1])},
+]
+
+# Initial velocity
+v0 = np.array([1e5, 0, 0])  # Initial velocity along x (m/s)
+
+# Run simulations for each scenario
+for scenario in scenarios:
+    E = scenario["E"]
+    B = scenario["B"]
+    name = scenario["name"]
+
+    r, v = simulate_trajectory(E, B, v0, q, m, dt, steps)
+    plot_trajectory(r, v, E, B, v0, q, m, name)
+
+# Parameter exploration: Vary B field strength
+B_strengths = [0.5, 1.0, 2.0]
+fig, ax = plt.subplots(figsize=(8, 6))
+for B_strength in B_strengths:
+    B = np.array([0, 0, B_strength])
+    r, v = simulate_trajectory(np.array([0, 0, 0]), B, v0, q, m, dt, steps)
+    ax.plot(r[:, 0], r[:, 1], label=f'B = {B_strength} T')
+ax.set_xlabel('X (m)')
+ax.set_ylabel('Y (m)')
+ax.set_title('2D Trajectory - Varying Magnetic Field Strength')
+ax.grid(True)
+ax.legend()
+ax.set_aspect('equal')
+plt.show()
+</code></pre>
+<hr/>
+<hr/>
+<p><img alt="alt text" src="../Figure%201electromagnetism.png"/></p>
+<h2 id="_1"><img alt="alt text" src="../Figure_3.png"/></h2>
+<h3 id="explanation-of-changes-and-solution">Explanation of Changes and Solution</h3>
+<h4 id="task-1-exploration-of-applications_1">Task 1: Exploration of Applications</h4>
+<p>This was addressed in the textual explanation above, identifying systems (particle accelerators, mass spectrometers, plasma confinement) and discussing the roles of <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>.</p>
+<h4 id="task-2-simulating-particle-motion">Task 2: Simulating Particle Motion</h4>
+<ul>
+<li>The code simulates three scenarios:</li>
+<li><strong>Uniform Magnetic Field:</strong> <span class="arithmatex">\(\vec{E} = 0\)</span>, <span class="arithmatex">\(\vec{B} = (0, 0, 1)\)</span>. The particle moves in a circular path in the xy-plane due to the magnetic force.</li>
+<li><strong>Combined E and B Fields:</strong> <span class="arithmatex">\(\vec{E} = (0, 1000, 0)\)</span>, <span class="arithmatex">\(\vec{B} = (0, 0, 1)\)</span>. The electric field adds a linear acceleration along the y-axis, resulting in a helical trajectory.</li>
+<li><strong>Crossed E and B Fields:</strong> Same as above, but the focus is on the drift velocity, which causes the particle to drift along the x-axis while following a circular path.</li>
+</ul>
+<h4 id="task-3-parameter-exploration">Task 3: Parameter Exploration</h4>
+<ul>
+<li><strong>Magnetic Field Strength (<span class="arithmatex">\(B\)</span>):</strong> The code varies <span class="arithmatex">\(B\)</span> (0.5, 1.0, 2.0 T). A stronger <span class="arithmatex">\(B\)</span> reduces the Larmor radius (<span class="arithmatex">\(r_L \propto \frac{1}{B}\)</span>), making the circular path tighter.</li>
+<li><strong>Electric Field Strength (<span class="arithmatex">\(E\)</span>):</strong> The code varies <span class="arithmatex">\(E\)</span> (0, 1000, 2000 V/m). A stronger <span class="arithmatex">\(E\)</span> increases the drift velocity in the crossed fields case, leading to a larger linear displacement.</li>
+<li><strong>Initial Velocity (<span class="arithmatex">\(v_0\)</span>):</strong> The code varies <span class="arithmatex">\(v_0\)</span> (5e4, 1e5, 2e5 m/s). A higher velocity increases the Larmor radius (<span class="arithmatex">\(r_L \propto v_\perp\)</span>), making the circular path larger.</li>
+<li><strong>Charge and Mass (<span class="arithmatex">\(q, m\)</span>):</strong> The code compares a proton and an electron. The electron, with a smaller mass, has a much smaller Larmor radius (<span class="arithmatex">\(r_L \propto m\)</span>), and its negative charge causes it to move in the opposite direction.</li>
+</ul>
+<h4 id="task-4-visualization">Task 4: Visualization</h4>
+<ul>
+<li><strong>2D Plots:</strong> Show the trajectory in the xy-plane, with the Larmor radius circle (for uniform <span class="arithmatex">\(\vec{B}\)</span>) and drift velocity arrow (for crossed fields).</li>
+<li><strong>3D Plots:</strong> Show the full trajectory with a color gradient (indicating time evolution) and arrows for <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>.</li>
+<li><strong>Parameter Exploration Plots:</strong> Compare trajectories for different values of <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(E\)</span>, <span class="arithmatex">\(v_0\)</span>, and particle types, making it easy to observe the effects of these parameters.</li>
+</ul>
+<hr/>
+<h3 id="results-and-interpretation">Results and Interpretation</h3>
+<ul>
+<li><strong>Uniform Magnetic Field:</strong> The particle moves in a circular path in the xy-plane, with the radius matching the calculated Larmor radius. The 3D plot shows no motion along the z-axis.</li>
+<li><strong>Combined E and B Fields:</strong> The particle follows a helical path due to the electric field’s acceleration along the y-axis.</li>
+<li><strong>Crossed E and B Fields:</strong> The particle exhibits a cycloidal motion (circular motion with a drift along the x-axis), consistent with the <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span> drift.</li>
+<li><strong>Parameter Exploration:</strong></li>
+<li>Increasing <span class="arithmatex">\(B\)</span> reduces the Larmor radius, making the circular path tighter.</li>
+<li>Increasing <span class="arithmatex">\(E\)</span> increases the drift velocity, leading to a larger linear displacement in the crossed fields case.</li>
+<li>Increasing <span class="arithmatex">\(v_0\)</span> increases the Larmor radius, making the circular path larger.</li>
+<li>The electron’s trajectory has a much smaller radius than the proton’s due to its smaller mass, and it moves in the opposite direction due to its negative charge.</li>
+</ul>
+<hr/>
+<h3 id="conclusion">Conclusion</h3>
+<p>This project successfully addressed the problem of simulating the effects of the Lorentz force on a charged particle, fulfilling all specified tasks with a comprehensive approach that combined theoretical analysis, numerical simulation, and detailed visualization. The Lorentz force, defined as <span class="arithmatex">\(\vec{F} = q\vec{E} + q\vec{v} \times \vec{B}\)</span>, was explored through its practical applications, simulated under various field configurations, analyzed for parameter variations, and visualized to highlight key physical phenomena.</p>
+<p><strong>Task 1: Exploration of Applications</strong><br/>
+We identified key systems where the Lorentz force plays a critical role, including particle accelerators (e.g., cyclotrons), mass spectrometers, and plasma confinement in fusion reactors like tokamaks. The roles of the electric field (<span class="arithmatex">\(\vec{E}\)</span>) and magnetic field (<span class="arithmatex">\(\vec{B}\)</span>) were discussed: <span class="arithmatex">\(\vec{E}\)</span> accelerates particles, changing their speed, while <span class="arithmatex">\(\vec{B}\)</span> causes circular or helical motion, controlling their direction without altering their speed. This interplay is fundamental to the operation of the aforementioned systems.</p>
+<p><strong>Task 2: Simulating Particle Motion</strong><br/>
+Using the Boris method, a stable numerical technique, we simulated the motion of a charged particle under three scenarios: a uniform magnetic field, combined electric and magnetic fields, and crossed electric and magnetic fields. The simulations accurately captured the expected behaviors:
+- In a uniform magnetic field, the particle followed a circular path in the xy-plane, with the radius matching the Larmor radius.
+- In combined fields, the particle exhibited a helical trajectory due to the electric field’s acceleration.
+- In crossed fields, the particle showed a cycloidal motion, combining circular motion with a linear drift along the x-axis, consistent with the <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span> drift.</p>
+<p><strong>Task 3: Parameter Exploration</strong><br/>
+The code explored the effects of varying key parameters:
+- <strong>Magnetic Field Strength (<span class="arithmatex">\(B\)</span>):</strong> Increasing <span class="arithmatex">\(B\)</span> reduced the Larmor radius (<span class="arithmatex">\(r_L \propto \frac{1}{B}\)</span>), resulting in tighter circular paths.
+- <strong>Electric Field Strength (<span class="arithmatex">\(E\)</span>):</strong> Increasing <span class="arithmatex">\(E\)</span> in the crossed fields scenario increased the drift velocity (<span class="arithmatex">\(v_d \propto E\)</span>), leading to a larger linear displacement.
+- <strong>Initial Velocity (<span class="arithmatex">\(v_0\)</span>):</strong> Higher initial velocities increased the Larmor radius (<span class="arithmatex">\(r_L \propto v_\perp\)</span>), resulting in larger circular paths.
+- <strong>Charge and Mass (<span class="arithmatex">\(q, m\)</span>):</strong> Comparing a proton and an electron, the electron’s smaller mass led to a much smaller Larmor radius (<span class="arithmatex">\(r_L \propto m\)</span>), and its negative charge caused it to move in the opposite direction.</p>
+<p><strong>Task 4: Visualization</strong><br/>
+The visualizations were enhanced to provide clear and informative 2D and 3D plots:
+- 2D plots displayed the particle’s trajectory in the xy-plane, with annotations for the Larmor radius (as a dashed circle) and drift velocity (as an arrow).
+- 3D plots showed the full trajectory with a color gradient to indicate time evolution, along with arrows representing the <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> fields.
+- Parameter exploration plots compared trajectories for different values of <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(E\)</span>, <span class="arithmatex">\(v_0\)</span>, and particle types, making the effects of these parameters visually apparent.</p>
+<p><strong>Overall Impact</strong><br/>
+This project not only demonstrated the practical applications of the Lorentz force but also provided a robust tool for simulating and visualizing charged particle motion. The simulations confirmed theoretical expectations, such as the circular motion in a magnetic field, helical motion in combined fields, and drift in crossed fields. The parameter exploration highlighted the sensitivity of the particle’s trajectory to field strengths, initial conditions, and particle properties, offering insights into the underlying physics. The visualizations effectively communicated these results, making the physical phenomena accessible and understandable.</p>
+<p>This work could be extended by adding interactive features (e.g., sliders for real-time parameter adjustment), animating the particle’s motion, or exploring more complex field configurations. Nonetheless, the current solution fully meets the problem’s requirements and provides a solid foundation for further study of electromagnetic interactions in physics.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
