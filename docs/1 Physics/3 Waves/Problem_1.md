@@ -272,6 +272,8 @@ plt.show()
 ```
 ![alt text](Figure_1.png)
 
+![alt text](Figure_1-1.png)
+
 ### Explanation of the Python Code
 - **Parameters**: Set $A = 1$, $\lambda = 1$, $f = 1$, and $t = 0$.
 - **Sources**: Defined as the vertices of a square.
