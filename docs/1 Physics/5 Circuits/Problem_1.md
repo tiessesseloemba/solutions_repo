@@ -149,7 +149,7 @@ print(equivalent_resistance(G, 'A', 'C'))  # Expected: 0.75
 * For very large graphs, optimized edge lookups or symbolic simplification may help.
 
 ---
-[examples](code.html)
+[Simulation](code.html)
 
 
 
