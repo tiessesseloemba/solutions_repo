@@ -1,6 +1,132 @@
 # Problem 1
 
 
+###  **Introduction to the Central Limit Theorem (CLT)**
+
+The **Central Limit Theorem** states that as the sample size increases, the sampling distribution of the sample mean will approximate a normal distribution, regardless of the original population's distribution, provided that the population has a finite mean and variance. 
+This is a powerful result in statistics because it allows us to apply inferential statistics techniques even when we don't know the exact distribution of the underlying population.
+
+---
+
+### 1. **Simulating Sampling Distributions**
+
+We will simulate data from three different types of population distributions:
+
+* **Uniform Distribution**: A uniform distribution where all values have equal probability.
+* **Exponential Distribution**: A distribution often used for modeling time between events in a Poisson process.
+* **Binomial Distribution**: A distribution describing the number of successes in a fixed number of Bernoulli trials.
+
+### 2. **Sampling and Visualization**
+
+We will draw multiple random samples from the population, calculate the sample mean for each sample, and visualize the resulting sampling distributions of the sample means. The sample sizes will vary (e.g., 5, 10, 30, 50).
+
+### 3. **Parameter Exploration**
+
+We will investigate how the **shape of the original distribution** and the **sample size** influence the convergence of the sample means to a normal distribution. Additionally, we will explore how the **population variance** affects the spread of the sampling distribution.
+
+### 4. **Practical Applications**
+
+The CLT has practical implications in:
+
+* **Estimating population parameters**: The sample mean is a consistent estimator of the population mean.
+* **Quality control in manufacturing**: Small sample sizes from a large population can be used to estimate the population mean with high accuracy.
+* **Predicting outcomes in financial models**: Using sample data to estimate expected returns and risks in finance.
+
+---
+
+###  **Python Code for Simulations**
+
+We will use Python with the libraries `numpy`, `matplotlib`, and `seaborn` for simulation and visualization. Below is the Python code for the entire process.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Function to generate samples from different distributions
+def generate_population(distribution_type, size):
+    if distribution_type == "uniform":
+        return np.random.uniform(0, 1, size)
+    elif distribution_type == "exponential":
+        return np.random.exponential(1, size)
+    elif distribution_type == "binomial":
+        return np.random.binomial(n=10, p=0.5, size=size)
+    else:
+        raise ValueError("Unsupported distribution type")
+
+# Function to generate sampling distributions
+def generate_sampling_distribution(population, sample_size, num_samples):
+    sample_means = []
+    for _ in range(num_samples):
+        sample = np.random.choice(population, size=sample_size, replace=False)
+        sample_means.append(np.mean(sample))
+    return sample_means
+
+# Parameters
+population_size = 100000
+sample_sizes = [5, 10, 30, 50]
+num_samples = 1000
+
+# Generate populations
+uniform_population = generate_population("uniform", population_size)
+exponential_population = generate_population("exponential", population_size)
+binomial_population = generate_population("binomial", population_size)
+
+# Plot histograms of sample means for each sample size
+fig, axes = plt.subplots(3, 4, figsize=(15, 12))
+
+for i, dist in enumerate(["uniform", "exponential", "binomial"]):
+    population = globals()[f"{dist}_population"]
+    
+    for j, sample_size in enumerate(sample_sizes):
+        sample_means = generate_sampling_distribution(population, sample_size, num_samples)
+        ax = axes[i, j]
+        sns.histplot(sample_means, kde=True, stat="density", ax=ax)
+        ax.set_title(f"{dist.capitalize()} - Sample Size {sample_size}")
+        ax.set_xlim(-5, 5)
+
+plt.tight_layout()
+plt.show()
+```
+
+###  **Explanation of the Code:**
+
+1. **Generate Population Data**: The `generate_population()` function creates a population based on the selected distribution type.
+2. **Generate Sampling Distributions**: The `generate_sampling_distribution()` function randomly samples from the population, calculates the mean of each sample, and repeats this process multiple times.
+3. **Plotting the Results**: Using `matplotlib` and `seaborn`, we plot histograms of the sampling distributions for each distribution type and sample size.
+
+###  **Visual Output:**
+
+Running the above code will generate histograms that show how the sampling distribution of the sample mean approaches a normal distribution as the sample size increases. Each row in the plot corresponds to one of the population distributions (Uniform, Exponential, Binomial), and each column corresponds to a different sample size.
+
+---
+
+### **Results and Discussion**
+
+* **Uniform Distribution**: The sampling distribution starts off as skewed for small sample sizes and becomes more normal as the sample size increases.
+* **Exponential Distribution**: The sampling distribution is more skewed compared to the uniform distribution, and it requires a larger sample size to approximate normality.
+* **Binomial Distribution**: For large sample sizes, the binomial distribution becomes symmetric and approaches normality, especially when the number of trials is large.
+
+### **The Impact of Sample Size**:
+
+As we increase the sample size, the distribution of the sample means converges to a normal distribution more quickly. This is consistent with the Central Limit Theorem, which states that for sufficiently large sample sizes, the sampling distribution of the sample mean will be approximately normal, regardless of the original population’s distribution.
+
+### **The Role of Variance**:
+
+The variance of the original population affects the spread of the sampling distribution. Populations with high variance (like the exponential distribution) lead to sampling distributions with a larger spread, whereas populations with lower variance (like the binomial) result in narrower sampling distributions.
+
+---
+
+###  **Real-World Applications**
+
+The CLT is essential in many fields, such as:
+
+* **Quality Control**: In manufacturing, we can take small random samples to estimate the average quality of products without inspecting every item.
+* **Financial Models**: When predicting stock returns or analyzing risks, the CLT allows for simplifying assumptions about distributions, even if the underlying data is not normally distributed.
+* **Surveying**: In polling, a random sample is used to estimate the population’s opinion, and the CLT ensures that we can make accurate predictions.
+
+
+
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -61,7 +187,7 @@ for dist_name, population in distributions.items():
         print(f"Expected Variance (σ²/n): {np.var(population)/sample_size:.2f}")
 ```
 
-![alt text](<Capture d'écran 2025-04-23 184008.png>)
+![alt text](<image statistics.png>)
 
 ### Explanation of the Code
 
