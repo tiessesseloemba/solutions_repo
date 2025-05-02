@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Equivalent Resistance Simulator</title>
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+  <style>
+    #cy { width: 100%; height: 500px; border: 1px solid #ccc; }
+    #controls { margin: 10px 0; }
+    input, button { margin: 5px; }
+  </style>
+</head>
+<body>
+
+<h2>Interactive Equivalent Resistance Simulator</h2>
+<div id="controls">
+  Start Node: <input type="text" id="start" value="A">
+  End Node: <input type="text" id="end" value="C">
+  <button onclick="calculateResistance()">Calculate Equivalent Resistance</button>
+  <span id="result"></span>
+</div>
+
+<div id="cy"></div>
+
+<script>
+  const cy = cytoscape({
+    container: document.getElementById('cy'),
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'label': 'data(id)',
+          'background-color': '#0074D9',
+          'text-valign': 'center',
+          'color': '#fff',
+          'font-weight': 'bold'
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'label': 'data(label)',
+          'width': 3,
+          'line-color': '#ccc',
+          'text-rotation': 'autorotate',
+          'curve-style': 'bezier',
+          'text-background-color': '#fff',
+          'text-background-opacity': 1,
+          'text-background-padding': '3px',
+          'font-size': '12px'
+        }
+      }
+    ],
+    elements: {
+      nodes: [
+        { data: { id: 'A' } },
+        { data: { id: 'B' } },
+        { data: { id: 'C' } }
+      ],
+      edges: [
+        { data: { id: 'AB', source: 'A', target: 'B', resistance: 2, label: '2 Ω' } },
+        { data: { id: 'BC', source: 'B', target: 'C', resistance: 3, label: '3 Ω' } },
+        { data: { id: 'AC', source: 'A', target: 'C', resistance: 6, label: '6 Ω' } }
+      ]
+    },
+    layout: {
+      name: 'circle'
+    }
+  });
+
+  function calculateResistance() {
+    const start = document.getElementById('start').value.trim();
+    const end = document.getElementById('end').value.trim();
+    const paths = getAllPaths(start, end);
+
+    if (paths.length === 0) {
+      document.getElementById('result').innerText = 'No path found.';
+      return;
+    }
+
+    // Calculate equivalent resistance using parallel rule
+    let inverseTotal = 0;
+    for (let path of paths) {
+      let r = 0;
+      for (let i = 0; i < path.length - 1; i++) {
+        const edge = cy.getElementById(path[i] + path[i + 1]) || cy.getElementById(path[i + 1] + path[i]);
+        r += parseFloat(edge.data('resistance'));
+      }
+      inverseTotal += 1 / r;
+    }
+
+    const Req = 1 / inverseTotal;
+    document.getElementById('result').innerText = `Equivalent Resistance: ${Req.toFixed(2)} Ω`;
+  }
+
+  // All paths using DFS
+  function getAllPaths(start, end) {
+    const visited = new Set();
+    const paths = [];
+
+    function dfs(current, target, path) {
+      visited.add(current);
+      path.push(current);
+      if (current === target) {
+        paths.push([...path]);
+      } else {
+        const neighbors = cy.edges().filter(edge => edge.source().id() === current || edge.target().id() === current);
+        neighbors.forEach(edge => {
+          const next = edge.source().id() === current ? edge.target().id() : edge.source().id();
+          if (!visited.has(next)) {
+            dfs(next, target, path);
+          }
+        });
+      }
+      path.pop();
+      visited.delete(current);
+    }
+
+    dfs(start, end, []);
+    return paths;
+  }
+</script>
+
+</body>
+</html>
