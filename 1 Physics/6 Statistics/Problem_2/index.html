@@ -251,40 +251,66 @@
 <p>I'll provide a comprehensive solution for <strong>Problem 2: Estimating Pi using Monte Carlo Methods</strong>, addressing all parts of the task. This includes explaining the theoretical foundation, implementing a simulation in Python, visualizing the results, and analyzing the convergence rate.</p>
 <h3 id="part-1-theoretical-foundation">Part 1: Theoretical Foundation</h3>
 <h4 id="explanation-of-the-method">Explanation of the Method</h4>
-<p>The Monte Carlo method estimates π by using the geometric relationship between a circle and a square. Consider:
-- A <strong>unit circle</strong> centered at the origin (radius = 1) inscribed in a <strong>square</strong> with side length 2 (spanning from -1 to 1 in both x and y directions).
-- The area of the unit circle is <span class="arithmatex">\(\pi r^2 = \pi \cdot 1^2 = \pi\)</span>.
-- The area of the square is <span class="arithmatex">\((2 \cdot 1)^2 = 4\)</span>.
-- The ratio of the circle's area to the square's area is <span class="arithmatex">\(\frac{\pi}{4}\)</span>.</p>
-<p>If we randomly generate points uniformly within the square, the probability that a point falls inside the unit circle (i.e., satisfies <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>) is equal to the ratio of the areas:
-$$
+<p>The Monte Carlo method estimates π by using the geometric relationship between a circle and a square. Consider:</p>
+<ul>
+<li>
+<p>A <strong>unit circle</strong> centered at the origin (radius = 1) inscribed in a <strong>square</strong> with side length 2 (spanning from -1 to 1 in both x and y directions).</p>
+</li>
+<li>
+<p>The area of the unit circle is <span class="arithmatex">\(\pi r^2 = \pi \cdot 1^2 = \pi\)</span>.</p>
+</li>
+<li>
+<p>The area of the square is <span class="arithmatex">\((2 \cdot 1)^2 = 4\)</span>.</p>
+</li>
+<li>
+<p>The ratio of the circle's area to the square's area is <span class="arithmatex">\(\frac{\pi}{4}\)</span>.</p>
+</li>
+</ul>
+<p>If we randomly generate points uniformly within the square, the probability that a point falls inside the unit circle (i.e., satisfies <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>) is equal to the ratio of the areas:</p>
+<div class="arithmatex">\[
 \text{Probability} = \frac{\text{Area of circle}}{\text{Area of square}} = \frac{\pi}{4}.
-$$
-By generating <span class="arithmatex">\(N\)</span> random points and counting how many fall inside the circle (<span class="arithmatex">\(N_{\text{inside}}\)</span>), we can approximate this probability:
-$$
+\]</div>
+<p>By generating <span class="arithmatex">\(N\)</span> random points and counting how many fall inside the circle (<span class="arithmatex">\(N_{\text{inside}}\)</span>), we can approximate this probability:</p>
+<div class="arithmatex">\[
 \frac{N_{\text{inside}}}{N} \approx \frac{\pi}{4}.
-$$
-Thus, we estimate π as:
-$$
+\]</div>
+<p>Thus, we estimate π as:</p>
+<div class="arithmatex">\[
 \pi \approx 4 \cdot \frac{N_{\text{inside}}}{N}.
-$$</p>
+\]</div>
 <h4 id="derivation-of-the-formula">Derivation of the Formula</h4>
 <ol>
-<li>Generate points <span class="arithmatex">\((x, y)\)</span> uniformly in the square <span class="arithmatex">\([-1, 1] \times [-1, 1]\)</span>.</li>
-<li>A point is inside the unit circle if <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</li>
-<li>The fraction of points inside the circle approximates the area ratio <span class="arithmatex">\(\frac{\pi}{4}\)</span>.</li>
-<li>Multiply the fraction by 4 to estimate π:
-$$
-\pi \approx 4 \cdot \frac{\text{Number of points inside circle}}{\text{Total number of points}}.
-$$</li>
+<li>
+<p>Generate points <span class="arithmatex">\((x, y)\)</span> uniformly in the square <span class="arithmatex">\([-1, 1] \times [-1, 1]\)</span>.</p>
+</li>
+<li>
+<p>A point is inside the unit circle if <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</p>
+</li>
+<li>
+<p>The fraction of points inside the circle approximates the area ratio <span class="arithmatex">\(\frac{\pi}{4}\)</span>.</p>
+</li>
+<li>
+<p>Multiply the fraction by 4 to estimate π:</p>
+</li>
 </ol>
+<div class="arithmatex">\[
+\pi \approx 4 \cdot \frac{\text{Number of points inside circle}}{\text{Total number of points}}.
+\]</div>
 <h3 id="part-2-simulation">Part 2: Simulation</h3>
 <p>Below is a Python implementation that generates random points, counts those inside the unit circle, and estimates π.</p>
 <h3 id="part-3-visualization">Part 3: Visualization</h3>
-<p>The code includes a plot showing:
-- Points inside the circle (blue).
-- Points outside the circle (red).
-- The unit circle boundary for reference.</p>
+<p>The code includes a plot showing:</p>
+<ul>
+<li>
+<p>Points inside the circle (blue).</p>
+</li>
+<li>
+<p>Points outside the circle (red).</p>
+</li>
+<li>
+<p>The unit circle boundary for reference.</p>
+</li>
+</ul>
 <h3 id="part-4-analysis">Part 4: Analysis</h3>
 <p>The code also analyzes how the estimate's accuracy improves with more points and discusses convergence.</p>
 <pre><code class="language-python">import numpy as np
@@ -356,17 +382,33 @@ plt.show()
 <h3 id="explanation-of-the-code">Explanation of the Code</h3>
 <h4 id="part-2-simulation_1">Part 2: Simulation</h4>
 <ul>
-<li><strong>Point Generation</strong>: Uses <code>np.random.uniform(-1, 1, n_points)</code> to generate random x and y coordinates in <span class="arithmatex">\([-1, 1]\)</span>.</li>
-<li><strong>Circle Check</strong>: A point <span class="arithmatex">\((x, y)\)</span> is inside the unit circle if <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</li>
-<li><strong>π Estimation</strong>: Computes <span class="arithmatex">\(\pi \approx 4 \cdot \frac{N_{\text{inside}}}{N}\)</span>.</li>
-<li>The function <code>estimate_pi</code> returns the estimate, coordinates, and a boolean mask for visualization.</li>
+<li>
+<p><strong>Point Generation</strong>: Uses <code>np.random.uniform(-1, 1, n_points)</code> to generate random x and y coordinates in <span class="arithmatex">\([-1, 1]\)</span>.</p>
+</li>
+<li>
+<p><strong>Circle Check</strong>: A point <span class="arithmatex">\((x, y)\)</span> is inside the unit circle if <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</p>
+</li>
+<li>
+<p><strong>π Estimation</strong>: Computes <span class="arithmatex">\(\pi \approx 4 \cdot \frac{N_{\text{inside}}}{N}\)</span>.</p>
+</li>
+<li>
+<p>The function <code>estimate_pi</code> returns the estimate, coordinates, and a boolean mask for visualization.</p>
+</li>
 </ul>
 <h4 id="part-3-visualization_1">Part 3: Visualization</h4>
 <ul>
-<li><strong>Scatter Plot</strong>: Points inside the circle are blue, and points outside are red.</li>
-<li><strong>Unit Circle</strong>: Plotted using parametric equations <span class="arithmatex">\(x = \cos(\theta)\)</span>, <span class="arithmatex">\(y = \sin(\theta)\)</span>.</li>
-<li><strong>Aspect Ratio</strong>: Set to equal to ensure the circle appears circular.</li>
-<li>The title includes the number of points and the estimated π value.</li>
+<li>
+<p><strong>Scatter Plot</strong>: Points inside the circle are blue, and points outside are red.</p>
+</li>
+<li>
+<p><strong>Unit Circle</strong>: Plotted using parametric equations <span class="arithmatex">\(x = \cos(\theta)\)</span>, <span class="arithmatex">\(y = \sin(\theta)\)</span>.</p>
+</li>
+<li>
+<p><strong>Aspect Ratio</strong>: Set to equal to ensure the circle appears circular.</p>
+</li>
+<li>
+<p>The title includes the number of points and the estimated π value.</p>
+</li>
 </ul>
 <h4 id="part-4-analysis_1">Part 4: Analysis</h4>
 <ul>
