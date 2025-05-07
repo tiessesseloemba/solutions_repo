@@ -7,34 +7,57 @@ I'll provide a comprehensive solution for **Problem 2: Estimating Pi using Monte
 #### Explanation of the Method
 
 The Monte Carlo method estimates π by using the geometric relationship between a circle and a square. Consider:
+
 - A **unit circle** centered at the origin (radius = 1) inscribed in a **square** with side length 2 (spanning from -1 to 1 in both x and y directions).
+
 - The area of the unit circle is $\pi r^2 = \pi \cdot 1^2 = \pi$.
+
 - The area of the square is $(2 \cdot 1)^2 = 4$.
+
 - The ratio of the circle's area to the square's area is $\frac{\pi}{4}$.
 
+
 If we randomly generate points uniformly within the square, the probability that a point falls inside the unit circle (i.e., satisfies $x^2 + y^2 \leq 1$) is equal to the ratio of the areas:
+
+
 $$
 \text{Probability} = \frac{\text{Area of circle}}{\text{Area of square}} = \frac{\pi}{4}.
 $$
+
+
 By generating $N$ random points and counting how many fall inside the circle ($N_{\text{inside}}$), we can approximate this probability:
+
+
 $$
 \frac{N_{\text{inside}}}{N} \approx \frac{\pi}{4}.
 $$
+
+
 Thus, we estimate π as:
+
+
 $$
 \pi \approx 4 \cdot \frac{N_{\text{inside}}}{N}.
 $$
 
 
+
 #### Derivation of the Formula
 
+
 1. Generate points \((x, y)\) uniformly in the square \([-1, 1] \times [-1, 1]\).
+
 2. A point is inside the unit circle if $x^2 + y^2 \leq 1$.
+
 3. The fraction of points inside the circle approximates the area ratio $\frac{\pi}{4}$.
+
 4. Multiply the fraction by 4 to estimate π:
+
+
 $$
 \pi \approx 4 \cdot \frac{\text{Number of points inside circle}}{\text{Total number of points}}.
 $$
+
 
 
 ### Part 2: Simulation
@@ -44,9 +67,13 @@ Below is a Python implementation that generates random points, counts those insi
 ### Part 3: Visualization
 
 The code includes a plot showing:
+
 - Points inside the circle (blue).
+
 - Points outside the circle (red).
+
 - The unit circle boundary for reference.
+
 
 ### Part 4: Analysis
 
@@ -123,16 +150,26 @@ plt.show()
 ### Explanation of the Code
 
 #### Part 2: Simulation
+
 - **Point Generation**: Uses `np.random.uniform(-1, 1, n_points)` to generate random x and y coordinates in \([-1, 1]\).
+
 - **Circle Check**: A point \((x, y)\) is inside the unit circle if $x^2 + y^2 \leq 1$.
+
 - **π Estimation**: Computes $\pi \approx 4 \cdot \frac{N_{\text{inside}}}{N}$.
+
 - The function `estimate_pi` returns the estimate, coordinates, and a boolean mask for visualization.
 
+
 #### Part 3: Visualization
+
 - **Scatter Plot**: Points inside the circle are blue, and points outside are red.
+
 - **Unit Circle**: Plotted using parametric equations $x = \cos(\theta)$, $y = \sin(\theta)$.
+
 - **Aspect Ratio**: Set to equal to ensure the circle appears circular.
+
 - The title includes the number of points and the estimated π value.
+
 
 #### Part 4: Analysis
 - **Convergence Test**: Runs the simulation for $N = 100, 1000, 10000, 100000, 1000000$.
