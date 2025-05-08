@@ -152,6 +152,7 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
 
 2. **Parallel Circuit:**
 
+
 ![alt text](<Capture d'écran 2025-05-08 174136.png>)
 
 - Graph: $A$—(2)—$C$ and $A$—(3)—$C$ (using `nx.MultiGraph`).
@@ -167,6 +168,7 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
 
 3. **Nested Circuit:**
 
+
 ![alt text](<Capture d'écran 2025-05-08 180301.png>)
 
 - Graph: $A$—(0.75)—$B$—(0.75)—$C$ and $A$—(1.5)—$C$.
@@ -180,6 +182,7 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
 
 
 4. **Complex Graph with Cycles (Test 4)**:
+
 
 ![alt text](<Capture d'écran 2025-05-08 174321.png>)
 
