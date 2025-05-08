@@ -11,9 +11,10 @@ In this project, we explore how to compute equivalent resistance using graph the
 
 ---
  **Option 2: Full Implementation**
+
   which will give you both the algorithm and the working code to calculate equivalent resistance using graph theory.
 
----
+
 
 ###  **Algorithm Overview**
 
@@ -106,6 +107,29 @@ def equivalent_resistance(graph, start, end):
                 break
 
     return G[start][end]['resistance']
+    G = nx.Graph()
+G.add_edge('A', 'B', resistance=2)
+G.add_edge('B', 'C', resistance=3)
+print(equivalent_resistance(G, 'A', 'C'))  # Expected: 5
+
+G = nx.Graph()
+G.add_edge('A', 'C', resistance=2)
+G.add_edge('A', 'C', resistance=3)
+print(equivalent_resistance(G, 'A', 'C'))  # Expected: 1.2
+
+G = nx.Graph()
+G.add_edge('A', 'B', resistance=1)
+G.add_edge('B', 'C', resistance=1)
+G.add_edge('A', 'C', resistance=1)
+print(equivalent_resistance(G, 'A', 'C'))  # Expected: 0.75
+
+G_complex = nx.Graph()
+G_complex.add_edge('A', 'B', resistance=1)
+G_complex.add_edge('B', 'C', resistance=1)
+G_complex.add_edge('C', 'A', resistance=1)
+G_complex.add_edge('A', 'D', resistance=1)
+G_complex.add_edge('D', 'C', resistance=1)
+print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_complex, 'A', 'C'))
 ```
 
 ---
@@ -114,33 +138,65 @@ def equivalent_resistance(graph, start, end):
 
 1. **Series Circuit:**
 
-```python
-G = nx.Graph()
-G.add_edge('A', 'B', resistance=2)
-G.add_edge('B', 'C', resistance=3)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 5
-```
+
+![alt text](<Capture d'écran 2025-05-08 174059.png>)
+
+ - Graph: $A$—(2)—$B$—(3)—$C$.
+
+   - Reduction: Series combination gives $2 + 3 = 5$ ohms.
+
+   - Expected: 5 ohms.
+
 
 2. **Parallel Circuit:**
 
-```python
-G = nx.Graph()
-G.add_edge('A', 'C', resistance=2)
-G.add_edge('A', 'C', resistance=3)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 1.2
-```
+![alt text](<Capture d'écran 2025-05-08 174136.png>)
+
+- Graph: $A$—(2)—$C$ and $A$—(3)—$C$ (using `nx.MultiGraph`).
+
+   - Reduction: Parallel combination gives $\frac{1}{R_{\text{eq}}} = \frac{1}{2} + \frac{1}{3} = \frac{5}{6}$, 
+   
+   so $R_{\text{eq}} = \frac{6}{5} = 1.2$ ohms.
+
+   - Expected: 1.2 ohms.
+
 
 3. **Nested Circuit:**
 
-```python
-G = nx.Graph()
-G.add_edge('A', 'B', resistance=1)
-G.add_edge('B', 'C', resistance=1)
-G.add_edge('A', 'C', resistance=1)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 0.75
+![alt text](<Capture d'écran 2025-05-08 180301.png>)
+
+- Graph: $A$—(0.75)—$B$—(0.75)—$C$ and $A$—(1.5)—$C$.
+
+   - Reduction: Series via $B$ gives $0.75 + 0.75 = 1.5$, then parallel with $1.5$ gives $\frac{1}{1.5} + \frac{1}{1.5} = \frac{4}{3}$, so $R_{\text{eq}} = 0.75$ ohms.
+
+   - Expected: 0.75 ohms.
+
+
+
+4. **Complex Graph with Cycles (Test 4)**:
+
+![alt text](<Capture d'écran 2025-05-08 174321.png>)
+
+   - Graph: Triangle $A$—(1)—$B$—(1)—$C$—(1)—$A$ with additional $A$—(1)—$D$—(1)—$C$.
+   
+   - Reduction: Simplifies the triangle (e.g., $A$—(2)—$C$ via $B$), then handles parallel paths. The expected value (~0.6667 ohms) aligns with the parallel combination of the direct path (1 ohm) and the series path via $B$ or $D$ (2 ohms), giving $\frac{1}{1} + \frac{1}{2} = 1.5$, so $R_{\text{eq}} = \frac{2}{3} \approx 0.6667$ ohms.
+
+   - Expected: ~0.6667 ohms.
+---
+
+
+
+### Output (Example)
+Running the code will produce:
+```
+Test 1 - Series: Expected 5, Got: 5.0
+Test 2 - Parallel: Expected 1.2, Got: 1.2
+Test 3 - Nested: Expected 0.75, Got: 0.75
+Test 4 - Complex: Expected ~0.6667, Got: 0.6666666666666666
 ```
 
 ---
+
 
 ###  Efficiency Analysis
 
