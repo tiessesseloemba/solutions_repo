@@ -88,13 +88,9 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#test-examples">Test Examples</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#-expected-06667-ohms">- Expected: ~0.6667 ohms.</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#output-example">Output (Example)</a>
+<li class="toctree-l3"><a class="reference internal" href="#output-example">Output (Example)</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#efficiency-analysis">Efficiency Analysis</a>
-</li>
-</ul>
+<li class="toctree-l3"><a class="reference internal" href="#efficiency-analysis">Efficiency Analysis</a>
 </li>
 </ul>
 </li>
@@ -369,9 +365,12 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
 </li>
 <li>
 <p>Reduction: Simplifies the triangle (e.g., <span class="arithmatex">\(A\)</span>—(2)—<span class="arithmatex">\(C\)</span> via <span class="arithmatex">\(B\)</span>), then handles parallel paths. The expected value (~0.6667 ohms) aligns with the parallel combination of the direct path (1 ohm) and the series path via <span class="arithmatex">\(B\)</span> or <span class="arithmatex">\(D\)</span> (2 ohms), giving <span class="arithmatex">\(\frac{1}{1} + \frac{1}{2} = 1.5\)</span>, so <span class="arithmatex">\(R_{\text{eq}} = \frac{2}{3} \approx 0.6667\)</span> ohms.</p>
+<ul>
+<li>Expected: ~0.6667 ohms.</li>
+</ul>
 </li>
 </ul>
-<h2 id="-expected-06667-ohms">- Expected: ~0.6667 ohms.</h2>
+<hr/>
 <h3 id="output-example">Output (Example)</h3>
 <p>Running the code will produce:</p>
 <pre><code>Test 1 - Series: Expected 5, Got: 5.0
