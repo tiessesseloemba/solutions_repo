@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buffon's Needle - Speed Control</title>
+    <style>
+        canvas { border: 1px solid #000; margin: 10px; }
+        .controls { margin: 10px; padding: 10px; }
+        button { padding: 8px; margin: 5px; }
+        .stats { font-family: monospace; }
+        .speed-control { display: flex; align-items: center; gap: 10px; }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button onclick="toggle()">Start/Stop</button>
+        <button onclick="reset()">Reset</button>
+        <div class="speed-control">
+            <label>Vitesse :</label>
+            <input type="range" id="speed" min="1" max="100" value="50" oninput="updateSpeed()">
+            <span id="speedValue">50 aiguilles/sec</span>
+        </div>
+        <div class="stats">
+            π Estimate: <span id="piEst">0.0000</span> | 
+            Needles: <span id="count">0</span> | 
+            Error: <span id="error">0.0000</span>
+        </div>
+    </div>
+    <canvas id="board" width="800" height="300"></canvas>
+
+    <script>
+        const canvas = document.getElementById('board');
+        const ctx = canvas.getContext('2d');
+        let running = false;
+        let needles = [];
+        let total = 0;
+        let crosses = 0;
+        const D = 100; // Distance between lines
+        const L = 50;  // Needle length
+        let speed = 50;
+        let lastUpdate = Date.now();
+
+        function drawLines() {
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            for(let y = D; y < canvas.height; y += D) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        function drawNeedle(needle) {
+            ctx.strokeStyle = needle.crosses ? '#ff000080' : '#0000ff80';
+            ctx.beginPath();
+            ctx.moveTo(needle.x1, needle.y1);
+            ctx.lineTo(needle.x2, needle.y2);
+            ctx.stroke();
+        }
+
+        function addNeedle() {
+            const y = Math.random() * (canvas.height - D) + D/2;
+            const angle = Math.random() * Math.PI;
+            const dy = (L/2) * Math.sin(angle);
+            
+            const needle = {
+                x1: Math.random() * (canvas.width - 20) + 10,
+                y1: y + dy,
+                x2: Math.random() * (canvas.width - 20) + 10,
+                y2: y - dy,
+                crosses: false
+            };
+
+            const minY = Math.min(needle.y1, needle.y2);
+            const maxY = Math.max(needle.y1, needle.y2);
+            for(let lineY = D; lineY < canvas.height; lineY += D) {
+                if(minY < lineY && maxY > lineY) {
+                    needle.crosses = true;
+                    crosses++;
+                    break;
+                }
+            }
+
+            needles.push(needle);
+            drawNeedle(needle);
+            total++;
+        }
+
+        function updateStats() {
+            if(crosses === 0) return;
+            const piEst = (2 * L * total) / (D * crosses);
+            document.getElementById('piEst').textContent = piEst.toFixed(4);
+            document.getElementById('error').textContent = Math.abs(Math.PI - piEst).toFixed(4);
+            document.getElementById('count').textContent = total;
+        }
+
+        function updateSpeed() {
+            speed = document.getElementById('speed').value;
+            document.getElementById('speedValue').textContent = `${speed} aiguilles/sec`;
+        }
+
+        function animate() {
+            if(!running) return;
+            
+            const now = Date.now();
+            const delta = now - lastUpdate;
+            const needlesToAdd = Math.floor((speed * delta) / 1000);
+            
+            for(let i = 0; i < needlesToAdd; i++) {
+                addNeedle();
+            }
+            
+            updateStats();
+            lastUpdate = now;
+            requestAnimationFrame(animate);
+        }
+
+        function toggle() {
+            running = !running;
+            if(running) {
+                lastUpdate = Date.now();
+                animate();
+            }
+        }
+
+        function reset() {
+            running = false;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            needles = [];
+            total = 0;
+            crosses = 0;
+            drawLines();
+            updateStats();
+        }
+
+        // Initialize
+        drawLines();
+        updateSpeed();
+    </script>
+</body>
+</html>

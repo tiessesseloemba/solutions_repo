@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monte Carlo π Estimation with Comparison</title>
+    <style>
+        canvas { border: 1px solid #000; margin: 10px; }
+        .controls { margin: 10px; padding: 10px; }
+        .comparison { display: flex; gap: 20px; }
+        .value-box { padding: 10px; border: 1px solid #ccc; }
+        button { padding: 8px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button onclick="start()">Start</button>
+        <button onclick="reset()">Reset</button>
+        <input type="number" id="targetPi" value="3.141592" step="0.001">
+        <label for="targetPi">Target π value</label>
+    </div>
+    
+    <div class="comparison">
+        <div>
+            <canvas id="piCanvas" width="400" height="400"></canvas>
+            <div class="value-box" id="currentEstimate"></div>
+        </div>
+        <div>
+            <canvas id="graphCanvas" width="400" height="400"></canvas>
+            <div class="value-box" id="errorDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        const piCanvas = document.getElementById('piCanvas');
+        const graphCanvas = document.getElementById('graphCanvas');
+        const ctx = piCanvas.getContext('2d');
+        const graphCtx = graphCanvas.getContext('2d');
+        let animationId;
+        let totalPoints = 0;
+        let pointsInside = 0;
+        let history = [];
+
+        function drawCircle() {
+            ctx.beginPath();
+            ctx.arc(200, 200, 200, 0, Math.PI * 2);
+            ctx.strokeStyle = '#000';
+            ctx.stroke();
+        }
+
+        function drawPoint(x, y, inside) {
+            ctx.fillStyle = inside ? '#ff000080' : '#0000ff80';
+            ctx.beginPath();
+            ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function updateGraph() {
+            graphCtx.clearRect(0, 0, 400, 400);
+            
+            // Draw grid
+            graphCtx.strokeStyle = '#ddd';
+            for(let i = 0; i <= 10; i++) {
+                graphCtx.beginPath();
+                graphCtx.moveTo(i * 40, 0);
+                graphCtx.lineTo(i * 40, 400);
+                graphCtx.stroke();
+                
+                graphCtx.beginPath();
+                graphCtx.moveTo(0, i * 40);
+                graphCtx.lineTo(400, i * 40);
+                graphCtx.stroke();
+            }
+
+            // Draw estimate history
+            graphCtx.beginPath();
+            graphCtx.moveTo(0, 400);
+            history.forEach((est, idx) => {
+                const x = (idx / history.length) * 400;
+                const y = 400 - (est / 4 * 400);
+                graphCtx.lineTo(x, y);
+            });
+            graphCtx.strokeStyle = '#ff0000';
+            graphCtx.stroke();
+
+            // Reference lines
+            graphCtx.strokeStyle = '#00ff00';
+            graphCtx.beginPath();
+            graphCtx.moveTo(0, 400 - (Math.PI/4 * 400));
+            graphCtx.lineTo(400, 400 - (Math.PI/4 * 400));
+            graphCtx.stroke();
+        }
+
+        function generatePoints(batchSize) {
+            for(let i = 0; i < batchSize; i++) {
+                const x = Math.random() * 2 - 1;
+                const y = Math.random() * 2 - 1;
+                const inside = x*x + y*y <= 1;
+                
+                drawPoint(
+                    (x + 1) * 200,
+                    (y + 1) * 200,
+                    inside
+                );
+                
+                totalPoints++;
+                if(inside) pointsInside++;
+            }
+            
+            const currentPi = 4 * pointsInside / totalPoints;
+            history.push(currentPi);
+            if(history.length > 200) history.shift();
+
+            // Update displays
+            document.getElementById('currentEstimate').innerHTML = `
+                Estimated π: ${currentPi.toFixed(5)}<br>
+                Points: ${totalPoints.toLocaleString()}
+            `;
+
+            const targetPi = parseFloat(document.getElementById('targetPi').value);
+            document.getElementById('errorDisplay').innerHTML = `
+                Target: ${targetPi.toFixed(5)}<br>
+                Error: ${Math.abs(targetPi - currentPi).toFixed(5)}
+            `;
+
+            updateGraph();
+        }
+
+        function animate() {
+            generatePoints(100);
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function start() {
+            if(!animationId) {
+                animate();
+            }
+        }
+
+        function reset() {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+            ctx.clearRect(0, 0, 400, 400);
+            graphCtx.clearRect(0, 0, 400, 400);
+            totalPoints = 0;
+            pointsInside = 0;
+            history = [];
+            drawCircle();
+            updateGraph();
+        }
+
+        // Initial setup
+        drawCircle();
+        updateGraph();
+    </script>
+</body>
+</html>

@@ -86,35 +86,17 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#part-1-theoretical-foundation">Part 1: Theoretical Foundation</a>
+<li class="toctree-l3"><a class="reference internal" href="#part-1-estimating-pi-using-a-circle-monte-carlo-method">Part 1: Estimating \(\pi\) Using a Circle (Monte Carlo Method)</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#explanation-of-the-method">Explanation of the Method</a>
+<li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#derivation-of-the-formula">Derivation of the Formula</a>
 </li>
-</ul>
+<li class="toctree-l4"><a class="reference internal" href="#2-simulation">2. Simulation</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#part-2-simulation">Part 2: Simulation</a>
+<li class="toctree-l4"><a class="reference internal" href="#3-visualization">3. Visualization</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#part-3-visualization">Part 3: Visualization</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#part-4-analysis">Part 4: Analysis</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#explanation-of-the-code">Explanation of the Code</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#part-2-simulation_1">Part 2: Simulation</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#part-3-visualization_1">Part 3: Visualization</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#part-4-analysis_1">Part 4: Analysis</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#expected-output">Expected Output</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#visualization">Visualization</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#convergence-analysis">Convergence Analysis</a>
+<li class="toctree-l4"><a class="reference internal" href="#4-analysis">4. Analysis:</a>
 </li>
 </ul>
 </li>
@@ -128,22 +110,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#part-1-estimating-pi-using-a-circle-monte-carlo-method">Part 1: Estimating \(\pi\) Using a Circle (Monte Carlo Method)</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#2-simulation">2. Simulation</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#3-visualization">3. Visualization</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#4-python-code-for-the-circle-based-monte-carlo-method">4. Python Code for the Circle-Based Monte Carlo Method</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#explanation-of-the-code_1">Explanation of the Code:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#4-analysis">4. Analysis:</a>
-</li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#part-2-estimating-pi-using-buffons-needle">Part 2: Estimating \(\pi\) Using Buffon's Needle</a>
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation_1">1. Theoretical Foundation</a>
@@ -151,10 +117,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#2-simulation_1">2. Simulation</a>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#3-visualization_1">3. Visualization</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#4-python-code-for-buffons-needle-simulation">4. Python Code for Buffon's Needle Simulation</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#explanation-of-the-code_2">Explanation of the Code:</a>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#4-analysis_1">4. Analysis:</a>
 </li>
@@ -248,9 +210,11 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
-<p>I'll provide a comprehensive solution for <strong>Problem 2: Estimating Pi using Monte Carlo Methods</strong>, addressing all parts of the task. This includes explaining the theoretical foundation, implementing a simulation in Python, visualizing the results, and analyzing the convergence rate.</p>
-<h3 id="part-1-theoretical-foundation">Part 1: Theoretical Foundation</h3>
-<h4 id="explanation-of-the-method">Explanation of the Method</h4>
+<p>To estimate the value of <span class="arithmatex">\(\pi\)</span> using <strong>Monte Carlo methods</strong>, we will explore two distinct approaches: the <strong>circle-based method</strong> and <strong>Buffon's Needle</strong>. 
+Each of these methods uses randomness to approximate <span class="arithmatex">\(\pi\)</span> through geometric probability.
+ Below, we’ll break down the steps for each approach, the theoretical foundation, and provide visualizations.</p>
+<h3 id="part-1-estimating-pi-using-a-circle-monte-carlo-method"><strong>Part 1: Estimating <span class="arithmatex">\(\pi\)</span> Using a Circle (Monte Carlo Method)</strong></h3>
+<h4 id="1-theoretical-foundation"><strong>1. Theoretical Foundation</strong></h4>
 <p>The Monte Carlo method estimates π by using the geometric relationship between a circle and a square. Consider:</p>
 <ul>
 <li>
@@ -296,249 +260,78 @@
 <div class="arithmatex">\[
 \pi \approx 4 \cdot \frac{\text{Number of points inside circle}}{\text{Total number of points}}.
 \]</div>
-<h3 id="part-2-simulation">Part 2: Simulation</h3>
-<p>Below is a Python implementation that generates random points, counts those inside the unit circle, and estimates π.</p>
-<h3 id="part-3-visualization">Part 3: Visualization</h3>
-<p>The code includes a plot showing:</p>
-<ul>
-<li>
-<p>Points inside the circle (blue).</p>
-</li>
-<li>
-<p>Points outside the circle (red).</p>
-</li>
-<li>
-<p>The unit circle boundary for reference.</p>
-</li>
-</ul>
-<h3 id="part-4-analysis">Part 4: Analysis</h3>
-<p>The code also analyzes how the estimate's accuracy improves with more points and discusses convergence.</p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Set random seed for reproducibility
-np.random.seed(42)
-
-def estimate_pi(n_points):
-    """Estimate pi using Monte Carlo simulation with n_points."""
-    # Generate random points in [-1, 1] x [-1, 1]
-    x = np.random.uniform(-1, 1, n_points)
-    y = np.random.uniform(-1, 1, n_points)
-
-    # Check if points are inside the unit circle (x^2 + y^2 &lt;= 1)
-    inside_circle = x**2 + y**2 &lt;= 1
-    n_inside = np.sum(inside_circle)
-
-    # Estimate pi
-    pi_estimate = 4 * n_inside / n_points
-
-    return pi_estimate, x, y, inside_circle
-
-# Part 2 &amp; 3: Simulation and Visualization for a single run
-n_points = 10000
-pi_estimate, x, y, inside_circle = estimate_pi(n_points)
-
-# Plot
-plt.figure(figsize=(8, 8))
-plt.scatter(x[inside_circle], y[inside_circle], c='blue', s=10, label='Inside Circle', alpha=0.5)
-plt.scatter(x[~inside_circle], y[~inside_circle], c='red', s=10, label='Outside Circle', alpha=0.5)
-
-# Draw unit circle
-theta = np.linspace(0, 2*np.pi, 100)
-plt.plot(np.cos(theta), np.sin(theta), 'k-', label='Unit Circle')
-plt.gca().set_aspect('equal')
-plt.title(f'Monte Carlo Estimation of π\nN={n_points}, Estimated π={pi_estimate:.5f}')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend()
-plt.grid(True)
-plt.show()
-
-# Part 4: Analyze convergence
-point_counts = [100, 1000, 10000, 100000, 1000000]
-pi_estimates = []
-errors = []
-
-for n in point_counts:
-    pi_est, _, _, _ = estimate_pi(n)
-    pi_estimates.append(pi_est)
-    errors.append(abs(pi_est - np.pi))
-
-# Print results
-print("\nConvergence Analysis:")
-for n, pi_est, err in zip(point_counts, pi_estimates, errors):
-    print(f"N={n:7d}: Estimated π={pi_est:.5f}, Error={err:.5f}")
-
-# Plot convergence
-plt.figure(figsize=(10, 6))
-plt.semilogx(point_counts, errors, 'o-', label='Absolute Error')
-plt.xlabel('Number of Points (log scale)')
-plt.ylabel('Absolute Error (|Estimated π - π|)')
-plt.title('Convergence of Monte Carlo π Estimation')
-plt.grid(True)
-plt.legend()
-plt.show()
-</code></pre>
-<h3 id="explanation-of-the-code">Explanation of the Code</h3>
-<h4 id="part-2-simulation_1">Part 2: Simulation</h4>
-<ul>
-<li>
-<p><strong>Point Generation</strong>: Uses <code>np.random.uniform(-1, 1, n_points)</code> to generate random x and y coordinates in <span class="arithmatex">\([-1, 1]\)</span>.</p>
-</li>
-<li>
-<p><strong>Circle Check</strong>: A point <span class="arithmatex">\((x, y)\)</span> is inside the unit circle if <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</p>
-</li>
-<li>
-<p><strong>π Estimation</strong>: Computes <span class="arithmatex">\(\pi \approx 4 \cdot \frac{N_{\text{inside}}}{N}\)</span>.</p>
-</li>
-<li>
-<p>The function <code>estimate_pi</code> returns the estimate, coordinates, and a boolean mask for visualization.</p>
-</li>
-</ul>
-<h4 id="part-3-visualization_1">Part 3: Visualization</h4>
-<ul>
-<li>
-<p><strong>Scatter Plot</strong>: Points inside the circle are blue, and points outside are red.</p>
-</li>
-<li>
-<p><strong>Unit Circle</strong>: Plotted using parametric equations <span class="arithmatex">\(x = \cos(\theta)\)</span>, <span class="arithmatex">\(y = \sin(\theta)\)</span>.</p>
-</li>
-<li>
-<p><strong>Aspect Ratio</strong>: Set to equal to ensure the circle appears circular.</p>
-</li>
-<li>
-<p>The title includes the number of points and the estimated π value.</p>
-</li>
-</ul>
-<h4 id="part-4-analysis_1">Part 4: Analysis</h4>
-<ul>
-<li><strong>Convergence Test</strong>: Runs the simulation for <span class="arithmatex">\(N = 100, 1000, 10000, 100000, 1000000\)</span>.</li>
-<li><strong>Error Calculation</strong>: Computes the absolute error <span class="arithmatex">\(|\text{estimated } \pi - \pi|\)</span>.</li>
-<li><strong>Output</strong>: Prints the estimated π and error for each <span class="arithmatex">\(N\)</span>.</li>
-<li><strong>Convergence Plot</strong>: Shows the error versus the number of points on a log scale.</li>
-</ul>
-<h3 id="expected-output">Expected Output</h3>
-<h4 id="visualization">Visualization</h4>
-<p>For <span class="arithmatex">\(N = 10000\)</span>:
-- A scatter plot with blue points inside the unit circle, red points outside, and a black circle outline.
-- Example title: "Monte Carlo Estimation of π, N=10000, Estimated π=3.13960".</p>
-<h4 id="convergence-analysis">Convergence Analysis</h4>
-<p>Sample output (values may vary due to randomness, but the seed ensures consistency):</p>
-<pre><code>Convergence Analysis:
-N=100    : Estimated π=3.24000, Error=0.09841
-N=1000   : Estimated π=3.18800, Error=0.04641
-N=10000  : Estimated π=3.13960, Error=0.00203
-N=100000 : Estimated π=3.14128, Error=0.00031
-N=1000000: Estimated π=3.14162, Error=0.00003
-</code></pre>
-<p>The convergence plot shows the error decreasing as <span class="arithmatex">\(N\)</span> increases, typically fluctuating due to the stochastic nature of the method.</p>
-<h3 id="analysis-of-convergence-and-computational-considerations">Analysis of Convergence and Computational Considerations</h3>
-<h4 id="convergence-rate">Convergence Rate</h4>
-<ul>
-<li><strong>Theoretical Convergence</strong>: The Monte Carlo method has a convergence rate of <span class="arithmatex">\(O(1/\sqrt{N})\)</span>. The standard error of the estimate is proportional to <span class="arithmatex">\(\sqrt{\frac{\pi (4-\pi)}{N}}\)</span>, so the error decreases slowly as <span class="arithmatex">\(N\)</span> increases.</li>
-<li><strong>Observation</strong>: The simulation confirms this:</li>
-<li>For <span class="arithmatex">\(N = 100\)</span>, errors are ~0.1.</li>
-<li>For <span class="arithmatex">\(N = 1000000\)</span>, errors drop to ~0.0001, but significant computational effort is needed.</li>
-<li><strong>Fluctuations</strong>: Due to randomness, the estimate may occasionally be less accurate for larger <span class="arithmatex">\(N\)</span>, but the trend is toward smaller errors.</li>
-</ul>
-<h4 id="computational-considerations">Computational Considerations</h4>
-<ul>
-<li><strong>Efficiency</strong>: The method is computationally simple (generating points, checking a condition, and counting), but achieving high accuracy requires large <span class="arithmatex">\(N\)</span>, increasing time and memory usage.</li>
-<li>Time complexity: <span class="arithmatex">\(O(N)\)</span> for generating and checking points.</li>
-<li>Space complexity: <span class="arithmatex">\(O(N)\)</span> if storing points (though the code can be modified to process points sequentially to reduce memory use).</li>
-<li><strong>Trade-offs</strong>: While intuitive and easy to implement, Monte Carlo is less efficient than analytical methods or other numerical approximations (e.g., series expansions) for π. Its strength lies in its generality for problems without closed-form solutions.</li>
-<li><strong>Improvements</strong>:</li>
-<li>Use vectorized operations (as done with NumPy) to speed up computation.</li>
-<li>Implement variance reduction techniques (e.g., stratified sampling) to improve convergence.</li>
-</ul>
-<h4 id="practical-insights">Practical Insights</h4>
-<ul>
-<li>The method illustrates how randomness can approximate deterministic quantities.</li>
-<li>It’s a good educational tool due to its visual appeal and simplicity.</li>
-<li>In practice, Monte Carlo methods are more valuable for high-dimensional or complex problems (e.g., integrals in physics or finance) where other methods are infeasible.</li>
-</ul>
-<p>This solution provides a complete, visual, and analytical exploration of estimating π using Monte Carlo methods, demonstrating both the method’s elegance and its limitations.</p>
-<p><img alt="alt text" src="../statistics%202.png"/></p>
-<p>To estimate the value of <span class="arithmatex">\(\pi\)</span> using <strong>Monte Carlo methods</strong>, we will explore two distinct approaches: the <strong>circle-based method</strong> and <strong>Buffon's Needle</strong>. Each of these methods uses randomness to approximate <span class="arithmatex">\(\pi\)</span> through geometric probability. Below, we’ll break down the steps for each approach, the theoretical foundation, and provide Python code for simulations.</p>
-<hr/>
-<h3 id="part-1-estimating-pi-using-a-circle-monte-carlo-method"><strong>Part 1: Estimating <span class="arithmatex">\(\pi\)</span> Using a Circle (Monte Carlo Method)</strong></h3>
-<h4 id="1-theoretical-foundation"><strong>1. Theoretical Foundation</strong></h4>
-<p>The idea behind the <strong>Monte Carlo method</strong> for estimating <span class="arithmatex">\(\pi\)</span> involves randomly generating points within a square that contains a circle, and using the ratio of points that fall inside the circle to the total number of points in the square.</p>
-<ul>
-<li>The <strong>unit circle</strong> (circle with radius 1) is inscribed within a <strong>square</strong> of side length 2, so the area of the square is <span class="arithmatex">\(2 \times 2 = 4\)</span> and the area of the circle is <span class="arithmatex">\(\pi \times r^2 = \pi\)</span> (since <span class="arithmatex">\(r = 1\)</span>).</li>
-<li>If we randomly generate points in the square, the ratio of points that fall inside the circle to the total number of points will be approximately equal to the ratio of the areas:</li>
-</ul>
-<p>$$
-  \frac{\text{Area of Circle}}{\text{Area of Square}} = \frac{\pi}{4}
-  $$
-* Therefore, we can estimate <span class="arithmatex">\(\pi\)</span> by the formula:</p>
-<p>$$
-  \pi \approx 4 \times \left(\frac{\text{Points inside circle}}{\text{Total points}}\right)
-  $$</p>
 <h4 id="2-simulation"><strong>2. Simulation</strong></h4>
 <p>We generate random points within the square and count how many fall inside the unit circle. If a point lies inside the circle, its distance from the origin (0, 0) satisfies:</p>
 <div class="arithmatex">\[
 x^2 + y^2 \leq 1
 \]</div>
 <p>where <span class="arithmatex">\((x, y)\)</span> are the coordinates of the point.</p>
+<p><a href="../code.html">Simulation</a></p>
 <h4 id="3-visualization"><strong>3. Visualization</strong></h4>
 <p>We will visualize the points inside and outside the circle on a 2D plot, coloring the points differently to show which points fall inside and outside the circle.</p>
-<p><img alt="alt text" src="../image%20statistics2.png"/></p>
-<h4 id="4-python-code-for-the-circle-based-monte-carlo-method"><strong>4. Python Code for the Circle-Based Monte Carlo Method</strong></h4>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Function to estimate Pi using Monte Carlo method (Circle-based)
-def estimate_pi(num_points):
-    points_inside_circle = 0
-    x_inside = []
-    y_inside = []
-    x_outside = []
-    y_outside = []
-
-    for _ in range(num_points):
-        # Generate random point (x, y) in square [-1, 1]
-        x, y = np.random.uniform(-1, 1), np.random.uniform(-1, 1)
-
-        # Check if the point is inside the unit circle
-        if x**2 + y**2 &lt;= 1:
-            points_inside_circle += 1
-            x_inside.append(x)
-            y_inside.append(y)
-        else:
-            x_outside.append(x)
-            y_outside.append(y)
-
-    # Estimate Pi using the ratio
-    pi_estimate = 4 * points_inside_circle / num_points
-
-    # Plotting the points
-    plt.figure(figsize=(6, 6))
-    plt.scatter(x_inside, y_inside, color='blue', s=1, label='Inside Circle')
-    plt.scatter(x_outside, y_outside, color='red', s=1, label='Outside Circle')
-    plt.gca().set_aspect('equal', adjustable='box')
-    plt.title(f"Monte Carlo Estimation of Pi\nEstimated Pi: {pi_estimate:.4f}")
-    plt.legend()
-    plt.show()
-
-    return pi_estimate
-
-# Estimate Pi with 10,000 random points
-pi_value = estimate_pi(10000)
-print(f"Estimated Pi: {pi_value:.4f}")
-</code></pre>
-<h4 id="explanation-of-the-code_1"><strong>Explanation of the Code</strong>:</h4>
-<ol>
-<li><strong>Random Points</strong>: We generate random points with coordinates <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> in the square range from <span class="arithmatex">\(-1\)</span> to <span class="arithmatex">\(1\)</span>.</li>
-<li><strong>Inside the Circle</strong>: For each point, we check if it lies within the unit circle using the condition <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</li>
-<li><strong>Pi Estimate</strong>: The ratio of points inside the circle to total points is used to estimate <span class="arithmatex">\(\pi\)</span> by multiplying by 4.</li>
-<li><strong>Visualization</strong>: We visualize the points inside and outside the circle with different colors.</li>
-</ol>
+<p><img alt="alt text" src="../Figure_pb2.png"/></p>
 <h4 id="4-analysis"><strong>4. Analysis</strong>:</h4>
 <ul>
 <li>As the number of points increases, the estimate of <span class="arithmatex">\(\pi\)</span> becomes more accurate.</li>
 <li>You can run the simulation with different numbers of points (e.g., 1000, 5000, 10000) and observe the convergence of the estimate to <span class="arithmatex">\(\pi\)</span>.</li>
 </ul>
+<h3 id="analysis-of-convergence-and-computational-considerations">Analysis of Convergence and Computational Considerations</h3>
+<h4 id="convergence-rate">Convergence Rate</h4>
+<ul>
+<li>
+<p><strong>Theoretical Convergence</strong>: The Monte Carlo method has a convergence rate of <span class="arithmatex">\(O(1/\sqrt{N})\)</span>. The standard error of the estimate is proportional to <span class="arithmatex">\(\sqrt{\frac{\pi (4-\pi)}{N}}\)</span>, so the error decreases slowly as <span class="arithmatex">\(N\)</span> increases.</p>
+</li>
+<li>
+<p><strong>Observation</strong>: The simulation confirms this:</p>
+</li>
+<li>
+<p>For <span class="arithmatex">\(N = 100\)</span>, errors are ~0.1.</p>
+</li>
+<li>
+<p>For <span class="arithmatex">\(N = 1000000\)</span>, errors drop to ~0.0001, but significant computational effort is needed.</p>
+</li>
+<li>
+<p><strong>Fluctuations</strong>: Due to randomness, the estimate may occasionally be less accurate for larger <span class="arithmatex">\(N\)</span>, but the trend is toward smaller errors.</p>
+</li>
+</ul>
+<h4 id="computational-considerations">Computational Considerations</h4>
+<ul>
+<li>
+<p><strong>Efficiency</strong>: The method is computationally simple (generating points, checking a condition, and counting), but achieving high accuracy requires large <span class="arithmatex">\(N\)</span>, increasing time and memory usage.</p>
+</li>
+<li>
+<p>Time complexity: <span class="arithmatex">\(O(N)\)</span> for generating and checking points.</p>
+</li>
+<li>
+<p>Space complexity: <span class="arithmatex">\(O(N)\)</span> if storing points (though the code can be modified to process points sequentially to reduce memory use).</p>
+</li>
+<li>
+<p><strong>Trade-offs</strong>: While intuitive and easy to implement, Monte Carlo is less efficient than analytical methods or other numerical approximations (e.g., series expansions) for π. Its strength lies in its generality for problems without closed-form solutions.</p>
+</li>
+<li>
+<p><strong>Improvements</strong>:</p>
+</li>
+<li>
+<p>Use vectorized operations (as done with NumPy) to speed up computation.</p>
+</li>
+<li>
+<p>Implement variance reduction techniques (e.g., stratified sampling) to improve convergence.</p>
+</li>
+</ul>
+<h4 id="practical-insights">Practical Insights</h4>
+<ul>
+<li>
+<p>The method illustrates how randomness can approximate deterministic quantities.</p>
+</li>
+<li>
+<p>It’s a good educational tool due to its visual appeal and simplicity.</p>
+</li>
+<li>
+<p>In practice, Monte Carlo methods are more valuable for high-dimensional or complex problems (e.g., integrals in physics or finance) where other methods are infeasible.</p>
+</li>
+</ul>
+<p>This solution provides a complete, visual, and analytical exploration of estimating π using Monte Carlo methods, demonstrating both the method’s elegance and its limitations.</p>
+<p><img alt="alt text" src="../statistics%202.png"/></p>
 <hr/>
 <h3 id="part-2-estimating-pi-using-buffons-needle"><strong>Part 2: Estimating <span class="arithmatex">\(\pi\)</span> Using Buffon's Needle</strong></h3>
 <h4 id="1-theoretical-foundation_1"><strong>1. Theoretical Foundation</strong></h4>
@@ -555,61 +348,10 @@ print(f"Estimated Pi: {pi_value:.4f}")
 </ul>
 <h4 id="2-simulation_1"><strong>2. Simulation</strong></h4>
 <p>In the simulation, we randomly choose an angle and the position of the needle to check if it crosses one of the lines.</p>
+<p><a href="../simulation.html">Simulation</a></p>
 <h4 id="3-visualization_1"><strong>3. Visualization</strong></h4>
 <p>We will visualize the needle dropping on the floor with parallel lines and show when the needle crosses a line.</p>
-<h4 id="4-python-code-for-buffons-needle-simulation"><strong>4. Python Code for Buffon's Needle Simulation</strong></h4>
 <p><img alt="alt text" src="../statistics%20problem%202-1.png"/></p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Function to simulate Buffon's Needle problem
-def estimate_pi_buffon(num_drops, needle_length=1, line_distance=2):
-    crossings = 0
-
-    # Simulating needle drops
-    for _ in range(num_drops):
-        # Random angle between 0 and pi/2
-        angle = np.random.uniform(0, np.pi / 2)
-
-        # Random distance from needle center to the nearest line (between 0 and line_distance / 2)
-        distance = np.random.uniform(0, line_distance / 2)
-
-        # Check if the needle crosses a line
-        if distance &lt;= (needle_length / 2) * np.sin(angle):
-            crossings += 1
-
-    # Estimate Pi using the formula
-    pi_estimate = (2 * needle_length * num_drops) / (line_distance * crossings)
-
-    # Visualizing the needle drops
-    plt.figure(figsize=(6, 6))
-    for _ in range(num_drops):
-        angle = np.random.uniform(0, np.pi / 2)
-        distance = np.random.uniform(0, line_distance / 2)
-        x_center = distance * np.cos(angle)
-        y_center = distance * np.sin(angle)
-        # Plotting the needle
-        plt.plot([x_center - needle_length / 2 * np.cos(angle), x_center + needle_length / 2 * np.cos(angle)],
-                 [y_center - needle_length / 2 * np.sin(angle), y_center + needle_length / 2 * np.sin(angle)],
-                 color='blue')
-
-    plt.title(f"Buffon's Needle Simulation\nEstimated Pi: {pi_estimate:.4f}")
-    plt.grid(True)
-    plt.show()
-
-    return pi_estimate
-
-# Estimate Pi with 1000 needle drops
-pi_buffon = estimate_pi_buffon(1000)
-print(f"Estimated Pi using Buffon's Needle: {pi_buffon:.4f}")
-</code></pre>
-<h4 id="explanation-of-the-code_2"><strong>Explanation of the Code</strong>:</h4>
-<ol>
-<li><strong>Angle and Position</strong>: For each needle drop, we randomly select an angle between 0 and <span class="arithmatex">\(\pi/2\)</span>, and a random distance from the center of the needle to the nearest line.</li>
-<li><strong>Crossing Check</strong>: We check if the needle crosses a line by comparing the distance and angle.</li>
-<li><strong>Pi Estimate</strong>: The number of crossings is used to estimate <span class="arithmatex">\(\pi\)</span> using the derived formula.</li>
-<li><strong>Visualization</strong>: We visualize the needle drops with lines representing the parallel lines on the floor.</li>
-</ol>
 <h4 id="4-analysis_1"><strong>4. Analysis</strong>:</h4>
 <ul>
 <li>Similar to the circle-based method, as the number of needle drops increases, the estimate for <span class="arithmatex">\(\pi\)</span> becomes more accurate.</li>
@@ -617,9 +359,37 @@ print(f"Estimated Pi using Buffon's Needle: {pi_buffon:.4f}")
 </ul>
 <hr/>
 <h3 id="comparison-and-conclusion"><strong>Comparison and Conclusion</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Convergence Rate</strong></th>
+<th><strong>Key Advantage</strong></th>
+<th><strong>Key Limitation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Circle</td>
+<td><span class="arithmatex">\(\mathcal{O}(1/\sqrt{n})\)</span></td>
+<td>Simple implementation</td>
+<td>Requires large <span class="arithmatex">\(n\)</span> for high precision</td>
+</tr>
+<tr>
+<td>Buffon’s Needle</td>
+<td><span class="arithmatex">\(\mathcal{O}(1/\sqrt{n})\)</span></td>
+<td>Historical/educational interest</td>
+<td>Slower convergence, complex setup</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>Accuracy</strong>: Both methods converge to <span class="arithmatex">\(\pi\)</span> as the number of samples increases. However, the circle-based method typically converges faster.</li>
-<li><strong>Computational Efficiency</strong>: The circle-based method is computationally more efficient as it involves generating random points in a 2D space, whereas Buffon’s Needle involves more complex geometric calculations.</li>
+<li>
+<p><strong>Accuracy</strong>: Both methods converge to <span class="arithmatex">\(\pi\)</span> as the number of samples increases. However, the circle-based method typically converges faster.</p>
+</li>
+<li>
+<p><strong>Computational Efficiency</strong>: The circle-based method is computationally more efficient as it involves generating random points in a 2D space, whereas Buffon’s Needle involves more complex geometric calculations.</p>
+</li>
 </ul>
 </div>
 </div><footer>
