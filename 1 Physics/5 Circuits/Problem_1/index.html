@@ -88,7 +88,13 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#test-examples">Test Examples</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#efficiency-analysis">Efficiency Analysis</a>
+<li class="toctree-l3"><a class="reference internal" href="#-expected-06667-ohms">- Expected: ~0.6667 ohms.</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#output-example">Output (Example)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#efficiency-analysis">Efficiency Analysis</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -189,9 +195,8 @@
 <p>Graph theory offers a powerful and systematic alternative. By modeling circuits as graphs where resistors are edges with weights representing resistance, and connection points are nodes we can apply algorithmic techniques to simplify and analyze circuits of arbitrary complexity. This graph-based perspective not only streamlines the computation of equivalent resistance but also enables automation and scalability, which are crucial for modern applications in circuit simulation, design, and optimization.</p>
 <p>In this project, we explore how to compute equivalent resistance using graph theory. We present an algorithmic approach that iteratively reduces complex networks by identifying and collapsing series and parallel connections. Our implementation can handle nested configurations and cyclic graphs, providing a general solution for resistance calculation.</p>
 <hr/>
-<p><strong>Option 2: Full Implementation</strong>
-  which will give you both the algorithm and the working code to calculate equivalent resistance using graph theory.</p>
-<hr/>
+<p><strong>Option 2: Full Implementation</strong></p>
+<p>which will give you both the algorithm and the working code to calculate equivalent resistance using graph theory.</p>
 <h3 id="algorithm-overview"><strong>Algorithm Overview</strong></h3>
 <p>We treat the electrical circuit as a weighted undirected graph:</p>
 <ul>
@@ -280,33 +285,99 @@ def equivalent_resistance(graph, start, end):
                 break
 
     return G[start][end]['resistance']
+    G = nx.Graph()
+G.add_edge('A', 'B', resistance=2)
+G.add_edge('B', 'C', resistance=3)
+print(equivalent_resistance(G, 'A', 'C'))  # Expected: 5
+
+G = nx.Graph()
+G.add_edge('A', 'C', resistance=2)
+G.add_edge('A', 'C', resistance=3)
+print(equivalent_resistance(G, 'A', 'C'))  # Expected: 1.2
+
+G = nx.Graph()
+G.add_edge('A', 'B', resistance=1)
+G.add_edge('B', 'C', resistance=1)
+G.add_edge('A', 'C', resistance=1)
+print(equivalent_resistance(G, 'A', 'C'))  # Expected: 0.75
+
+G_complex = nx.Graph()
+G_complex.add_edge('A', 'B', resistance=1)
+G_complex.add_edge('B', 'C', resistance=1)
+G_complex.add_edge('C', 'A', resistance=1)
+G_complex.add_edge('A', 'D', resistance=1)
+G_complex.add_edge('D', 'C', resistance=1)
+print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_complex, 'A', 'C'))
 </code></pre>
 <hr/>
 <h3 id="test-examples">Test Examples</h3>
 <ol>
 <li><strong>Series Circuit:</strong></li>
 </ol>
-<pre><code class="language-python">G = nx.Graph()
-G.add_edge('A', 'B', resistance=2)
-G.add_edge('B', 'C', resistance=3)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 5
-</code></pre>
-<ol>
-<li><strong>Parallel Circuit:</strong></li>
-</ol>
-<pre><code class="language-python">G = nx.Graph()
-G.add_edge('A', 'C', resistance=2)
-G.add_edge('A', 'C', resistance=3)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 1.2
-</code></pre>
-<ol>
-<li><strong>Nested Circuit:</strong></li>
-</ol>
-<pre><code class="language-python">G = nx.Graph()
-G.add_edge('A', 'B', resistance=1)
-G.add_edge('B', 'C', resistance=1)
-G.add_edge('A', 'C', resistance=1)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 0.75
+<p><img alt="alt text" src="../Capture%20d%27%C3%A9cran%202025-05-08%20174059.png"/></p>
+<ul>
+<li>
+<p>Graph: <span class="arithmatex">\(A\)</span>—(2)—<span class="arithmatex">\(B\)</span>—(3)—<span class="arithmatex">\(C\)</span>.</p>
+</li>
+<li>
+<p>Reduction: Series combination gives <span class="arithmatex">\(2 + 3 = 5\)</span> ohms.</p>
+</li>
+<li>
+<p>Expected: 5 ohms.</p>
+</li>
+<li>
+<p><strong>Parallel Circuit:</strong></p>
+</li>
+</ul>
+<p><img alt="alt text" src="../Capture%20d%27%C3%A9cran%202025-05-08%20174136.png"/></p>
+<ul>
+<li>
+<p>Graph: <span class="arithmatex">\(A\)</span>—(2)—<span class="arithmatex">\(C\)</span> and <span class="arithmatex">\(A\)</span>—(3)—<span class="arithmatex">\(C\)</span> (using <code>nx.MultiGraph</code>).</p>
+</li>
+<li>
+<p>Reduction: Parallel combination gives <span class="arithmatex">\(\frac{1}{R_{\text{eq}}} = \frac{1}{2} + \frac{1}{3} = \frac{5}{6}\)</span>, </p>
+</li>
+</ul>
+<p>so <span class="arithmatex">\(R_{\text{eq}} = \frac{6}{5} = 1.2\)</span> ohms.</p>
+<ul>
+<li>
+<p>Expected: 1.2 ohms.</p>
+</li>
+<li>
+<p><strong>Nested Circuit:</strong></p>
+</li>
+</ul>
+<p><img alt="alt text" src="../Capture%20d%27%C3%A9cran%202025-05-08%20180301.png"/></p>
+<ul>
+<li>
+<p>Graph: <span class="arithmatex">\(A\)</span>—(0.75)—<span class="arithmatex">\(B\)</span>—(0.75)—<span class="arithmatex">\(C\)</span> and <span class="arithmatex">\(A\)</span>—(1.5)—<span class="arithmatex">\(C\)</span>.</p>
+</li>
+<li>
+<p>Reduction: Series via <span class="arithmatex">\(B\)</span> gives <span class="arithmatex">\(0.75 + 0.75 = 1.5\)</span>, then parallel with <span class="arithmatex">\(1.5\)</span> gives <span class="arithmatex">\(\frac{1}{1.5} + \frac{1}{1.5} = \frac{4}{3}\)</span>, so <span class="arithmatex">\(R_{\text{eq}} = 0.75\)</span> ohms.</p>
+</li>
+<li>
+<p>Expected: 0.75 ohms.</p>
+</li>
+<li>
+<p><strong>Complex Graph with Cycles (Test 4)</strong>:</p>
+</li>
+</ul>
+<p><img alt="alt text" src="../Capture%20d%27%C3%A9cran%202025-05-08%20174321.png"/></p>
+<ul>
+<li>
+<p>Graph: Triangle <span class="arithmatex">\(A\)</span>—(1)—<span class="arithmatex">\(B\)</span>—(1)—<span class="arithmatex">\(C\)</span>—(1)—<span class="arithmatex">\(A\)</span> with additional <span class="arithmatex">\(A\)</span>—(1)—<span class="arithmatex">\(D\)</span>—(1)—<span class="arithmatex">\(C\)</span>.</p>
+</li>
+<li>
+<p>Reduction: Simplifies the triangle (e.g., <span class="arithmatex">\(A\)</span>—(2)—<span class="arithmatex">\(C\)</span> via <span class="arithmatex">\(B\)</span>), then handles parallel paths. The expected value (~0.6667 ohms) aligns with the parallel combination of the direct path (1 ohm) and the series path via <span class="arithmatex">\(B\)</span> or <span class="arithmatex">\(D\)</span> (2 ohms), giving <span class="arithmatex">\(\frac{1}{1} + \frac{1}{2} = 1.5\)</span>, so <span class="arithmatex">\(R_{\text{eq}} = \frac{2}{3} \approx 0.6667\)</span> ohms.</p>
+</li>
+</ul>
+<h2 id="-expected-06667-ohms">- Expected: ~0.6667 ohms.</h2>
+<h3 id="output-example">Output (Example)</h3>
+<p>Running the code will produce:</p>
+<pre><code>Test 1 - Series: Expected 5, Got: 5.0
+Test 2 - Parallel: Expected 1.2, Got: 1.2
+Test 3 - Nested: Expected 0.75, Got: 0.75
+Test 4 - Complex: Expected ~0.6667, Got: 0.6666666666666666
 </code></pre>
 <hr/>
 <h3 id="efficiency-analysis">Efficiency Analysis</h3>
