@@ -148,6 +148,8 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
    - Expected: 5 ohms.
 
 
+
+
 2. **Parallel Circuit:**
 
 ![alt text](<Capture d'écran 2025-05-08 174136.png>)
@@ -159,6 +161,8 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
    so $R_{\text{eq}} = \frac{6}{5} = 1.2$ ohms.
 
    - Expected: 1.2 ohms.
+
+
 
 
 3. **Nested Circuit:**
@@ -173,6 +177,8 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
 
 
 
+
+
 4. **Complex Graph with Cycles (Test 4)**:
 
 ![alt text](<Capture d'écran 2025-05-08 174321.png>)
@@ -180,8 +186,7 @@ print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_comple
    - Graph: Triangle $A$—(1)—$B$—(1)—$C$—(1)—$A$ with additional $A$—(1)—$D$—(1)—$C$.
    
    - Reduction: Simplifies the triangle (e.g., $A$—(2)—$C$ via $B$), then handles parallel paths. The expected value (~0.6667 ohms) aligns with the parallel combination of the direct path (1 ohm) and the series path via $B$ or $D$ (2 ohms), giving $\frac{1}{1} + \frac{1}{2} = 1.5$, so $R_{\text{eq}} = \frac{2}{3} \approx 0.6667$ ohms.
-
-   - Expected: ~0.6667 ohms.
+    - Expected: ~0.6667 ohms.
 ---
 
 
