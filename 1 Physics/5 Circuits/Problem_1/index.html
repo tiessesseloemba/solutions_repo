@@ -84,8 +84,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pseudocode">Pseudocode</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#python-implementation">Python Implementation</a>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#test-examples">Test Examples</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#output-example">Output (Example)</a>
@@ -238,72 +236,6 @@ function merge_parallel():
         R_total = 1 / sum(1/R for R in resistances between u and v)
         remove all edges(u, v)
         add edge(u, v, R_total)
-</code></pre>
-<hr/>
-<h3 id="python-implementation">Python Implementation</h3>
-<p>Here's a working version using <code>networkx</code>:</p>
-<pre><code class="language-python">import networkx as nx
-
-def equivalent_resistance(graph, start, end):
-    G = graph.copy()
-    changed = True
-
-    while changed:
-        changed = False
-        for node in list(G.nodes):
-            if node in [start, end]:
-                continue
-            neighbors = list(G.neighbors(node))
-            if len(neighbors) == 2:
-                # Series reduction
-                r1 = G[node][neighbors[0]]['resistance']
-                r2 = G[node][neighbors[1]]['resistance']
-                new_r = r1 + r2
-                G.add_edge(neighbors[0], neighbors[1], resistance=new_r)
-                G.remove_node(node)
-                changed = True
-                break
-
-        # Parallel reduction
-        to_merge = {}
-        for u, v in list(G.edges()):
-            if (u, v) in to_merge or (v, u) in to_merge:
-                continue
-            parallels = [
-                (i, j) for i, j in G.edges()
-                if (i == u and j == v) or (i == v and j == u)
-            ]
-            if len(parallels) &gt; 1:
-                total_inv = sum(1 / G[i][j]['resistance'] for i, j in parallels)
-                G.remove_edges_from(parallels)
-                G.add_edge(u, v, resistance=1 / total_inv)
-                changed = True
-                break
-
-    return G[start][end]['resistance']
-    G = nx.Graph()
-G.add_edge('A', 'B', resistance=2)
-G.add_edge('B', 'C', resistance=3)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 5
-
-G = nx.Graph()
-G.add_edge('A', 'C', resistance=2)
-G.add_edge('A', 'C', resistance=3)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 1.2
-
-G = nx.Graph()
-G.add_edge('A', 'B', resistance=1)
-G.add_edge('B', 'C', resistance=1)
-G.add_edge('A', 'C', resistance=1)
-print(equivalent_resistance(G, 'A', 'C'))  # Expected: 0.75
-
-G_complex = nx.Graph()
-G_complex.add_edge('A', 'B', resistance=1)
-G_complex.add_edge('B', 'C', resistance=1)
-G_complex.add_edge('C', 'A', resistance=1)
-G_complex.add_edge('A', 'D', resistance=1)
-G_complex.add_edge('D', 'C', resistance=1)
-print("Test 4 - Complex: Expected ~0.6667, Got:", equivalent_resistance(G_complex, 'A', 'C'))
 </code></pre>
 <hr/>
 <h3 id="test-examples">Test Examples</h3>
