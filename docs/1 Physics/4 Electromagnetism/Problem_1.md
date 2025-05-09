@@ -83,29 +83,3 @@ This was addressed in the textual explanation above, identifying systems (partic
 
 This project successfully addressed the problem of simulating the effects of the Lorentz force on a charged particle, fulfilling all specified tasks with a comprehensive approach that combined theoretical analysis, numerical simulation, and detailed visualization. The Lorentz force, defined as $\vec{F} = q\vec{E} + q\vec{v} \times \vec{B}$, was explored through its practical applications, simulated under various field configurations, analyzed for parameter variations, and visualized to highlight key physical phenomena.
 
-**Task 1: Exploration of Applications**  
-We identified key systems where the Lorentz force plays a critical role, including particle accelerators (e.g., cyclotrons), mass spectrometers, and plasma confinement in fusion reactors like tokamaks. The roles of the electric field ($\vec{E}$) and magnetic field ($\vec{B}$) were discussed: $\vec{E}$ accelerates particles, changing their speed, while $\vec{B}$ causes circular or helical motion, controlling their direction without altering their speed. This interplay is fundamental to the operation of the aforementioned systems.
-
-**Task 2: Simulating Particle Motion**  
-Using the Boris method, a stable numerical technique, we simulated the motion of a charged particle under three scenarios: a uniform magnetic field, combined electric and magnetic fields, and crossed electric and magnetic fields. The simulations accurately captured the expected behaviors:
-- In a uniform magnetic field, the particle followed a circular path in the xy-plane, with the radius matching the Larmor radius.
-- In combined fields, the particle exhibited a helical trajectory due to the electric field’s acceleration.
-- In crossed fields, the particle showed a cycloidal motion, combining circular motion with a linear drift along the x-axis, consistent with the $\vec{E} \times \vec{B}$ drift.
-
-**Task 3: Parameter Exploration**  
-The code explored the effects of varying key parameters:
-- **Magnetic Field Strength ($B$):** Increasing $B$ reduced the Larmor radius ($r_L \propto \frac{1}{B}$), resulting in tighter circular paths.
-- **Electric Field Strength ($E$):** Increasing $E$ in the crossed fields scenario increased the drift velocity ($v_d \propto E$), leading to a larger linear displacement.
-- **Initial Velocity ($v_0$):** Higher initial velocities increased the Larmor radius ($r_L \propto v_\perp$), resulting in larger circular paths.
-- **Charge and Mass ($q, m$):** Comparing a proton and an electron, the electron’s smaller mass led to a much smaller Larmor radius ($r_L \propto m$), and its negative charge caused it to move in the opposite direction.
-
-**Task 4: Visualization**  
-The visualizations were enhanced to provide clear and informative 2D and 3D plots:
-- 2D plots displayed the particle’s trajectory in the xy-plane, with annotations for the Larmor radius (as a dashed circle) and drift velocity (as an arrow).
-- 3D plots showed the full trajectory with a color gradient to indicate time evolution, along with arrows representing the $\vec{E}$ and $\vec{B}$ fields.
-- Parameter exploration plots compared trajectories for different values of $B$, $E$, $v_0$, and particle types, making the effects of these parameters visually apparent.
-
-**Overall Impact**  
-This project not only demonstrated the practical applications of the Lorentz force but also provided a robust tool for simulating and visualizing charged particle motion. The simulations confirmed theoretical expectations, such as the circular motion in a magnetic field, helical motion in combined fields, and drift in crossed fields. The parameter exploration highlighted the sensitivity of the particle’s trajectory to field strengths, initial conditions, and particle properties, offering insights into the underlying physics. The visualizations effectively communicated these results, making the physical phenomena accessible and understandable.
-
-This work could be extended by adding interactive features (e.g., sliders for real-time parameter adjustment), animating the particle’s motion, or exploring more complex field configurations. Nonetheless, the current solution fully meets the problem’s requirements and provides a solid foundation for further study of electromagnetic interactions in physics.
