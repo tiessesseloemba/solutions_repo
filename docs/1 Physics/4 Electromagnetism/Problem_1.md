@@ -29,143 +29,8 @@ For these tasks, we need to simulate the particle’s trajectory under the speci
 
 ---
 
-### Python Code for Simulation and Visualization
+###  Visualization
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-# Constants
-q = 1.6e-19  # Charge of the particle (Coulombs, e.g., proton)
-m = 1.67e-27  # Mass of the particle (kg, e.g., proton)
-dt = 1e-11  # Time step (seconds)
-t_max = 2e-7  # Total simulation time (seconds)
-steps = int(t_max / dt)
-
-# Boris method for simulating particle motion under Lorentz force
-def simulate_trajectory(E, B, v0, q, m, dt, steps):
-    r = np.zeros((steps, 3))  # Position (x, y, z)
-    v = np.zeros((steps, 3))  # Velocity (vx, vy, vz)
-    v[0] = v0  # Initial velocity
-    
-    t = q * B * dt / (2 * m)  # Half magnetic field term
-    for i in range(steps - 1):
-        v_minus = v[i] + (q * E / m) * (dt / 2)
-        t_vec = t / np.linalg.norm(B) if np.linalg.norm(B) > 0 else np.zeros(3)
-        v_prime = v_minus + np.cross(v_minus, t)
-        s = 2 * t_vec / (1 + np.dot(t_vec, t_vec))
-        v_plus = v_minus + np.cross(v_prime, s)
-        v[i + 1] = v_plus + (q * E / m) * (dt / 2)
-        r[i + 1] = r[i] + v[i + 1] * dt
-    
-    return r, v
-
-# Calculate Larmor radius and drift velocity
-def calculate_physical_quantities(v0, B, q, m, E):
-    B_mag = np.linalg.norm(B)
-    v_perp = np.linalg.norm(v0[0:2])  # Assuming B is along z
-    r_L = (m * v_perp) / (abs(q) * B_mag) if B_mag > 0 else float('inf')
-    
-    v_d = np.cross(E, B) / (B_mag ** 2) if B_mag > 0 else np.zeros(3)
-    
-    return r_L, v_d
-
-# Plotting function with enhanced visualization
-def plot_trajectory(r, v, E, B, v0, q, m, name):
-    r_L, v_d = calculate_physical_quantities(v0, B, q, m, E)
-    
-    # 2D Plot with Larmor radius circle
-    fig, ax = plt.subplots(figsize=(8, 6))
-    ax.plot(r[:, 0], r[:, 1], color='blue', label='Trajectory', linewidth=2)
-    ax.scatter(r[0, 0], r[0, 1], color='red', s=100, label='Start', zorder=5)
-    
-    # Draw Larmor radius circle (for uniform B field)
-    if np.all(E == 0) and np.linalg.norm(B) > 0:
-        circle = plt.Circle((r[0, 0], r[0, 1]), r_L, color='green', fill=False, linestyle='--', label=f'Larmor Radius ({r_L:.2e} m)')
-        ax.add_patch(circle)
-    
-    # Plot drift velocity direction (for crossed fields)
-    if np.linalg.norm(v_d) > 0:
-        ax.arrow(0, 0, v_d[0]*1e-5, v_d[1]*1e-5, color='purple', width=1e-7, label='Drift Direction')
-    
-    ax.set_xlabel('X (m)')
-    ax.set_ylabel('Y (m)')
-    ax.set_title(f'2D Trajectory - {name}')
-    ax.grid(True)
-    ax.legend()
-    ax.set_aspect('equal')
-    plt.show()
-    
-    # 3D Plot with field vectors and color gradient
-    fig = plt.figure(figsize=(10, 8))
-    ax = fig.add_subplot(111, projection='3d')
-    
-    # Color gradient to show time evolution
-    points = np.array([r[:, 0], r[:, 1], r[:, 2]]).T.reshape(-1, 1, 3)
-    segments = np.concatenate([points[:-1], points[1:]], axis=1)
-    norm = plt.Normalize(0, t_max)
-    lc = Line3DCollection(segments, cmap='viridis', norm=norm)
-    lc.set_array(np.linspace(0, t_max, len(r)))
-    ax.add_collection3d(lc)
-    
-    # Plot field vectors
-    B_mag = np.linalg.norm(B)
-    E_mag = np.linalg.norm(E)
-    if B_mag > 0:
-        ax.quiver(0, 0, 0, B[0]/B_mag, B[1]/B_mag, B[2]/B_mag, length=1e-3, color='red', label='B Field')
-    if E_mag > 0:
-        ax.quiver(0, 0, 0, E[0]/E_mag, E[1]/E_mag, E[2]/E_mag, length=1e-3, color='orange', label='E Field')
-    
-    ax.scatter(r[0, 0], r[0, 1], r[0, 2], color='red', s=100, label='Start')
-    ax.set_xlabel('X (m)')
-    ax.set_ylabel('Y (m)')
-    ax.set_zlabel('Z (m)')
-    ax.set_title(f'3D Trajectory - {name}\nLarmor Radius: {r_L:.2e} m, Drift Velocity: {v_d[0]:.2e} m/s')
-    ax.legend()
-    plt.show()
-
-# Simulation scenarios
-scenarios = [
-    {"name": "Uniform Magnetic Field", "E": np.array([0, 0, 0]), "B": np.array([0, 0, 1])},
-    {"name": "Combined E and B Fields", "E": np.array([0, 1e3, 0]), "B": np.array([0, 0, 1])},
-    {"name": "Crossed E and B Fields", "E": np.array([0, 1e3, 0]), "B": np.array([0, 0, 1])},
-]
-
-# Initial velocity
-v0 = np.array([1e5, 0, 0])  # Initial velocity along x (m/s)
-
-# Run simulations for each scenario
-for scenario in scenarios:
-    E = scenario["E"]
-    B = scenario["B"]
-    name = scenario["name"]
-    
-    r, v = simulate_trajectory(E, B, v0, q, m, dt, steps)
-    plot_trajectory(r, v, E, B, v0, q, m, name)
-
-# Parameter exploration: Vary B field strength
-B_strengths = [0.5, 1.0, 2.0]
-fig, ax = plt.subplots(figsize=(8, 6))
-for B_strength in B_strengths:
-    B = np.array([0, 0, B_strength])
-    r, v = simulate_trajectory(np.array([0, 0, 0]), B, v0, q, m, dt, steps)
-    ax.plot(r[:, 0], r[:, 1], label=f'B = {B_strength} T')
-ax.set_xlabel('X (m)')
-ax.set_ylabel('Y (m)')
-ax.set_title('2D Trajectory - Varying Magnetic Field Strength')
-ax.grid(True)
-ax.legend()
-ax.set_aspect('equal')
-plt.show()
-```
-
-
-
----
-
-
----
 
 
 ![alt text](<Figure 1electromagnetism.png>)
@@ -173,6 +38,8 @@ plt.show()
 
 
 ![alt text](Figure_3.png)
+
+
 ---
 
 ### Explanation of Changes and Solution
