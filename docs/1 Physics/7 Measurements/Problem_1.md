@@ -1,7 +1,7 @@
 # Problem 1
 
 
-## 🧪 Measuring the Acceleration Due to Gravity $g$ Using a Simple Pendulum
+##  Measuring the Acceleration Due to Gravity $g$ Using a Simple Pendulum
 
 
 ###  Introduction
