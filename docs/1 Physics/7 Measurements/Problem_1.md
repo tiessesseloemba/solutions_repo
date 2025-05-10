@@ -1,140 +1,210 @@
 # Problem 1
 
-### **Measuring Earth's Gravitational Acceleration with a Pendulum**
 
-#### **Motivation:**
+## 🧪 Measuring the Acceleration Due to Gravity $g$ Using a Simple Pendulum
 
-The acceleration due to gravity, denoted $g$, is a fundamental physical constant that influences a wide range of phenomena. 
-One way to measure $g$ accurately is through the oscillations of a simple pendulum.
- The period of the pendulum depends on the local gravitational field, and by measuring this period, we can calculate $g$.
 
-#### **Procedure:**
+###  Introduction
+
+This experiment aims to determine the acceleration due to gravity $g$ by analyzing the oscillations of a simple pendulum.
+ The method involves timing several oscillations, calculating the period, and applying the theoretical model for simple harmonic motion under small-angle approximation.
+
+
+This allows us to understand oscillatory systems and develop skills in uncertainty analysis and propagation.
+
+
+
+###  Theoretical Background
+
+For small angles (typically < 15°), the period of a simple pendulum is given by:
+
+
+$$
+T = 2\pi \sqrt{\frac{L}{g}}
+$$
+
+
+Solving for $g$:
+
+
+$$
+g = \frac{4\pi^2 L}{T^2}
+$$
+
+
+Where:
+
+* $T$ is the period of one oscillation
+
+* $L$ is the length of the pendulum
+
+
+The uncertainty in $g$ is calculated using propagation of uncertainty:
+
+
+$$
+\Delta g = g \cdot \sqrt{ \left( \frac{\Delta L}{L} \right)^2 + \left( 2 \cdot \frac{\Delta T}{T} \right)^2 }
+$$
+
+
+
+
+###  Materials
+
+* String (1.20 m long)
+
+* Metal keychain (as pendulum mass)
+
+* Ruler (with ±0.5 mm precision)
+
+* Stopwatch (via smartphone)
+
+* Stable stand
+
+
+
+###  Procedure
+
+1. Measure the length $L$ of the pendulum from the point of suspension to the center of mass of the weight.
+
+2. Displace the pendulum to a small angle and release it.
+
+3. Measure the time for 10 full oscillations.
+
+4. Repeat the measurement 10 times.
+
+5. Calculate the average time, individual periods, and the uncertainty.
+
+6. Use the theoretical formula to compute $g$.
+
+
+
+
+###  Raw Data
+
+
+**Measured pendulum length:**
+
+* $L = 1.200 \, \text{m}$,
+
+* Uncertainty: $\Delta L = 0.005 \, \text{m}$
+
+
+**Times for 10 oscillations:**
+
+| Measurement No. | Time for 10 Oscillations $T_{10}$ (s) |
+| --------------- | ------------------------------------- |
+| 1               | 21.95                                 |
+| 2               | 22.01                                 |
+| 3               | 21.90                                 |
+| 4               | 22.05                                 |
+| 5               | 21.98                                 |
+| 6               | 22.03                                 |
+| 7               | 21.96                                 |
+| 8               | 21.99                                 |
+| 9               | 22.00                                 |
+| 10              | 22.02                                 |
+
+
+**Average:**
+
+$\overline{T_{10}} = 21.989 \, \text{s}$
+
+
+**Standard deviation:**
+
+$\sigma = 0.044 \, \text{s}$
+
+
+**Uncertainty on average (standard error):**
+
+$\Delta T_{10} = \frac{\sigma}{\sqrt{10}} = 0.014 \, \text{s}$
+
+
+
+
+###  Calculations
+
+
+**1. Average period:**
+
+
+$$
+T = \frac{21.989}{10} = 2.1989 \, \text{s}, \quad \Delta T = \frac{0.014}{10} = 0.0014 \, \text{s}
+$$
+
+
+
+**2. Calculated gravitational acceleration:**
+
+
+
+$$
+g = \frac{4\pi^2 \cdot 1.200}{(2.1989)^2} = 9.80 \, \text{m/s}^2
+$$
+
+
+
+**3. Propagation of uncertainty:**
+
+
+
+$$
+\Delta g = 9.80 \cdot \sqrt{ \left( \frac{0.005}{1.200} \right)^2 + \left( 2 \cdot \frac{0.0014}{2.1989} \right)^2 } = 0.04 \, \text{m/s}^2
+$$
+
+
+
+
+
+###  Final Result
+
+$$
+\boxed{g = (9.80 \pm 0.04) \, \text{m/s}^2}
+$$
+
+
+
+
+
+###  Table of Periods and Their Uncertainties
+
+| Measurement No. | Time $T_{10}$ (s) | Period $T$ (s) | Uncertainty $\Delta T$ (s) | Relative Uncertainty $\frac{\Delta T}{T}$ |
+| --------------- | ----------------- | -------------- | -------------------------- | ----------------------------------------- |
+| 1               | 21.95             | 2.195          | ±0.0014                    | 0.000638 (0.0638%)                        |
+| 2               | 22.01             | 2.201          | ±0.0014                    | 0.000636 (0.0636%)                        |
+| 3               | 21.90             | 2.190          | ±0.0014                    | 0.000639 (0.0639%)                        |
+| 4               | 22.05             | 2.205          | ±0.0014                    | 0.000635 (0.0635%)                        |
+| 5               | 21.98             | 2.198          | ±0.0014                    | 0.000637 (0.0637%)                        |
+| 6               | 22.03             | 2.203          | ±0.0014                    | 0.000636 (0.0636%)                        |
+| 7               | 21.96             | 2.196          | ±0.0014                    | 0.000638 (0.0638%)                        |
+| 8               | 21.99             | 2.199          | ±0.0014                    | 0.000637 (0.0637%)                        |
+| 9               | 22.00             | 2.200          | ±0.0014                    | 0.000636 (0.0636%)                        |
+| 10              | 22.02             | 2.202          | ±0.0014                    | 0.000636 (0.0636%)                        |
+
+
+
+
+###  Analysis
+
+* The experimental value of $g$ closely matches the accepted value $9.81 \, \text{m/s}^2$.
+
+* Measurement uncertainty is low, with relative uncertainty below 0.1%.
+
+* Sources of uncertainty include human reaction time when using the stopwatch, length measurement with a ruler, and slight deviations from ideal conditions (friction, air resistance).
+
+* The assumption of small angle oscillation (less than 15°) was respected.
+
 
 ---
 
-### **1. Materials:**
+###  Conclusion
 
-* **String** (1 or 1.5 meters long)
-* **Small weight** (e.g., a bag of coins, a key chain, or a small bag of sugar)
-* **Stopwatch** (or smartphone timer)
-* **Ruler or measuring tape**
+
+The experiment provided a precise measurement of the gravitational acceleration using a simple and accessible setup. The uncertainty analysis confirms the reliability of the method. Despite minor experimental limitations, the result is consistent with the theoretical value, demonstrating the effectiveness of pendulum-based measurements.
 
 ---
 
-### **2. Setup:**
 
-1. **Attach the weight** to one end of the string and fix the other end securely to a stable support.
-2. **Measure the length of the pendulum** $L$ from the suspension point (where the string is attached) to the center of the weight. Use a ruler or measuring tape for this measurement.
-
-   * Record the **resolution of the measuring tool**. If you're using a ruler, it might have a resolution of 0.1 cm or 1 mm. The uncertainty in the length measurement is half of the resolution of the measuring tool (i.e., $\delta L = \frac{\text{resolution}}{2}$).
-
----
-
-### **3. Data Collection:**
-
-1. **Displace the pendulum** slightly (less than 15°) and release it, allowing it to swing back and forth.
-2. **Measure the time for 10 full oscillations** using a stopwatch or smartphone timer. Record the time for each trial.
-
-   * Repeat the measurement 10 times and record all 10 measurements for consistency.
-3. **Calculate the mean time for 10 oscillations** ($T_{\text{mean}}$) and the standard deviation ($\sigma$) of the measurements.
-4. **Calculate the uncertainty in the mean time** using the formula for standard deviation:
-
-   $$
-   \delta T_{\text{mean}} = \frac{\sigma}{\sqrt{n}}
-   $$
-
-   where $n$ is the number of measurements (in this case, $n = 10$).
-
----
-
-### **4. Calculations:**
-
-1. **Calculate the period of a single oscillation** $T$:
-
-   * The period $T$ is the time taken for one full oscillation, which is the time for 10 oscillations divided by 10:
-
-   $$
-   T = \frac{T_{\text{mean}}}{10}
-   $$
-
-2. **Determine the gravitational acceleration $g$:**
-   The relationship between the period of a simple pendulum and the gravitational acceleration $g$ is given by:
-
-   $$
-   T = 2\pi \sqrt{\frac{L}{g}}
-   $$
-
-   Rearranging this formula to solve for $g$, we get:
-
-   $$
-   g = \frac{4\pi^2 L}{T^2}
-   $$
-
-   Plug in the values of $L$ and $T$ to calculate $g$.
-
-3. **Propagate uncertainties:**
-   The uncertainty in $g$ is calculated by propagating the uncertainties in $L$ and $T$ using the following formula:
-
-   $$
-   \delta g = g \sqrt{\left(\frac{\delta L}{L}\right)^2 + \left(2 \frac{\delta T}{T}\right)^2}
-   $$
-
-   where:
-
-   * $\delta L$ is the uncertainty in the length of the pendulum,
-   * $\delta T$ is the uncertainty in the period $T$.
-
----
-
-### **5. Analysis:**
-
-1. **Compare your measured $g$ with the standard value**:
-
-   * The standard value of gravitational acceleration $g$ at the Earth's surface is approximately $9.81 \, \text{m/s}^2$.
-   * Compare the calculated value of $g$ with this standard value and discuss the difference.
-
-2. **Discuss the following:**
-
-   * **Effect of measurement resolution** on the accuracy of $g$: Discuss how the precision of the length measurement impacts the final result.
-   * **Variability in timing** and its impact on $g$: Discuss how the timing resolution and human reaction time might affect the accuracy of your results.
-   * **Assumptions or experimental limitations**: Consider any assumptions made during the experiment, such as the small angle approximation or the assumption that the pendulum swings in a simple harmonic motion. Discuss any potential sources of error (e.g., air resistance, friction at the pivot point).
-
----
-
-### **Example Data Table:**
-
-| Measurement Trial | Time for 10 Oscillations (s) | Mean Time $T_{\text{mean}}$ (s) | Standard Deviation $\sigma$ (s) | Length $L$ (m) | $T$ (s) | Gravitational Acceleration $g$ (m/s²) |
-| ----------------- | ---------------------------- | ------------------------------- | ------------------------------- | -------------- | ------- | ------------------------------------- |
-| 1                 | 19.8                         |                                 |                                 | 1.2            |         |                                       |
-| 2                 | 20.1                         |                                 |                                 | 1.2            |         |                                       |
-| 3                 | 20.0                         |                                 |                                 | 1.2            |         |                                       |
-| ...               | ...                          |                                 |                                 | ...            |         |                                       |
-
----
-
-### **Discussion on Uncertainties:**
-
-* **Measurement Uncertainty**: The uncertainty in length measurement is typically small but can still affect the final result, especially if the string length is not measured precisely.
-* **Timing Uncertainty**: The uncertainty in timing can be significant. Human reaction time can add error when starting and stopping the stopwatch, and the resolution of the stopwatch also limits precision.
-* **Small Angle Assumption**: This assumption might not be valid for larger angles, which could lead to a slight overestimation of the period and, thus, the gravitational acceleration.
-
----
-
-### **Deliverables:**
-
-1. A **Markdown document** containing:
-
-   * Tabulated data.
-   * Detailed calculations.
-   * The uncertainty analysis and discussion.
-
-2. **Python scripts** or **Jupyter Notebooks** implementing the simulations or calculations for pendulum-based measurements and uncertainty propagation.
-
-3. **Plots** showing:
-
-   * The distribution of timing measurements.
-   * The convergence of $g$ based on increasing number of measurements.
-
-4. **Analysis** comparing the experimental value of $g$ with the theoretical value and discussing the sources of uncertainty.
 
 
